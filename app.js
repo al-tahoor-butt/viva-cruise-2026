@@ -445,7 +445,7 @@ function openGooglePhotosPicker() {
   }
 
   const tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: "72159083313-placeholder.apps.googleusercontent.com",
+    client_id: "600255061362-v6cgiglo43njki3jmd4bn5qme1steg6i.apps.googleusercontent.com",
     scope: "https://www.googleapis.com/auth/photoslibrary.readonly",
     callback: async (response) => {
       if (response.access_token) {
