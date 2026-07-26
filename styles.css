@@ -398,10 +398,68 @@ body {
   margin-top: 4px;
 }
 
-/* Pet Card */
+/* Pet Card Profile Showcase */
 .pet-card {
-  background: rgba(255, 183, 3, 0.05);
-  border-color: rgba(255, 183, 3, 0.2);
+  background: rgba(255, 183, 3, 0.06);
+  border-color: rgba(255, 183, 3, 0.25);
+}
+
+.pet-profiles-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  gap: 16px;
+}
+
+.pet-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pet-avatar-box {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 14px rgba(255, 183, 3, 0.3);
+  margin-bottom: 8px;
+  background: #111a2e;
+}
+
+.pet-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.iorek-avatar {
+  object-position: center 20%;
+  transform: scale(1.15);
+}
+
+.lyra-avatar {
+  object-position: center 60%;
+  transform: scale(1.05);
+}
+
+.pet-profile:hover .pet-avatar {
+  transform: scale(1.25);
+}
+
+.pet-profile strong {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+}
+
+.pet-profile small {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
 /* Map View */
