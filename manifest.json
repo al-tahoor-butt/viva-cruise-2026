@@ -16,6 +16,12 @@
       "src": "images/iorek.jpg",
       "sizes": "512x512",
       "type": "image/jpeg"
+    },
+    {
+      "src": "images/squeak1.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ]
 }

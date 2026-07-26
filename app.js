@@ -1,16 +1,5 @@
 // Norwegian Viva 2026 Mediterranean Fly-Cruise Data & Logic
 
-// Assembled key to prevent false-positive GitHub Secret Scanner alerts on public Maps API keys
-const MAPS_KEY_P1 = "AIzaSyBDcXjetWWNW";
-const MAPS_KEY_P2 = "FKdG_OrxxnOtgiTie_FeSs";
-const GOOGLE_MAPS_API_KEY = MAPS_KEY_P1 + MAPS_KEY_P2;
-
-const GOOGLE_CLIENT_ID = "600255061362-v6cgiglo43njki3jmd4bn5qme1steg6i.apps.googleusercontent.com";
-
-// Public Shared Cloud Sync Storage Bin (JSONBin.io) for Cross-Device Family Sync
-const CLOUD_SYNC_BIN_ID = "66a3d906e41b4d34e41712a8";
-const CLOUD_SYNC_API = `https://api.jsonbin.io/v3/b/${CLOUD_SYNC_BIN_ID}`;
-
 const cruiseData = [
   {
     day: 0,
@@ -51,7 +40,7 @@ const cruiseData = [
     depart: '11:59 PM',
     lat: 42.6507,
     lng: 18.0944,
-    heroImage: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1555990793-da11153b2473?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Ancient City Walls Walk & Lokrum Island Sea Kayaking',
     adultsActivities: 'Walk the historic ramparts, drink wine overlooking the Adriatic coast.',
     kidsActivities: 'Guided sea kayaking around Lokrum Island and Betina Cave, plus Dubrovnik Cable Car ride for sunset.',
@@ -96,7 +85,7 @@ const cruiseData = [
     depart: '6:00 PM',
     lat: 40.6780,
     lng: 14.7650,
-    heroImage: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Coastal Speedboat Excursion to Positano & Amalfi',
     adultsActivities: 'Limoncello tasting, cliffside views, scenic lemon groves of Positano.',
     kidsActivities: 'Speedboat ride along the coastline with cave swim stops & authentic Positano gelato.',
@@ -141,7 +130,7 @@ const cruiseData = [
     depart: '4:30 PM',
     lat: 43.7042,
     lng: 7.3117,
-    heroImage: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Villefranche Bay Watersports & Nice Promenade Ride',
     adultsActivities: 'Stroll Old Town Nice (Vieux Nice), sample Socca chickpea crepes.',
     kidsActivities: 'Rent paddleboards/snorkels in Villefranche turquoise bay, or ride e-scooters along Promenade des Anglais.',
@@ -245,7 +234,6 @@ const defaultChecklist = [
 let previousDayIndex = 0;
 let selectedDayIndex = 0;
 let gmap = null;
-let currentMarker = null;
 let animatedShipMarker = null;
 let routePolyline = null;
 let animationFrameId = null;
@@ -260,11 +248,29 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPhotoAlbum();
   renderPhrasebook('it');
   convertCurrency();
-  fetchSharedCloudPhotos();
-  fetchLiveFlightStatus();
+  fetchLiveCurrencyRates();
 });
 
 // Live Currency Converter Logic
+let currencyRates = {
+  EUR: 0.855, // fallback: €1 = ~£0.855
+  USD: 0.775  // fallback: $1 = ~£0.775
+};
+
+async function fetchLiveCurrencyRates() {
+  try {
+    const res = await fetch('https://api.exchangerate-api.com/v4/latest/GBP');
+    const data = await res.json();
+    if (data && data.rates) {
+      currencyRates.EUR = 1 / data.rates.EUR;
+      currencyRates.USD = 1 / data.rates.USD;
+      convertCurrency();
+    }
+  } catch (e) {
+    // Silent fallback to hardcoded rates
+  }
+}
+
 function convertCurrency() {
   const amountEl = document.getElementById('currency-amount');
   const fromEl = document.getElementById('currency-from');
@@ -275,13 +281,7 @@ function convertCurrency() {
   const val = parseFloat(amountEl.value) || 0;
   const from = fromEl.value;
 
-  // Pre-set approximate exchange rates
-  const rates = {
-    EUR: 0.855, // €1 = ~£0.855
-    USD: 0.775  // $1 = ~£0.775
-  };
-
-  const gbp = (val * (rates[from] || 0.855)).toFixed(2);
+  const gbp = (val * (currencyRates[from] || 0.855)).toFixed(2);
   outputEl.innerText = `£${gbp}`;
 }
 
@@ -309,24 +309,16 @@ function renderPhrasebook(lang) {
   `).join('');
 }
 
-// Live Flight Status Auto Fetcher
-function fetchLiveFlightStatus() {
-  const outTag = document.getElementById('outbound-flight-status');
-  const inTag = document.getElementById('inbound-flight-status');
-  
-  if (outTag) {
-    outTag.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Status: Confirmed (FR2242 • On Time)`;
-  }
-  if (inTag) {
-    inTag.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Status: Confirmed (FR6597 • On Time)`;
-  }
-}
+
 
 // Multi-Stage Dynamic Vacation Ticker
 function initCountdown() {
-  const flightOutboundDate = new Date('2026-08-09T17:45:00Z').getTime();
-  const embarkationDate = new Date('2026-08-10T12:30:00Z').getTime();
-  const disembarkationDate = new Date('2026-08-19T14:10:00Z').getTime();
+  // 9th August 2026 at 17:45 BST = 16:45 UTC
+  const flightOutboundDate = Date.UTC(2026, 7, 9, 16, 45, 0);
+  // 10th August 2026 at 12:30 CEST = 10:30 UTC
+  const embarkationDate = Date.UTC(2026, 7, 10, 10, 30, 0);
+  // 19th August 2026 at 14:10 BST = 13:10 UTC
+  const disembarkationDate = Date.UTC(2026, 7, 19, 13, 10, 0);
   
   function updateTimer() {
     const now = new Date().getTime();
@@ -414,14 +406,14 @@ async function selectDay(index) {
       <div class="travel-box-content">
         <strong>Arrive: ${data.arrive} | Depart: ${data.depart}</strong>
         <p style="margin-top: 4px; color: #ffffff; font-size: 13px;">${data.transferInfo}</p>
-        ${data.liveTrainLink ? `<a href="${data.liveTrainLink}" target="_blank" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;"><i class="fa-solid fa-train"></i> Track 11:06 Train Live</a>` : ''}
+        ${data.liveTrainLink ? `<a href="${data.liveTrainLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;"><i class="fa-solid fa-train"></i> Track 11:06 Train Live</a>` : ''}
       </div>
     `;
   }
 
   const liveTrainBtn = data.liveTrainLink ? `
     <div style="margin-top: 10px;">
-      <a href="${data.liveTrainLink}" target="_blank" class="btn btn-sm btn-primary" style="text-decoration: none;">
+      <a href="${data.liveTrainLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="text-decoration: none;">
         <i class="fa-solid fa-train"></i> Track 11:06 Trenitalia Live (ViaggiaTreno)
       </a>
     </div>
@@ -521,7 +513,10 @@ function getWeatherDesc(code) {
   return 'Sunny & Warm';
 }
 
-// Initialize Interactive Google Map with Animated Route & Ship Icon
+// Initialize Interactive Google Map with Modern Ultra-Sleek Mediterranean Theme
+let portMarkers = [];
+let activeInfoWindow = null;
+
 window.initMap = function() {
   const ph = document.getElementById('map-placeholder');
   if (ph) ph.style.display = 'none';
@@ -529,73 +524,193 @@ window.initMap = function() {
   const initialData = cruiseData[selectedDayIndex];
   const portCoords = cruiseData.filter(d => d.day > 0).map(d => ({ lat: d.lat, lng: d.lng }));
   
+  // Custom Midnight Mediterranean Map Styling
   gmap = new google.maps.Map(document.getElementById('map-container'), {
     center: { lat: initialData.lat, lng: initialData.lng },
     zoom: 7,
+    disableDefaultUI: false,
+    zoomControl: true,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
     styles: [
-      { elementType: "geometry", stylers: [{ color: "#1d2c4d" }] },
-      { elementType: "labels.text.fill", stylers: [{ color: "#8ec3b9" }] },
-      { elementType: "labels.text.stroke", stylers: [{ color: "#1a3646" }] },
-      { featureType: "water", elementType: "geometry", stylers: [{ color: "#0e1626" }] }
+      { elementType: "geometry", stylers: [{ color: "#0f172a" }] },
+      { elementType: "labels.text.fill", stylers: [{ color: "#94a3b8" }] },
+      { elementType: "labels.text.stroke", stylers: [{ color: "#0f172a" }] },
+      { featureType: "administrative", elementType: "geometry.stroke", stylers: [{ color: "#1e293b" }] },
+      { featureType: "administrative.country", elementType: "labels.text.fill", stylers: [{ color: "#cbd5e1" }] },
+      { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#1e293b" }] },
+      { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
+      { featureType: "road", elementType: "geometry", stylers: [{ color: "#334155" }] },
+      { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#64748b" }] },
+      { featureType: "transit", elementType: "geometry", stylers: [{ color: "#1e293b" }] },
+      { featureType: "water", elementType: "geometry", stylers: [{ color: "#0b1329" }] },
+      { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#38bdf8" }] }
     ]
   });
 
-  // Glowing Polyline for Cruise Route
+  // Glowing Neon Cruise Polyline
   routePolyline = new google.maps.Polyline({
     path: portCoords,
     geodesic: true,
-    strokeColor: '#00d2ff',
-    strokeOpacity: 0.8,
+    strokeColor: '#00f2fe',
+    strokeOpacity: 0.85,
     strokeWeight: 4,
     map: gmap
   });
 
-  // Port Markers for all 10 stops
-  cruiseData.forEach((day, idx) => {
-    new google.maps.Marker({
+  // Create Custom SVG Port Pins
+  portMarkers = cruiseData.map((day, idx) => {
+    const isSelected = idx === selectedDayIndex;
+    const marker = new google.maps.Marker({
       position: { lat: day.lat, lng: day.lng },
       map: gmap,
       title: `${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port}`,
-      label: {
-        text: `${day.day}`,
-        color: '#ffffff',
-        fontWeight: 'bold',
-        fontSize: '12px'
-      }
+      icon: createCustomPinIcon(day.day, isSelected),
+      zIndex: isSelected ? 100 : 10
     });
+
+    // Custom Glassmorphism InfoWindow on Marker Click
+    const infoWindow = new google.maps.InfoWindow({
+      content: `
+        <div class="map-infowindow">
+          <div class="map-info-badge">${day.day === 0 ? 'FLIGHT' : 'DAY ' + day.day}</div>
+          <h3>${day.port}</h3>
+          <p><strong><i class="fa-solid fa-clock"></i></strong> ${day.arrive === 'Base' ? 'Fly-In Day' : day.arrive + ' – ' + day.depart}</p>
+          <div class="map-info-highlight"><i class="fa-solid fa-compass"></i> ${day.highlight}</div>
+          <button onclick="selectDay(${idx})" class="btn btn-sm btn-primary" style="margin-top: 8px; width: 100%;">
+            View Port Itinerary <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      `
+    });
+
+    marker.addListener('click', () => {
+      if (activeInfoWindow) activeInfoWindow.close();
+      infoWindow.open(gmap, marker);
+      activeInfoWindow = infoWindow;
+      selectDay(idx);
+    });
+
+    return marker;
   });
 
-  // Animated Cruise Ship Marker
-  const shipIcon = {
-    path: "M 0,-15 C -5,-5 -8,0 -8,10 C -8,15 0,18 0,18 C 0,18 8,15 8,10 C 8,0 5,-5 0,-15 Z",
-    fillColor: "#ffb703",
-    fillOpacity: 1,
-    strokeColor: "#ffffff",
-    strokeWeight: 2,
-    scale: 1.2
-  };
-
+  // High-Detail Norwegian Viva Cruise Ship Marker SVG
+  const shipSvgPath = "M 0,-18 L 6,-10 L 6,10 C 6,15 0,20 0,20 C 0,20 -6,15 -6,10 L -6,-10 Z";
+  
+  const nextIdx = Math.min(selectedDayIndex + 1, cruiseData.length - 1);
+  const initialHeading = (initialData.lat !== cruiseData[nextIdx].lat || initialData.lng !== cruiseData[nextIdx].lng)
+    ? calculateBearing(initialData.lat, initialData.lng, cruiseData[nextIdx].lat, cruiseData[nextIdx].lng)
+    : 135;
+  
   animatedShipMarker = new google.maps.Marker({
     position: { lat: initialData.lat, lng: initialData.lng },
     map: gmap,
-    title: "Norwegian Viva Position",
-    icon: shipIcon,
+    title: "Norwegian Viva Location",
+    icon: {
+      path: shipSvgPath,
+      fillColor: "#ffb703",
+      fillOpacity: 1,
+      strokeColor: "#ffffff",
+      strokeWeight: 2.5,
+      scale: 1.2,
+      anchor: new google.maps.Point(0, 0),
+      rotation: initialHeading
+    },
     zIndex: 999
   });
+
+  updateMarkerStyles();
 };
 
-// Smooth Sailing Transition Animation between Ports
+// Helper: Generate Custom SVG Pin Data URIs for Port Markers
+function createCustomPinIcon(dayNum, isSelected) {
+  const size = isSelected ? 48 : 36;
+  const radius = isSelected ? 19 : 15;
+  const center = size / 2;
+
+  const bgGradStart = isSelected ? "#ff6b6b" : "#0f172a";
+  const bgGradEnd = isSelected ? "#ee5253" : "#1e293b";
+  const strokeColor = isSelected ? "#ffb703" : "#00f2fe";
+  const textColor = isSelected ? "#ffffff" : "#00f2fe";
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <defs>
+        <linearGradient id="grad-${dayNum}-${isSelected}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${bgGradStart}" />
+          <stop offset="100%" stop-color="${bgGradEnd}" />
+        </linearGradient>
+        <filter id="shadow-${dayNum}" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+        </filter>
+      </defs>
+      <circle cx="${center}" cy="${center}" r="${radius}" fill="url(#grad-${dayNum}-${isSelected})" stroke="${strokeColor}" stroke-width="2.5" filter="url(#shadow-${dayNum})"/>
+      <text x="${center}" y="${center + 5}" text-anchor="middle" fill="${textColor}" font-family="Segoe UI, Roboto, sans-serif" font-weight="bold" font-size="${dayNum > 9 ? '13px' : '15px'}">${dayNum}</text>
+    </svg>
+  `.trim();
+  return {
+    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+    scaledSize: new google.maps.Size(size, size),
+    anchor: new google.maps.Point(center, center)
+  };
+}
+
+// Toggle Squeak Photo between squeak1.jpg and squeak2.jpg
+let currentSqueakPhoto = 1;
+function toggleSqueakPhoto() {
+  currentSqueakPhoto = currentSqueakPhoto === 1 ? 2 : 1;
+  const squeakImg = document.querySelector('.squeak-avatar');
+  if (squeakImg) {
+    squeakImg.src = `images/squeak${currentSqueakPhoto}.jpg`;
+  }
+}
+window.toggleSqueakPhoto = toggleSqueakPhoto;
+
+// Update Marker States on Day Change
+function updateMarkerStyles() {
+  if (!portMarkers || !portMarkers.length) return;
+  portMarkers.forEach((marker, idx) => {
+    const isSelected = idx === selectedDayIndex;
+    marker.setIcon(createCustomPinIcon(cruiseData[idx].day, isSelected));
+    marker.setZIndex(isSelected ? 100 : 10);
+  });
+}
+
+// Calculate Bearing Angle between Two Coordinates for Realistic Ship Rotation
+function calculateBearing(startLat, startLng, destLat, destLng) {
+  const startLatRad = (startLat * Math.PI) / 180;
+  const startLngRad = (startLng * Math.PI) / 180;
+  const destLatRad = (destLat * Math.PI) / 180;
+  const destLngRad = (destLng * Math.PI) / 180;
+
+  const y = Math.sin(destLngRad - startLngRad) * Math.cos(destLatRad);
+  const x =
+    Math.cos(startLatRad) * Math.sin(destLatRad) -
+    Math.sin(startLatRad) * Math.cos(destLatRad) * Math.cos(destLngRad - startLngRad);
+
+  const brng = (Math.atan2(y, x) * 180) / Math.PI;
+  return (brng + 360) % 360;
+}
+
+// Smooth Sailing Transition Animation between Ports with Heading Rotation
 function animateShipTransition(fromIdx, toIdx) {
   if (!animatedShipMarker || !gmap) return;
+
+  updateMarkerStyles();
 
   const startLat = cruiseData[fromIdx].lat;
   const startLng = cruiseData[fromIdx].lng;
   const endLat = cruiseData[toIdx].lat;
   const endLng = cruiseData[toIdx].lng;
 
+  if (startLat === endLat && startLng === endLng) return;
+
+  const heading = calculateBearing(startLat, startLng, endLat, endLng);
+
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
 
-  const duration = 1500;
+  const duration = 1400;
   const startTime = performance.now();
 
   function step(currentTime) {
@@ -610,7 +725,19 @@ function animateShipTransition(fromIdx, toIdx) {
     const currentLng = startLng + (endLng - startLng) * easeProgress;
 
     const currentPos = new google.maps.LatLng(currentLat, currentLng);
+    
     animatedShipMarker.setPosition(currentPos);
+    animatedShipMarker.setIcon({
+      path: "M 0,-18 L 6,-10 L 6,10 C 6,15 0,20 0,20 C 0,20 -6,15 -6,10 L -6,-10 Z",
+      fillColor: "#ffb703",
+      fillOpacity: 1,
+      strokeColor: "#ffffff",
+      strokeWeight: 2.5,
+      scale: 1.2,
+      anchor: new google.maps.Point(0, 0),
+      rotation: heading
+    });
+
     gmap.panTo(currentPos);
 
     if (progress < 1) {
@@ -621,31 +748,10 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
-// Real-Time Cross-Device Family Cloud Sync
-async function fetchSharedCloudPhotos() {
-  try {
-    const res = await fetch(CLOUD_SYNC_API + '/latest');
-    const json = await res.json();
-    if (json && json.record && json.record.photos) {
-      localStorage.setItem('viva_family_photos', JSON.stringify(json.record.photos));
-      renderPhotoAlbum();
-    }
-  } catch (e) {}
-}
 
-async function syncPhotoAlbumToCloud(photos) {
-  try {
-    await fetch(CLOUD_SYNC_API, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ photos: photos })
-    });
-  } catch (e) {}
-}
 
 function clearPhotoAlbum() {
   localStorage.removeItem('viva_family_photos');
-  syncPhotoAlbumToCloud([]);
   renderPhotoAlbum();
 }
 
@@ -679,7 +785,6 @@ function removePhoto(index) {
   let photos = saved ? JSON.parse(saved) : [];
   photos.splice(index, 1);
   localStorage.setItem('viva_family_photos', JSON.stringify(photos));
-  syncPhotoAlbumToCloud(photos);
   renderPhotoAlbum();
 }
 
@@ -691,27 +796,37 @@ function handlePhotoUpload(event) {
   let photos = saved ? JSON.parse(saved) : [];
 
   const uploadBtn = document.getElementById('upload-btn-label');
-  if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Syncing...';
+  if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
 
   let readCount = 0;
 
   Array.from(files).forEach(file => {
     const reader = new FileReader();
     reader.onload = function(e) {
-      photos.unshift({ src: e.target.result, title: file.name });
-      readCount++;
+      // Compress image via canvas to prevent localStorage overflow
+      compressImage(e.target.result, 800, 0.7, (compressedSrc) => {
+        photos.unshift({ src: compressedSrc, title: file.name });
+        readCount++;
 
-      if (readCount === files.length) {
-        const finalPhotos = photos.slice(0, 20);
-        localStorage.setItem('viva_family_photos', JSON.stringify(finalPhotos));
-        renderPhotoAlbum();
-        syncPhotoAlbumToCloud(finalPhotos).then(() => {
-          if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-check"></i> Shared!';
+        if (readCount === files.length) {
+          const finalPhotos = photos.slice(0, 20);
+          try {
+            localStorage.setItem('viva_family_photos', JSON.stringify(finalPhotos));
+          } catch (storageErr) {
+            // localStorage quota exceeded — trim older photos until it fits
+            while (finalPhotos.length > 1) {
+              finalPhotos.pop();
+              try { localStorage.setItem('viva_family_photos', JSON.stringify(finalPhotos)); break; }
+              catch (e2) { /* keep trimming */ }
+            }
+          }
+          renderPhotoAlbum();
+          if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
           setTimeout(() => {
             if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-upload"></i> Upload';
           }, 2000);
-        });
-      }
+        }
+      });
     };
     reader.readAsDataURL(file);
   });
@@ -801,4 +916,29 @@ function toggleCheckitem(id) {
 
   localStorage.setItem('viva_checklist', JSON.stringify(items));
   renderChecklist();
+}
+
+// Image compression utility — prevents localStorage overflow from raw phone camera base64
+function compressImage(dataUrl, maxWidth, quality, callback) {
+  const img = new Image();
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    let width = img.width;
+    let height = img.height;
+
+    if (width > maxWidth) {
+      height = Math.round(height * (maxWidth / width));
+      width = maxWidth;
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, width, height);
+    callback(canvas.toDataURL('image/jpeg', quality));
+  };
+  img.onerror = function() {
+    callback(dataUrl); // fallback to original if compression fails
+  };
+  img.src = dataUrl;
 }
