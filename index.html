@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norwegian Viva | Fly-Cruise 2026 Family Dashboard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <i class="fa-solid fa-ship brand-icon"></i>
+        <div>
+          <h1>Norwegian Viva 2026</h1>
+          <p class="subtitle">10-Day Mediterranean Fly-Cruise • Reservation #64139255</p>
+        </div>
+      </div>
+      
+      <div class="countdown-card" id="countdown-card">
+        <span class="countdown-label"><i class="fa-regular fa-clock"></i> Countdown to Embarkation</span>
+        <div class="timer" id="countdown-timer">
+          <div class="unit"><span id="days">00</span><small>Days</small></div>
+          <div class="unit"><span id="hours">00</span><small>Hrs</small></div>
+          <div class="unit"><span id="mins">00</span><small>Mins</small></div>
+          <div class="unit"><span id="secs">00</span><small>Secs</small></div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-outline" id="print-btn" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Export / Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quick Info Bar -->
+  <section class="info-bar">
+    <div class="info-item">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div>
+        <small>Sailing Dates</small>
+        <strong>10 Aug – 19 Aug 2026</strong>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fa-solid fa-route"></i>
+      <div>
+        <small>Route</small>
+        <strong>Ravenna (Venice) to Barcelona</strong>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fa-solid fa-users"></i>
+      <div>
+        <small>Party</small>
+        <strong>2 Adults, 2 Kids (14M, 11F)</strong>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fa-solid fa-wifi"></i>
+      <div>
+        <small>Internet Strategy</small>
+        <strong>GL.iNet Router MAC Clone</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Key Entry Modal/Bar for Google Maps -->
+  <div class="api-key-bar" id="api-key-bar">
+    <i class="fa-solid fa-key"></i>
+    <span>Enter your Google Maps JavaScript API Key to enable dynamic interactive maps:</span>
+    <input type="text" id="gmaps-api-key" placeholder="AIzaSy..." />
+    <button class="btn btn-sm" onclick="loadGoogleMaps()">Load Map</button>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <main class="main-container">
+    
+    <!-- Left Column: Day Selector & Port List -->
+    <aside class="sidebar">
+      <h2><i class="fa-solid fa-compass"></i> Itinerary Days</h2>
+      <div class="day-list" id="day-list">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Quick Tech & Transfer Card -->
+      <div class="tech-card">
+        <h3><i class="fa-solid fa-train"></i> Train Transfer Guide</h3>
+        <p><strong>Bologna Centrale ➔ Ravenna Station:</strong> Trenitalia Regional (~53m–1h15m, €7.88–€11/p). Departs every 30-60 mins.</p>
+        <p><strong>Ravenna Station ➔ Cruise Port:</strong> Shuttle bus from Viale Farini (€10-15/p) or pre-booked taxi (Radiotaxi Ravenna +39 0544 338 88).</p>
+      </div>
+
+      <div class="tech-card">
+        <h3><i class="fa-solid fa-network-wired"></i> GL.iNet Router Hotspot</h3>
+        <ol>
+          <li>Disable Private MAC on phone.</li>
+          <li>Log phone into NCL Wi-Fi portal.</li>
+          <li>Clone phone MAC into GL.iNet router WAN.</li>
+          <li>Set router to Repeater mode. All 4 family devices connect for £0 extra!</li>
+        </ol>
+      </div>
+    </aside>
+
+    <!-- Right Column: Interactive Map, Selected Day Details & Live Weather -->
+    <section class="content-area">
+
+      <!-- Map & Weather Banner -->
+      <div class="card map-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-map-location-dot"></i> Interactive Mediterranean Cruise Map</h2>
+          <span class="badge badge-primary" id="current-port-badge">Port Focus: Venice (Ravenna)</span>
+        </div>
+        <div id="map-container" class="map-view">
+          <div class="map-placeholder" id="map-placeholder">
+            <i class="fa-solid fa-map"></i>
+            <p>Loading Map / Enter Google Maps API key above for full satellite interactive view...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Day Full Details -->
+      <div class="card day-details-card" id="day-details-card">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Family Checklist Card -->
+      <div class="card checklist-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-list-check"></i> Kids & Teen Activity Tracker (14M & 11F)</h2>
+          <span class="badge badge-success" id="checklist-progress">0 of 0 Completed</span>
+        </div>
+        <div class="checklist-items" id="checklist-items">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dual Specialty / UK Standards Mapped • Powered by Open-Meteo Live Weather & Google Maps</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
