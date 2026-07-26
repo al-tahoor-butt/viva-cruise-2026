@@ -1,5 +1,8 @@
 // Norwegian Viva 2026 Mediterranean Fly-Cruise Data & Logic
 
+// Set your Google Maps API Key here for seamless automatic map loading across all family devices:
+const GOOGLE_MAPS_API_KEY = "AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs"; // Paste your Google Maps API Key inside the quotes e.g. "AIzaSy..."
+
 const cruiseData = [
   {
     day: 1,
@@ -168,7 +171,41 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDayList();
   selectDay(0);
   renderChecklist();
+  autoLoadGoogleMapsIfKeyPresent();
 });
+
+// Auto-Load Google Maps if API key is present
+function autoLoadGoogleMapsIfKeyPresent() {
+  const apiKeyBar = document.getElementById('api-key-bar');
+  
+  if (GOOGLE_MAPS_API_KEY && GOOGLE_MAPS_API_KEY.trim().length > 0) {
+    if (apiKeyBar) apiKeyBar.style.display = 'none';
+    injectGoogleMapsScript(GOOGLE_MAPS_API_KEY.trim());
+  } else {
+    if (apiKeyBar) apiKeyBar.style.display = 'flex';
+    document.getElementById('map-status-text').innerText = 'Enter API Key above or configure GOOGLE_MAPS_API_KEY in app.js for auto-load.';
+  }
+}
+
+function manualLoadGoogleMaps() {
+  const inputKey = document.getElementById('gmaps-api-key').value.trim();
+  if (!inputKey) {
+    alert('Please enter a valid Google Maps API Key.');
+    return;
+  }
+  injectGoogleMapsScript(inputKey);
+}
+
+function injectGoogleMapsScript(key) {
+  if (window.google && window.google.maps) {
+    initMap();
+    return;
+  }
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap`;
+  script.async = true;
+  document.head.appendChild(script);
+}
 
 // Countdown Timer to Aug 10, 2026 17:00:00 GMT
 function initCountdown() {
@@ -317,22 +354,10 @@ function getWeatherDesc(code) {
   return 'Sunny & Warm';
 }
 
-// Google Maps Loader
-function loadGoogleMaps() {
-  const apiKey = document.getElementById('gmaps-api-key').value.trim();
-  if (!apiKey) {
-    alert('Please enter a valid Google Maps API Key.');
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-  script.async = true;
-  document.head.appendChild(script);
-}
-
 window.initMap = function() {
-  document.getElementById('map-placeholder').style.display = 'none';
+  const ph = document.getElementById('map-placeholder');
+  if (ph) ph.style.display = 'none';
+  
   const data = cruiseData[selectedDayIndex];
   
   gmap = new google.maps.Map(document.getElementById('map-container'), {
