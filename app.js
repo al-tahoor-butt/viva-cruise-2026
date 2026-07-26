@@ -9,19 +9,35 @@ const CLOUD_SYNC_API = `https://api.jsonbin.io/v3/b/${CLOUD_SYNC_BIN_ID}`;
 
 const cruiseData = [
   {
+    day: 0,
+    date: 'Sun 09 Aug 2026',
+    port: 'Manchester ➔ Bologna, Italy',
+    arrive: '9:05 PM',
+    depart: '5:45 PM',
+    lat: 44.4949,
+    lng: 11.3426,
+    heroImage: 'https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=1200&q=80',
+    highlight: 'Flight FR2242 from Manchester to Bologna & Pre-Cruise Hotel Stay',
+    adultsActivities: 'Land in Bologna Airport (BLQ), taxi to city center hotel, late-night aperitivo.',
+    kidsActivities: 'Exciting evening flight & late-night authentic Italian gelato in Piazza Maggiore.',
+    transferInfo: 'Flight FR2242 (PNR: WTUR5S) departs MAN 17:45, arrives BLQ 21:05. Marconi Express monorail or taxi to Bologna hotel (15 mins).',
+    tags: ['Outbound Flight', 'Bologna Stay', 'Pre-Cruise', 'Ryanair FR2242']
+  },
+  {
     day: 1,
     date: 'Mon 10 Aug 2026',
     port: 'Venice (Ravenna), Italy',
-    arrive: '—',
-    depart: '5:00 PM',
+    arrive: '12:30 PM Check-in',
+    depart: '5:00 PM Sailing',
     lat: 44.4949,
     lng: 12.2818,
     heroImage: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80',
-    highlight: 'Pre-cruise stay in Bologna, Train to Ravenna, Cruise Embarkation',
-    adultsActivities: 'Explore Bologna Quadrilatero food markets, sample fresh tagliatelle & gelato.',
-    kidsActivities: 'Climb the Clock Tower (Torre d’Accursio) & hunt for Bologna’s secret canal window.',
-    transferInfo: 'Trenitalia train from Bologna Centrale to Ravenna (~53m, €7.88-€11). Transfer to Porto Corsini terminal via Shuttle bus from Viale Farini (€10-15/p) or Radiotaxi Ravenna (+39 0544 338 88).',
-    tags: ['Train Transfer', 'Embarkation', 'Bologna', 'Ravenna']
+    highlight: 'Train to Ravenna & 12:30-13:30 Embarkation Window',
+    adultsActivities: 'Breakfast in Bologna, 11:06 AM train to Ravenna, check-in & welcome champagne on Norwegian Viva.',
+    kidsActivities: 'First glimpse of 143,000-ton Norwegian Viva, explore Speedway racetrack & pool deck!',
+    transferInfo: '10:30 Walk to Bologna Centrale ➔ 11:06 Trenitalia Regional train (53m, arr 11:59 Ravenna) ➔ 12:05 Taxi/Shuttle to Porto Corsini terminal ➔ 12:30-13:30 Embarkation Window.',
+    liveTrainLink: 'https://www.viaggiatreno.it/',
+    tags: ['Train Transfer', '12:30 Embarkation', 'Bologna', 'Ravenna', 'ViaggiaTreno Live']
   },
   {
     day: 2,
@@ -146,17 +162,17 @@ const cruiseData = [
   {
     day: 10,
     date: 'Wed 19 Aug 2026',
-    port: 'Barcelona, Spain',
+    port: 'Barcelona, Spain ➔ Manchester, UK',
     arrive: '6:30 AM',
-    depart: 'Disembarkation',
+    depart: '12:35 PM Flight',
     lat: 41.3851,
     lng: 2.1734,
     heroImage: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1200&q=80',
-    highlight: 'Sagrada Família, Park Güell & Gothic Quarter Exploration',
-    adultsActivities: 'Gaudí masterpieces, Mercat de la Boquería food market, tapas.',
-    kidsActivities: 'Montjuïc Cable Car ride, Park Güell colorful lizard park & beach walk.',
-    transferInfo: 'Cruise shuttle/taxi to Barcelona Airport (BCN) or central hotel.',
-    tags: ['Disembarkation', 'Barcelona', 'Sagrada Familia', 'Park Güell']
+    highlight: 'Cruise Disembarkation & Flight FR6597 to Manchester',
+    adultsActivities: 'Disembark Norwegian Viva at 08:30 AM, transfer to Barcelona Airport (BCN).',
+    kidsActivities: 'Souvenir shopping at BCN airport before flight home.',
+    transferInfo: '08:30 Disembark ➔ 09:30 Taxi/Aerobús to BCN Terminal 2 ➔ 10:35 Check-in ➔ 12:35 Flight FR6597 (PNR: F8YGQR) ➔ 14:10 Arrive Manchester (MAN).',
+    tags: ['Disembarkation', 'Barcelona', 'Inbound Flight', 'Ryanair FR6597']
   }
 ];
 
@@ -246,7 +262,7 @@ function renderDayList() {
     btn.onclick = () => selectDay(index);
     btn.innerHTML = `
       <div>
-        <div class="day-title">Day ${day.day}: ${day.port.split(',')[0]}</div>
+        <div class="day-title">${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port.split(',')[0]}</div>
         <div class="day-date">${day.date}</div>
       </div>
       <i class="fa-solid fa-chevron-right" style="font-size: 11px; opacity: 0.5;"></i>
@@ -262,7 +278,15 @@ async function selectDay(index) {
   renderDayList();
 
   const data = cruiseData[index];
-  document.getElementById('current-port-badge').innerText = `Port Focus: ${data.port}`;
+  document.getElementById('current-port-badge').innerText = `Focus: ${data.port}`;
+
+  const liveTrainBtn = data.liveTrainLink ? `
+    <div style="margin-top: 10px;">
+      <a href="${data.liveTrainLink}" target="_blank" class="btn btn-sm btn-primary" style="text-decoration: none;">
+        <i class="fa-solid fa-train"></i> Track 11:06 Trenitalia Live (ViaggiaTreno)
+      </a>
+    </div>
+  ` : '';
 
   // Update Day Details Card with Hero Image Banner
   const detailsContainer = document.getElementById('day-details-card');
@@ -272,7 +296,7 @@ async function selectDay(index) {
     </div>
 
     <div class="card-header">
-      <h2><i class="fa-solid fa-anchor"></i> Day ${data.day}: ${data.port}</h2>
+      <h2><i class="fa-solid ${data.day === 0 ? 'fa-plane-departure' : 'fa-anchor'}"></i> ${data.day === 0 ? 'Pre-Cruise Fly-In' : 'Day ' + data.day}: ${data.port}</h2>
       <span class="badge badge-warning">${data.date}</span>
     </div>
     
@@ -293,11 +317,12 @@ async function selectDay(index) {
         </div>
 
         <div class="activity-section">
-          <h4><i class="fa-solid fa-route"></i> Transfer & Timing Details</h4>
+          <h4><i class="fa-solid fa-route"></i> Transfer & Schedule Timeline</h4>
           <p style="color: var(--text-muted); font-size: 13px;">
-            <strong>Arrive:</strong> ${data.arrive} | <strong>Depart:</strong> ${data.depart}<br>
+            <strong>Timing:</strong> Arrive ${data.arrive} | Depart ${data.depart}<br>
             ${data.transferInfo}
           </p>
+          ${liveTrainBtn}
         </div>
 
         <div class="activity-tags">
@@ -363,7 +388,7 @@ window.initMap = function() {
   if (ph) ph.style.display = 'none';
   
   const initialData = cruiseData[selectedDayIndex];
-  const portCoords = cruiseData.map(d => ({ lat: d.lat, lng: d.lng }));
+  const portCoords = cruiseData.filter(d => d.day > 0).map(d => ({ lat: d.lat, lng: d.lng }));
   
   gmap = new google.maps.Map(document.getElementById('map-container'), {
     center: { lat: initialData.lat, lng: initialData.lng },
@@ -391,7 +416,7 @@ window.initMap = function() {
     new google.maps.Marker({
       position: { lat: day.lat, lng: day.lng },
       map: gmap,
-      title: `Day ${day.day}: ${day.port}`,
+      title: `${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port}`,
       label: {
         text: `${day.day}`,
         color: '#ffffff',
