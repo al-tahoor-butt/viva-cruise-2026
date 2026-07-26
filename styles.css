@@ -323,18 +323,34 @@ body {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--card-border);
   border-radius: 10px;
-  padding: 14px;
+  padding: 16px;
   margin-bottom: 16px;
   font-size: 13px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .tech-card h3 {
   font-size: 14px;
   color: var(--primary);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.tech-card ol, .tech-card ul {
+  padding-left: 20px;
+  margin: 8px 0 0 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.tech-card ol li {
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-main);
 }
 
 /* Flight Card */
