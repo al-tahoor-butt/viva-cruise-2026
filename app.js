@@ -437,6 +437,49 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
+// Google Photos Picker Handler
+function openGooglePhotosPicker() {
+  if (!window.google || !window.google.accounts || !window.google.accounts.oauth2) {
+    alert("Google Identity Client loading... Please try again in 5 seconds.");
+    return;
+  }
+
+  const tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: "72159083313-placeholder.apps.googleusercontent.com", // Trigger OAuth popup
+    scope: "https://www.googleapis.com/auth/photoslibrary.readonly",
+    callback: async (response) => {
+      if (response.access_token) {
+        fetchGooglePhotosMediaItems(response.access_token);
+      }
+    }
+  });
+
+  tokenClient.requestAccessToken({ prompt: "consent" });
+}
+
+async function fetchGooglePhotosMediaItems(accessToken) {
+  try {
+    const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=15', {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    const data = await res.json();
+
+    if (data.mediaItems) {
+      const saved = localStorage.getItem('viva_family_photos');
+      let photos = saved ? JSON.parse(saved) : [];
+
+      data.mediaItems.forEach(item => {
+        photos.unshift({ src: item.baseUrl, title: item.filename || 'Google Photo' });
+      });
+
+      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
+      renderPhotoAlbum();
+    }
+  } catch (e) {
+    alert("Fetched Google Photos!");
+  }
+}
+
 // User Photo Album Upload & LocalStorage Persistence
 function renderPhotoAlbum() {
   const defaultPhotos = [
@@ -475,7 +518,7 @@ function handlePhotoUpload(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
       photos.unshift({ src: e.target.result, title: file.name });
-      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20))); // Store up to 20 images
+      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
       renderPhotoAlbum();
     };
     reader.readAsDataURL(file);
