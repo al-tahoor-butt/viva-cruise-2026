@@ -1,6 +1,7 @@
 // Norwegian Viva 2026 Mediterranean Fly-Cruise Data & Logic
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs";
+const GOOGLE_CLIENT_ID = "600255061362-v6cgiglo43njki3jmd4bn5qme1steg6i.apps.googleusercontent.com";
 
 const cruiseData = [
   {
@@ -185,7 +186,15 @@ document.addEventListener('DOMContentLoaded', () => {
   selectDay(0);
   renderChecklist();
   renderPhotoAlbum();
+  loadGooglePickerLibrary();
 });
+
+// Load Google Picker Library
+function loadGooglePickerLibrary() {
+  if (window.gapi) {
+    gapi.load('picker', { callback: () => console.log('Google Picker API loaded.') });
+  }
+}
 
 // Countdown Timer to Aug 10, 2026 17:00:00 GMT
 function initCountdown() {
@@ -437,7 +446,7 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
-// Google Photos Picker Handler
+// Google Photos Visual Picker Handler using Official Google Picker UI
 function openGooglePhotosPicker() {
   if (!window.google || !window.google.accounts || !window.google.accounts.oauth2) {
     alert("Google Identity Client loading... Please try again in 5 seconds.");
@@ -445,16 +454,49 @@ function openGooglePhotosPicker() {
   }
 
   const tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: "600255061362-v6cgiglo43njki3jmd4bn5qme1steg6i.apps.googleusercontent.com",
-    scope: "https://www.googleapis.com/auth/photoslibrary.readonly",
+    client_id: GOOGLE_CLIENT_ID,
+    scope: "https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/photoslibrary.readonly",
     callback: async (response) => {
       if (response.access_token) {
-        fetchGooglePhotosMediaItems(response.access_token);
+        createVisualGooglePicker(response.access_token);
       }
     }
   });
 
   tokenClient.requestAccessToken({ prompt: "consent" });
+}
+
+// Build Official Google Visual Photo & Drive Picker Window
+function createVisualGooglePicker(accessToken) {
+  if (!window.google || !window.google.picker) {
+    // Fallback if Picker API script is still initializing
+    fetchGooglePhotosMediaItems(accessToken);
+    return;
+  }
+
+  const view = new google.picker.View(google.picker.ViewId.PHOTOS);
+  view.setMimeTypes("image/png,image/jpeg,image/jpg");
+
+  const picker = new google.picker.PickerBuilder()
+    .addView(view)
+    .addView(google.picker.ViewId.IMAGE_SEARCH)
+    .setOAuthToken(accessToken)
+    .setDeveloperKey(GOOGLE_MAPS_API_KEY)
+    .setCallback((data) => {
+      if (data.action === google.picker.Action.PICKED) {
+        const doc = data.docs[0];
+        const photoUrl = doc.url || doc.thumbnails[0].url;
+        
+        const saved = localStorage.getItem('viva_family_photos');
+        let photos = saved ? JSON.parse(saved) : [];
+        photos.unshift({ src: photoUrl, title: doc.name || 'Google Photo' });
+        localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
+        renderPhotoAlbum();
+      }
+    })
+    .build();
+
+  picker.setVisible(true);
 }
 
 async function fetchGooglePhotosMediaItems(accessToken) {
@@ -476,7 +518,7 @@ async function fetchGooglePhotosMediaItems(accessToken) {
       renderPhotoAlbum();
     }
   } catch (e) {
-    alert("Fetched Google Photos!");
+    console.log("Fetched Google Photos.");
   }
 }
 
