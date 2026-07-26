@@ -238,28 +238,53 @@ function fetchLiveFlightStatus() {
   }
 }
 
-// Countdown Timer to Outbound Flight: Sun 09 Aug 2026 17:45:00 GMT
+// Multi-Stage Dynamic Vacation Ticker
 function initCountdown() {
   const flightOutboundDate = new Date('2026-08-09T17:45:00Z').getTime();
+  const embarkationDate = new Date('2026-08-10T12:30:00Z').getTime();
+  const disembarkationDate = new Date('2026-08-19T14:10:00Z').getTime();
   
   function updateTimer() {
     const now = new Date().getTime();
-    const diff = flightOutboundDate - now;
+    const labelEl = document.getElementById('countdown-label');
+    const timerEl = document.getElementById('countdown-timer');
+    if (!labelEl || !timerEl) return;
 
-    if (diff <= 0) {
-      document.getElementById('countdown-timer').innerHTML = '<strong>Bon Voyage! Vacation Active</strong>';
-      return;
+    // Phase 1: Pre-Trip Countdown to Outbound Flight
+    if (now < flightOutboundDate) {
+      labelEl.innerHTML = `<i class="fa-solid fa-plane-departure"></i> Outbound Flight Countdown`;
+      formatTimer(flightOutboundDate - now, timerEl);
     }
+    // Phase 2: Pre-Cruise Stay in Bologna -> Countdown to Cruise Embarkation
+    else if (now < embarkationDate) {
+      labelEl.innerHTML = `<i class="fa-solid fa-anchor"></i> Cruise Embarkation Countdown`;
+      formatTimer(embarkationDate - now, timerEl);
+    }
+    // Phase 3: Active Vacation (Sailing Live on Norwegian Viva!)
+    else if (now < disembarkationDate) {
+      const elapsedDays = Math.min(10, Math.floor((now - embarkationDate) / (1000 * 60 * 60 * 24)) + 1);
+      labelEl.innerHTML = `<i class="fa-solid fa-circle" style="color: #10b981; font-size: 8px;"></i> Sailing Live: Day ${elapsedDays} of 10`;
+      timerEl.innerHTML = `<div style="font-size: 14px; font-weight: 700; color: #ffffff; padding: 4px 0;"><i class="fa-solid fa-ship"></i> Bon Voyage! Mediterranean Sea</div>`;
+    }
+    // Phase 4: Post-Vacation (Minimize gracefully to give full space to photo album)
+    else {
+      labelEl.innerHTML = `<i class="fa-solid fa-heart" style="color: var(--sunset-coral);"></i> Welcome Home! Family Album Active`;
+      timerEl.innerHTML = `<div style="font-size: 12px; color: var(--text-muted);">Trips Memories Saved</div>`;
+    }
+  }
 
+  function formatTimer(diff, container) {
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById('days').innerText = String(d).padStart(2, '0');
-    document.getElementById('hours').innerText = String(h).padStart(2, '0');
-    document.getElementById('mins').innerText = String(m).padStart(2, '0');
-    document.getElementById('secs').innerText = String(s).padStart(2, '0');
+    container.innerHTML = `
+      <div class="unit"><span>${String(d).padStart(2, '0')}</span><small>Days</small></div>
+      <div class="unit"><span>${String(h).padStart(2, '0')}</span><small>Hrs</small></div>
+      <div class="unit"><span>${String(m).padStart(2, '0')}</span><small>Mins</small></div>
+      <div class="unit"><span>${String(s).padStart(2, '0')}</span><small>Secs</small></div>
+    `;
   }
 
   updateTimer();
