@@ -3,6 +3,10 @@
 const GOOGLE_MAPS_API_KEY = "AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs";
 const GOOGLE_CLIENT_ID = "600255061362-v6cgiglo43njki3jmd4bn5qme1steg6i.apps.googleusercontent.com";
 
+// Public Shared Cloud Sync Storage Bin (JSONBin.io) for Cross-Device Family Sync
+const CLOUD_SYNC_BIN_ID = "66a3d906e41b4d34e41712a8";
+const CLOUD_SYNC_API = `https://api.jsonbin.io/v3/b/${CLOUD_SYNC_BIN_ID}`;
+
 const cruiseData = [
   {
     day: 1,
@@ -179,7 +183,6 @@ let currentMarker = null;
 let animatedShipMarker = null;
 let routePolyline = null;
 let animationFrameId = null;
-let gtokenClient = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
@@ -187,26 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
   selectDay(0);
   renderChecklist();
   renderPhotoAlbum();
-  initGoogleAuthClient();
+  fetchSharedCloudPhotos();
 });
-
-function initGoogleAuthClient() {
-  if (window.google && window.google.accounts && window.google.accounts.oauth2) {
-    gtokenClient = google.accounts.oauth2.initTokenClient({
-      client_id: GOOGLE_CLIENT_ID,
-      scope: "https://www.googleapis.com/auth/drive.readonly",
-      callback: async (response) => {
-        if (response.error) {
-          alert("Google Sign-In Error: " + response.error);
-          return;
-        }
-        if (response.access_token) {
-          openVisualGoogleDrivePicker(response.access_token);
-        }
-      }
-    });
-  }
-}
 
 // Countdown Timer to Aug 10, 2026 17:00:00 GMT
 function initCountdown() {
@@ -458,52 +443,31 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
-// Google Photos & Google Drive Visual Picker Handler
-function openGooglePhotosPicker() {
-  if (!gtokenClient) {
-    initGoogleAuthClient();
-  }
-
-  if (gtokenClient) {
-    gtokenClient.requestAccessToken({ prompt: "consent" });
-  } else {
-    alert("Google Identity Client loading... Please try again in 3 seconds.");
-  }
+// Real-Time Cross-Device Family Cloud Sync
+async function fetchSharedCloudPhotos() {
+  try {
+    const res = await fetch(CLOUD_SYNC_API + '/latest');
+    const json = await res.json();
+    if (json && json.record && json.record.photos) {
+      localStorage.setItem('viva_family_photos', JSON.stringify(json.record.photos));
+      renderPhotoAlbum();
+    }
+  } catch (e) {}
 }
 
-function openVisualGoogleDrivePicker(accessToken) {
-  if (window.gapi) {
-    gapi.load('picker', () => {
-      try {
-        const view = new google.picker.View(google.picker.ViewId.DOCS_IMAGES);
-        const picker = new google.picker.PickerBuilder()
-          .addView(view)
-          .setOAuthToken(accessToken)
-          .setDeveloperKey(GOOGLE_MAPS_API_KEY)
-          .setCallback((data) => {
-            if (data.action === google.picker.Action.PICKED) {
-              const doc = data.docs[0];
-              const photoUrl = doc.url || doc.thumbnails[0].url;
-              
-              const saved = localStorage.getItem('viva_family_photos');
-              let photos = saved ? JSON.parse(saved) : [];
-              photos.unshift({ src: photoUrl, title: doc.name || 'Selected Photo' });
-              localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
-              renderPhotoAlbum();
-              alert(`Selected "${doc.name}"! Added to your cruise album.`);
-            }
-          })
-          .build();
-        picker.setVisible(true);
-      } catch (e) {
-        alert("Please use the 'Upload' button to pick photos directly from your phone/device camera roll.");
-      }
+async function syncPhotoAlbumToCloud(photos) {
+  try {
+    await fetch(CLOUD_SYNC_API, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ photos: photos })
     });
-  }
+  } catch (e) {}
 }
 
 function clearPhotoAlbum() {
   localStorage.removeItem('viva_family_photos');
+  syncPhotoAlbumToCloud([]);
   renderPhotoAlbum();
 }
 
@@ -537,6 +501,7 @@ function removePhoto(index) {
   let photos = saved ? JSON.parse(saved) : [];
   photos.splice(index, 1);
   localStorage.setItem('viva_family_photos', JSON.stringify(photos));
+  syncPhotoAlbumToCloud(photos);
   renderPhotoAlbum();
 }
 
@@ -547,12 +512,28 @@ function handlePhotoUpload(event) {
   const saved = localStorage.getItem('viva_family_photos');
   let photos = saved ? JSON.parse(saved) : [];
 
+  const uploadBtn = document.getElementById('upload-btn-label');
+  if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Syncing...';
+
+  let readCount = 0;
+
   Array.from(files).forEach(file => {
     const reader = new FileReader();
     reader.onload = function(e) {
       photos.unshift({ src: e.target.result, title: file.name });
-      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
-      renderPhotoAlbum();
+      readCount++;
+
+      if (readCount === files.length) {
+        const finalPhotos = photos.slice(0, 20);
+        localStorage.setItem('viva_family_photos', JSON.stringify(finalPhotos));
+        renderPhotoAlbum();
+        syncPhotoAlbumToCloud(finalPhotos).then(() => {
+          if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-check"></i> Shared!';
+          setTimeout(() => {
+            if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-upload"></i> Upload';
+          }, 2000);
+        });
+      }
     };
     reader.readAsDataURL(file);
   });
