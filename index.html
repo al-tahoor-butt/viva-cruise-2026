@@ -78,12 +78,12 @@
     </div>
   </section>
 
-  <!-- API Key Entry Modal/Bar for Google Maps -->
-  <div class="api-key-bar" id="api-key-bar">
+  <!-- API Key Bar (Shown only if API key is not configured in app.js) -->
+  <div class="api-key-bar" id="api-key-bar" style="display: none;">
     <i class="fa-solid fa-key"></i>
-    <span>Enter your Google Maps JavaScript API Key to enable dynamic interactive maps:</span>
+    <span>Enter Google Maps JavaScript API Key:</span>
     <input type="text" id="gmaps-api-key" placeholder="AIzaSy..." />
-    <button class="btn btn-sm" onclick="loadGoogleMaps()">Load Map</button>
+    <button class="btn btn-sm" onclick="manualLoadGoogleMaps()">Load Map</button>
   </div>
 
   <!-- Main Grid Layout -->
@@ -126,7 +126,7 @@
         <div id="map-container" class="map-view">
           <div class="map-placeholder" id="map-placeholder">
             <i class="fa-solid fa-map"></i>
-            <p>Loading Map / Enter Google Maps API key above for full satellite interactive view...</p>
+            <p id="map-status-text">Initializing Map...</p>
           </div>
         </div>
       </div>
@@ -155,6 +155,6 @@
     <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dual Specialty / UK Standards Mapped • Powered by Open-Meteo Live Weather & Google Maps</p>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
