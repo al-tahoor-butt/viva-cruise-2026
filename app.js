@@ -11,33 +11,33 @@ const cruiseData = [
   {
     day: 0,
     date: 'Sun 09 Aug 2026',
-    port: 'Manchester ➔ Bologna, Italy',
+    port: 'Manchester ➔ Bologna (Hotel Del Borgo)',
     arrive: '9:05 PM',
     depart: '5:45 PM',
-    lat: 44.4949,
-    lng: 11.3426,
+    lat: 44.5167,
+    lng: 11.2721,
     heroImage: 'https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=1200&q=80',
-    highlight: 'Flight FR2242 from Manchester to Bologna & Pre-Cruise Hotel Stay',
-    adultsActivities: 'Land in Bologna Airport (BLQ), taxi to city center hotel, late-night aperitivo.',
-    kidsActivities: 'Exciting evening flight & late-night authentic Italian gelato in Piazza Maggiore.',
-    transferInfo: 'Flight FR2242 (PNR: WTUR5S) departs MAN 17:45, arrives BLQ 21:05. Marconi Express monorail or taxi to Bologna hotel (15 mins).',
-    tags: ['Outbound Flight', 'Bologna Stay', 'Pre-Cruise', 'Ryanair FR2242']
+    highlight: 'Flight FR2242 & Stay at Hotel Del Borgo, Bologna',
+    adultsActivities: 'Land in Bologna Airport (BLQ) at 21:05, 8-min taxi to Hotel Del Borgo (Booking #5007213355), late-night aperitivo.',
+    kidsActivities: 'Exciting evening flight & cozy stay at Hotel Del Borgo (2 single + 1 double bed configured).',
+    transferInfo: 'Flight FR2242 (PNR: WTUR5S) MAN 17:45 ➔ BLQ 21:05. Hotel Del Borgo: Via Marco Emilio Lepido 195 (Booking #5007213355). 8-min taxi from BLQ airport.',
+    tags: ['Hotel Del Borgo', 'Flight FR2242', 'Pre-Cruise', 'Bologna']
   },
   {
     day: 1,
     date: 'Mon 10 Aug 2026',
-    port: 'Venice (Ravenna), Italy',
+    port: 'Bologna ➔ Ravenna Cruise Port',
     arrive: '12:30 PM Check-in',
     depart: '5:00 PM Sailing',
     lat: 44.4949,
     lng: 12.2818,
     heroImage: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80',
-    highlight: 'Train to Ravenna & 12:30-13:30 Embarkation Window',
-    adultsActivities: 'Breakfast in Bologna, 11:06 AM train to Ravenna, check-in & welcome champagne on Norwegian Viva.',
+    highlight: 'Hotel Del Borgo ➔ Ravenna Port (12:30-13:30 Embarkation Window)',
+    adultsActivities: 'Breakfast at Hotel Del Borgo, 10:15 taxi to Bologna Centrale, 11:06 train to Ravenna, check-in & welcome champagne on Norwegian Viva.',
     kidsActivities: 'First glimpse of 143,000-ton Norwegian Viva, explore Speedway racetrack & pool deck!',
-    transferInfo: '10:30 Walk to Bologna Centrale ➔ 11:06 Trenitalia Regional train (53m, arr 11:59 Ravenna) ➔ 12:05 Taxi/Shuttle to Porto Corsini terminal ➔ 12:30-13:30 Embarkation Window.',
+    transferInfo: 'Option A (Train): 10:15 Taxi to Bologna Centrale ➔ 11:06 Trenitalia Regional train (53m, arr 11:59 Ravenna) ➔ 12:05 Taxi/Shuttle to Porto Corsini ➔ 12:30 Embarkation. Option B (Direct Transfer): 11:00 Taxi from Hotel Del Borgo directly to Ravenna Terminal (A14 Highway, 1h10m).',
     liveTrainLink: 'https://www.viaggiatreno.it/',
-    tags: ['Train Transfer', '12:30 Embarkation', 'Bologna', 'Ravenna', 'ViaggiaTreno Live']
+    tags: ['Hotel Del Borgo', '11:06 Train', '12:30 Embarkation', 'Ravenna Port']
   },
   {
     day: 2,
@@ -296,7 +296,7 @@ async function selectDay(index) {
     </div>
 
     <div class="card-header">
-      <h2><i class="fa-solid ${data.day === 0 ? 'fa-plane-departure' : 'fa-anchor'}"></i> ${data.day === 0 ? 'Pre-Cruise Fly-In' : 'Day ' + data.day}: ${data.port}</h2>
+      <h2><i class="fa-solid ${data.day === 0 ? 'fa-hotel' : 'fa-anchor'}"></i> ${data.day === 0 ? 'Pre-Cruise Stay' : 'Day ' + data.day}: ${data.port}</h2>
       <span class="badge badge-warning">${data.date}</span>
     </div>
     
