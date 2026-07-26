@@ -1,6 +1,5 @@
 // Norwegian Viva 2026 Mediterranean Fly-Cruise Data & Logic
 
-// Set your Google Maps API Key here for seamless automatic map loading across all family devices:
 const GOOGLE_MAPS_API_KEY = "AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs";
 
 const cruiseData = [
@@ -12,6 +11,7 @@ const cruiseData = [
     depart: '5:00 PM',
     lat: 44.4949,
     lng: 12.2818,
+    heroImage: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Pre-cruise stay in Bologna, Train to Ravenna, Cruise Embarkation',
     adultsActivities: 'Explore Bologna Quadrilatero food markets, sample fresh tagliatelle & gelato.',
     kidsActivities: 'Climb the Clock Tower (Torre d’Accursio) & hunt for Bologna’s secret canal window.',
@@ -26,6 +26,7 @@ const cruiseData = [
     depart: '11:59 PM',
     lat: 42.6507,
     lng: 18.0944,
+    heroImage: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Ancient City Walls Walk & Lokrum Island Sea Kayaking',
     adultsActivities: 'Walk the historic ramparts, drink wine overlooking the Adriatic coast.',
     kidsActivities: 'Guided sea kayaking around Lokrum Island and Betina Cave, plus Dubrovnik Cable Car ride for sunset.',
@@ -40,6 +41,7 @@ const cruiseData = [
     depart: '6:00 PM',
     lat: 42.0931,
     lng: 19.0989,
+    heroImage: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Stari Bar Fortress Ruins & Lake Skadar Boat Excursion',
     adultsActivities: 'Explore Stari Bar ancient cliffside fortress and 2,000-year-old olive trees.',
     kidsActivities: 'Lake Skadar boat ride through lily pads with freshwater swim stops, or King’s Beach swim.',
@@ -54,6 +56,7 @@ const cruiseData = [
     depart: '—',
     lat: 39.5000,
     lng: 14.0000,
+    heroImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Viva Speedway, Galaxy Pavilion VR & Ocean Boulevard Pools',
     adultsActivities: 'Indulge Food Hall, Mandara Spa, infinity pool relaxation on Ocean Boulevard.',
     kidsActivities: 'Race on the 3-level Viva Speedway, Galaxy Pavilion VR flight simulators, and The Drop 10-story free-fall dry slide!',
@@ -68,6 +71,7 @@ const cruiseData = [
     depart: '6:00 PM',
     lat: 40.6780,
     lng: 14.7650,
+    heroImage: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Coastal Speedboat Excursion to Positano & Amalfi',
     adultsActivities: 'Limoncello tasting, cliffside views, scenic lemon groves of Positano.',
     kidsActivities: 'Speedboat ride along the coastline with cave swim stops & authentic Positano gelato.',
@@ -82,6 +86,7 @@ const cruiseData = [
     depart: '6:00 PM',
     lat: 41.8902,
     lng: 12.4922,
+    heroImage: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Civitavecchia Express to Rome: Colosseum & Trevi Fountain',
     adultsActivities: 'Roman Forum, Pantheon exploration, authentic Roman carbonara.',
     kidsActivities: 'Skip-the-line Colosseum Gladiator tour & coin toss into Trevi Fountain.',
@@ -96,6 +101,7 @@ const cruiseData = [
     depart: '10:00 PM',
     lat: 43.7228,
     lng: 10.3966,
+    heroImage: 'https://images.unsplash.com/photo-1543429776-2782fc8e1acd?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Leaning Tower of Pisa Photo-Op & Florence Duomo Walk',
     adultsActivities: 'Uffizi Gallery, Ponte Vecchio stroll, Tuscan wine tasting.',
     kidsActivities: 'Climb Giotto’s Campanile tower, forced-perspective photo holding up Pisa tower, Boboli Gardens.',
@@ -110,6 +116,7 @@ const cruiseData = [
     depart: '4:30 PM',
     lat: 43.7042,
     lng: 7.3117,
+    heroImage: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Villefranche Bay Watersports & Nice Promenade Ride',
     adultsActivities: 'Stroll Old Town Nice (Vieux Nice), sample Socca chickpea crepes.',
     kidsActivities: 'Rent paddleboards/snorkels in Villefranche turquoise bay, or ride e-scooters along Promenade des Anglais.',
@@ -124,6 +131,7 @@ const cruiseData = [
     depart: '9:00 PM',
     lat: 39.5696,
     lng: 2.6502,
+    heroImage: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Katmandu Theme Park or Palma Bay Beach & Kayaking',
     adultsActivities: 'Palma Cathedral (La Seu) visit, tapas & sangria at Mercat de l’Olivar.',
     kidsActivities: 'Upside-down splash park at Katmandu Park or Palma Aquarium deep ocean tunnel.',
@@ -138,6 +146,7 @@ const cruiseData = [
     depart: 'Disembarkation',
     lat: 41.3851,
     lng: 2.1734,
+    heroImage: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Sagrada Família, Park Güell & Gothic Quarter Exploration',
     adultsActivities: 'Gaudí masterpieces, Mercat de la Boquería food market, tapas.',
     kidsActivities: 'Montjuïc Cable Car ride, Park Güell colorful lizard park & beach walk.',
@@ -175,41 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDayList();
   selectDay(0);
   renderChecklist();
-  autoLoadGoogleMapsIfKeyPresent();
+  renderPhotoAlbum();
 });
-
-// Auto-Load Google Maps if API key is present
-function autoLoadGoogleMapsIfKeyPresent() {
-  const apiKeyBar = document.getElementById('api-key-bar');
-  
-  if (GOOGLE_MAPS_API_KEY && GOOGLE_MAPS_API_KEY.trim().length > 0) {
-    if (apiKeyBar) apiKeyBar.style.display = 'none';
-    injectGoogleMapsScript(GOOGLE_MAPS_API_KEY.trim());
-  } else {
-    if (apiKeyBar) apiKeyBar.style.display = 'flex';
-    document.getElementById('map-status-text').innerText = 'Enter API Key above or configure GOOGLE_MAPS_API_KEY in app.js for auto-load.';
-  }
-}
-
-function manualLoadGoogleMaps() {
-  const inputKey = document.getElementById('gmaps-api-key').value.trim();
-  if (!inputKey) {
-    alert('Please enter a valid Google Maps API Key.');
-    return;
-  }
-  injectGoogleMapsScript(inputKey);
-}
-
-function injectGoogleMapsScript(key) {
-  if (window.google && window.google.maps) {
-    initMap();
-    return;
-  }
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap`;
-  script.async = true;
-  document.head.appendChild(script);
-}
 
 // Countdown Timer to Aug 10, 2026 17:00:00 GMT
 function initCountdown() {
@@ -268,9 +244,13 @@ async function selectDay(index) {
   const data = cruiseData[index];
   document.getElementById('current-port-badge').innerText = `Port Focus: ${data.port}`;
 
-  // Update Day Details Card
+  // Update Day Details Card with Hero Image Banner
   const detailsContainer = document.getElementById('day-details-card');
   detailsContainer.innerHTML = `
+    <div class="day-hero-container">
+      <img src="${data.heroImage}" alt="${data.port}" class="day-hero-img" />
+    </div>
+
     <div class="card-header">
       <h2><i class="fa-solid fa-anchor"></i> Day ${data.day}: ${data.port}</h2>
       <span class="badge badge-warning">${data.date}</span>
@@ -431,14 +411,13 @@ function animateShipTransition(fromIdx, toIdx) {
 
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
 
-  const duration = 1500; // 1.5 second smooth gliding animation
+  const duration = 1500;
   const startTime = performance.now();
 
   function step(currentTime) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
     
-    // Cubic Ease In-Out
     const easeProgress = progress < 0.5 
       ? 4 * progress * progress * progress 
       : 1 - Math.pow(-2 * progress + 2, 3) / 2;
@@ -456,6 +435,51 @@ function animateShipTransition(fromIdx, toIdx) {
   }
 
   animationFrameId = requestAnimationFrame(step);
+}
+
+// User Photo Album Upload & LocalStorage Persistence
+function renderPhotoAlbum() {
+  const defaultPhotos = [
+    { src: 'images/iorek.jpg', title: 'Iorek' },
+    { src: 'images/lyra.jpg', title: 'Lyra' },
+    { src: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=400&q=80', title: 'Ravenna' },
+    { src: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=400&q=80', title: 'Dubrovnik' },
+    { src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=400&q=80', title: 'Rome' }
+  ];
+
+  const saved = localStorage.getItem('viva_family_photos');
+  const photos = saved ? JSON.parse(saved) : defaultPhotos;
+
+  const grid = document.getElementById('photo-grid');
+  grid.innerHTML = '';
+
+  photos.forEach(photo => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.innerHTML = `<img src="${photo.src}" alt="${photo.title || 'Memory'}" title="${photo.title || 'Memory'}" />`;
+    grid.appendChild(card);
+  });
+}
+
+function handlePhotoUpload(event) {
+  const files = event.target.files;
+  if (!files || files.length === 0) return;
+
+  const saved = localStorage.getItem('viva_family_photos');
+  let photos = saved ? JSON.parse(saved) : [
+    { src: 'images/iorek.jpg', title: 'Iorek' },
+    { src: 'images/lyra.jpg', title: 'Lyra' }
+  ];
+
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      photos.unshift({ src: e.target.result, title: file.name });
+      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20))); // Store up to 20 images
+      renderPhotoAlbum();
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 // Family Activity Checklist Persistence

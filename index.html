@@ -13,7 +13,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -73,10 +73,10 @@
       </div>
     </div>
     <div class="info-item">
-      <i class="fa-solid fa-wifi"></i>
+      <i class="fa-solid fa-dog"></i>
       <div>
-        <small>Internet Strategy</small>
-        <strong>GL.iNet Router MAC Clone</strong>
+        <small>Home Team Guard</small>
+        <strong>Iorek & Lyra (Chow Chows)</strong>
       </div>
     </div>
   </section>
@@ -84,11 +84,27 @@
   <!-- Main Grid Layout -->
   <main class="main-container">
     
-    <!-- Left Column: Day Selector & Port List -->
+    <!-- Left Column: Day Selector & Pets Card -->
     <aside class="sidebar">
       <h2><i class="fa-solid fa-compass"></i> Itinerary Days</h2>
       <div class="day-list" id="day-list">
         <!-- Rendered via JS -->
+      </div>
+
+      <!-- Family Pets Card -->
+      <div class="tech-card pet-card">
+        <h3><i class="fa-solid fa-paw"></i> Home Squad: Iorek & Lyra</h3>
+        <div class="pet-gallery">
+          <div class="pet-item">
+            <img src="images/iorek.jpg" alt="Iorek Cream Chow Chow" class="pet-img" />
+            <span>Iorek <small>(Cream Chow)</small></span>
+          </div>
+          <div class="pet-item">
+            <img src="images/lyra.jpg" alt="Lyra Red Chow Chow" class="pet-img" />
+            <span>Lyra <small>(Red Chow)</small></span>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; text-align: center;">Holding down the fort in Uppermill! 🐾</p>
       </div>
 
       <!-- Quick Tech & Transfer Card -->
@@ -109,7 +125,7 @@
       </div>
     </aside>
 
-    <!-- Right Column: Interactive Map, Selected Day Details & Live Weather -->
+    <!-- Right Column: Interactive Map, Day Details & Photo Showcase -->
     <section class="content-area">
 
       <!-- Map & Weather Banner -->
@@ -126,9 +142,26 @@
         </div>
       </div>
 
-      <!-- Selected Day Full Details -->
+      <!-- Selected Day Full Details with Photo Hero -->
       <div class="card day-details-card" id="day-details-card">
         <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Family Photo Memory Upload & Gallery Card -->
+      <div class="card gallery-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-camera-retro"></i> Cruise Photo Memories & Album</h2>
+          <label class="btn btn-sm btn-primary" style="cursor: pointer;">
+            <i class="fa-solid fa-upload"></i> Upload Photos
+            <input type="file" id="photo-upload-input" accept="image/*" multiple style="display: none;" onchange="handlePhotoUpload(event)" />
+          </label>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
+          Add your favorite cruise photos & dog pictures directly from your phone or laptop camera roll!
+        </p>
+        <div class="photo-grid" id="photo-grid">
+          <!-- Rendered dynamically -->
+        </div>
       </div>
 
       <!-- Family Checklist Card -->
@@ -147,9 +180,9 @@
   </main>
 
   <footer>
-    <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dual Specialty / UK Standards Mapped • Powered by Open-Meteo Live Weather & Google Maps</p>
+    <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dedicated for Al-Tahoor, Sarah & Family • Powered by Open-Meteo & Google Maps</p>
   </footer>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
