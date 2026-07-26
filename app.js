@@ -179,6 +179,7 @@ let currentMarker = null;
 let animatedShipMarker = null;
 let routePolyline = null;
 let animationFrameId = null;
+let gtokenClient = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
@@ -186,13 +187,28 @@ document.addEventListener('DOMContentLoaded', () => {
   selectDay(0);
   renderChecklist();
   renderPhotoAlbum();
-  loadGooglePickerLibrary();
+  initGoogleAuthClient();
 });
 
-// Load Google Picker Library
-function loadGooglePickerLibrary() {
-  if (window.gapi) {
-    gapi.load('picker', { callback: () => console.log('Google Picker API loaded.') });
+function initGoogleAuthClient() {
+  if (window.google && window.google.accounts && window.google.accounts.oauth2) {
+    gtokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: GOOGLE_CLIENT_ID,
+      scope: "https://www.googleapis.com/auth/photoslibrary.readonly https://www.googleapis.com/auth/drive.readonly",
+      callback: async (response) => {
+        if (response.error) {
+          alert("Google Sign-In Error: " + response.error);
+          return;
+        }
+        if (response.access_token) {
+          if (window.gapi && window.gapi.picker) {
+            createVisualGooglePicker(response.access_token);
+          } else {
+            fetchGooglePhotosMediaItems(response.access_token);
+          }
+        }
+      }
+    });
   }
 }
 
@@ -446,57 +462,55 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
-// Google Photos Visual Picker Handler using Official Google Picker UI
+// Google Photos Visual Picker Handler
 function openGooglePhotosPicker() {
-  if (!window.google || !window.google.accounts || !window.google.accounts.oauth2) {
-    alert("Google Identity Client loading... Please try again in 5 seconds.");
-    return;
+  if (!gtokenClient) {
+    initGoogleAuthClient();
   }
 
-  const tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: GOOGLE_CLIENT_ID,
-    scope: "https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/photoslibrary.readonly",
-    callback: async (response) => {
-      if (response.access_token) {
-        createVisualGooglePicker(response.access_token);
-      }
-    }
-  });
-
-  tokenClient.requestAccessToken({ prompt: "consent" });
+  if (gtokenClient) {
+    gtokenClient.requestAccessToken({ prompt: "consent" });
+  } else {
+    alert("Google Identity Client loading... Please try again in 3 seconds.");
+  }
 }
 
 // Build Official Google Visual Photo & Drive Picker Window
 function createVisualGooglePicker(accessToken) {
-  if (!window.google || !window.google.picker) {
-    // Fallback if Picker API script is still initializing
+  if (!window.gapi) {
     fetchGooglePhotosMediaItems(accessToken);
     return;
   }
 
-  const view = new google.picker.View(google.picker.ViewId.PHOTOS);
-  view.setMimeTypes("image/png,image/jpeg,image/jpg");
+  gapi.load('picker', () => {
+    try {
+      const view = new google.picker.View(google.picker.ViewId.PHOTOS);
+      view.setMimeTypes("image/png,image/jpeg,image/jpg");
 
-  const picker = new google.picker.PickerBuilder()
-    .addView(view)
-    .addView(google.picker.ViewId.IMAGE_SEARCH)
-    .setOAuthToken(accessToken)
-    .setDeveloperKey(GOOGLE_MAPS_API_KEY)
-    .setCallback((data) => {
-      if (data.action === google.picker.Action.PICKED) {
-        const doc = data.docs[0];
-        const photoUrl = doc.url || doc.thumbnails[0].url;
-        
-        const saved = localStorage.getItem('viva_family_photos');
-        let photos = saved ? JSON.parse(saved) : [];
-        photos.unshift({ src: photoUrl, title: doc.name || 'Google Photo' });
-        localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
-        renderPhotoAlbum();
-      }
-    })
-    .build();
+      const picker = new google.picker.PickerBuilder()
+        .addView(view)
+        .addView(google.picker.ViewId.IMAGE_SEARCH)
+        .setOAuthToken(accessToken)
+        .setDeveloperKey(GOOGLE_MAPS_API_KEY)
+        .setCallback((data) => {
+          if (data.action === google.picker.Action.PICKED) {
+            const doc = data.docs[0];
+            const photoUrl = doc.url || doc.thumbnails[0].url;
+            
+            const saved = localStorage.getItem('viva_family_photos');
+            let photos = saved ? JSON.parse(saved) : [];
+            photos.unshift({ src: photoUrl, title: doc.name || 'Google Photo' });
+            localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
+            renderPhotoAlbum();
+          }
+        })
+        .build();
 
-  picker.setVisible(true);
+      picker.setVisible(true);
+    } catch (e) {
+      fetchGooglePhotosMediaItems(accessToken);
+    }
+  });
 }
 
 async function fetchGooglePhotosMediaItems(accessToken) {
@@ -516,6 +530,8 @@ async function fetchGooglePhotosMediaItems(accessToken) {
 
       localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
       renderPhotoAlbum();
+    } else if (data.error) {
+      alert("Google Photos Error: " + (data.error.message || "Please enable Google Photos Library API in Google Cloud Console."));
     }
   } catch (e) {
     console.log("Fetched Google Photos.");
