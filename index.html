@@ -13,7 +13,10 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
+
+  <!-- Direct Google Maps API Script -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
 </head>
 <body>
 
@@ -78,14 +81,6 @@
     </div>
   </section>
 
-  <!-- API Key Bar (Shown only if API key is not configured in app.js) -->
-  <div class="api-key-bar" id="api-key-bar" style="display: none;">
-    <i class="fa-solid fa-key"></i>
-    <span>Enter Google Maps JavaScript API Key:</span>
-    <input type="text" id="gmaps-api-key" placeholder="AIzaSy..." />
-    <button class="btn btn-sm" onclick="manualLoadGoogleMaps()">Load Map</button>
-  </div>
-
   <!-- Main Grid Layout -->
   <main class="main-container">
     
@@ -125,8 +120,8 @@
         </div>
         <div id="map-container" class="map-view">
           <div class="map-placeholder" id="map-placeholder">
-            <i class="fa-solid fa-map"></i>
-            <p id="map-status-text">Initializing Map...</p>
+            <i class="fa-solid fa-ship fa-spin" style="font-size: 32px; color: var(--primary);"></i>
+            <p id="map-status-text">Loading Mediterranean Cruise Map...</p>
           </div>
         </div>
       </div>
@@ -155,6 +150,6 @@
     <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dual Specialty / UK Standards Mapped • Powered by Open-Meteo Live Weather & Google Maps</p>
   </footer>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
