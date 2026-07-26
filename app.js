@@ -1,7 +1,7 @@
 // Norwegian Viva 2026 Mediterranean Fly-Cruise Data & Logic
 
 // Set your Google Maps API Key here for seamless automatic map loading across all family devices:
-const GOOGLE_MAPS_API_KEY = "AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs"; // Paste your Google Maps API Key inside the quotes e.g. "AIzaSy..."
+const GOOGLE_MAPS_API_KEY = "AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs";
 
 const cruiseData = [
   {
@@ -162,9 +162,13 @@ const defaultChecklist = [
   { id: 12, text: 'Montjuïc Cable Car in Barcelona', category: 'Family', done: false }
 ];
 
+let previousDayIndex = 0;
 let selectedDayIndex = 0;
 let gmap = null;
 let currentMarker = null;
+let animatedShipMarker = null;
+let routePolyline = null;
+let animationFrameId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
@@ -257,6 +261,7 @@ function renderDayList() {
 
 // Select Day & Update Views
 async function selectDay(index) {
+  previousDayIndex = selectedDayIndex;
   selectedDayIndex = index;
   renderDayList();
 
@@ -315,11 +320,9 @@ async function selectDay(index) {
   // Fetch Live Weather via Open-Meteo API
   fetchOpenMeteoWeather(data.lat, data.lng);
 
-  // Update Map Position if loaded
+  // Trigger Map Sailing Animation if loaded
   if (gmap) {
-    const pos = { lat: data.lat, lng: data.lng };
-    gmap.panTo(pos);
-    if (currentMarker) currentMarker.setPosition(pos);
+    animateShipTransition(previousDayIndex, selectedDayIndex);
   }
 }
 
@@ -354,15 +357,17 @@ function getWeatherDesc(code) {
   return 'Sunny & Warm';
 }
 
+// Initialize Interactive Google Map with Animated Route & Ship Icon
 window.initMap = function() {
   const ph = document.getElementById('map-placeholder');
   if (ph) ph.style.display = 'none';
   
-  const data = cruiseData[selectedDayIndex];
+  const initialData = cruiseData[selectedDayIndex];
+  const portCoords = cruiseData.map(d => ({ lat: d.lat, lng: d.lng }));
   
   gmap = new google.maps.Map(document.getElementById('map-container'), {
-    center: { lat: data.lat, lng: data.lng },
-    zoom: 9,
+    center: { lat: initialData.lat, lng: initialData.lng },
+    zoom: 7,
     styles: [
       { elementType: "geometry", stylers: [{ color: "#1d2c4d" }] },
       { elementType: "labels.text.fill", stylers: [{ color: "#8ec3b9" }] },
@@ -371,13 +376,87 @@ window.initMap = function() {
     ]
   });
 
-  currentMarker = new google.maps.Marker({
-    position: { lat: data.lat, lng: data.lng },
+  // Glowing Polyline for Cruise Route
+  routePolyline = new google.maps.Polyline({
+    path: portCoords,
+    geodesic: true,
+    strokeColor: '#00d2ff',
+    strokeOpacity: 0.8,
+    strokeWeight: 4,
+    map: gmap
+  });
+
+  // Port Markers for all 10 stops
+  cruiseData.forEach((day, idx) => {
+    new google.maps.Marker({
+      position: { lat: day.lat, lng: day.lng },
+      map: gmap,
+      title: `Day ${day.day}: ${day.port}`,
+      label: {
+        text: `${day.day}`,
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: '12px'
+      }
+    });
+  });
+
+  // Animated Cruise Ship Marker
+  const shipIcon = {
+    path: "M 0,-15 C -5,-5 -8,0 -8,10 C -8,15 0,18 0,18 C 0,18 8,15 8,10 C 8,0 5,-5 0,-15 Z",
+    fillColor: "#ffb703",
+    fillOpacity: 1,
+    strokeColor: "#ffffff",
+    strokeWeight: 2,
+    scale: 1.2
+  };
+
+  animatedShipMarker = new google.maps.Marker({
+    position: { lat: initialData.lat, lng: initialData.lng },
     map: gmap,
-    title: data.port,
-    animation: google.maps.Animation.DROP
+    title: "Norwegian Viva Position",
+    icon: shipIcon,
+    zIndex: 999
   });
 };
+
+// Smooth Sailing Transition Animation between Ports
+function animateShipTransition(fromIdx, toIdx) {
+  if (!animatedShipMarker || !gmap) return;
+
+  const startLat = cruiseData[fromIdx].lat;
+  const startLng = cruiseData[fromIdx].lng;
+  const endLat = cruiseData[toIdx].lat;
+  const endLng = cruiseData[toIdx].lng;
+
+  if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+  const duration = 1500; // 1.5 second smooth gliding animation
+  const startTime = performance.now();
+
+  function step(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Cubic Ease In-Out
+    const easeProgress = progress < 0.5 
+      ? 4 * progress * progress * progress 
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    const currentLat = startLat + (endLat - startLat) * easeProgress;
+    const currentLng = startLng + (endLng - startLng) * easeProgress;
+
+    const currentPos = new google.maps.LatLng(currentLat, currentLng);
+    animatedShipMarker.setPosition(currentPos);
+    gmap.panTo(currentPos);
+
+    if (progress < 1) {
+      animationFrameId = requestAnimationFrame(step);
+    }
+  }
+
+  animationFrameId = requestAnimationFrame(step);
+}
 
 // Family Activity Checklist Persistence
 function renderChecklist() {
