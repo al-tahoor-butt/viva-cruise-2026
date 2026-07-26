@@ -239,7 +239,70 @@ let routePolyline = null;
 let animationFrameId = null;
 let currentLanguage = 'it';
 
+// Private Family Travel Portal Gatekeeper (Passcode Splash Screen)
+const VALID_PASSCODES = ['2026', 'viva2026', 'viva', 'norwegian'];
+
+function initAuth() {
+  const isUnlocked = localStorage.getItem('viva_cruise_unlocked') === 'true';
+  const splash = document.getElementById('splash-screen');
+  const content = document.getElementById('portal-content');
+  if (!splash || !content) return;
+
+  if (isUnlocked) {
+    splash.classList.add('hidden');
+    content.style.display = 'block';
+  } else {
+    splash.classList.remove('hidden');
+    content.style.display = 'none';
+    setTimeout(() => {
+      const input = document.getElementById('passcode-input');
+      if (input) input.focus();
+    }, 100);
+  }
+}
+
+function unlockPortal() {
+  const inputEl = document.getElementById('passcode-input');
+  const errorEl = document.getElementById('splash-error');
+  const splash = document.getElementById('splash-screen');
+  const content = document.getElementById('portal-content');
+  if (!inputEl) return;
+
+  const val = inputEl.value.trim().toLowerCase();
+  if (VALID_PASSCODES.includes(val)) {
+    if (errorEl) errorEl.style.display = 'none';
+    localStorage.setItem('viva_cruise_unlocked', 'true');
+    splash.classList.add('hidden');
+    content.style.display = 'block';
+  } else {
+    if (errorEl) {
+      errorEl.style.display = 'block';
+      errorEl.classList.remove('shake');
+      void errorEl.offsetWidth; // trigger DOM reflow for CSS animation restart
+      errorEl.classList.add('shake');
+    }
+    inputEl.value = '';
+    inputEl.focus();
+  }
+}
+
+function lockPortal() {
+  localStorage.removeItem('viva_cruise_unlocked');
+  const splash = document.getElementById('splash-screen');
+  const content = document.getElementById('portal-content');
+  const inputEl = document.getElementById('passcode-input');
+  const errorEl = document.getElementById('splash-error');
+  if (errorEl) errorEl.style.display = 'none';
+  if (splash) splash.classList.remove('hidden');
+  if (content) content.style.display = 'none';
+  if (inputEl) inputEl.value = '';
+}
+
+window.unlockPortal = unlockPortal;
+window.lockPortal = lockPortal;
+
 document.addEventListener('DOMContentLoaded', () => {
+  initAuth();
   initCountdown();
   renderDayList();
   selectDay(0);

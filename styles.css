@@ -783,6 +783,148 @@ footer {
   backdrop-filter: blur(8px);
 }
 
+/* VIP Family Travel Portal Splash / Security Gatekeeper */
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.99));
+  backdrop-filter: blur(24px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-card {
+  max-width: 440px;
+  width: 100%;
+  padding: 36px 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  background: rgba(15, 23, 42, 0.88);
+  border-radius: 20px;
+  animation: splashFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes splashFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.splash-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: rgba(255, 183, 3, 0.12);
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  color: var(--sunset-gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.splash-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.splash-subtitle {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 26px;
+}
+
+.splash-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.splash-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 4px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.splash-input-group:focus-within {
+  border-color: var(--sunset-gold);
+  box-shadow: 0 0 15px rgba(255, 183, 3, 0.25);
+}
+
+.splash-icon {
+  margin: 0 14px;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.splash-input-group input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 0;
+  outline: none;
+  font-weight: 600;
+}
+
+.splash-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.splash-error {
+  color: var(--sunset-coral);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+
+.splash-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
 /* Print / Save PDF Styles */
 @media print {
   body {
