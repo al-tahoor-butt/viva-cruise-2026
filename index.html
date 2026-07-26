@@ -13,7 +13,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=15">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -54,7 +54,7 @@
     <div class="travel-master-card">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <h2 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; color: #ffffff;">
-          <i class="fa-solid fa-plane-circle-check" style="color: var(--sunset-gold);"></i> Primary Travel & Transfer Itinerary
+          <i class="fa-solid fa-plane-circle-check" style="color: var(--sunset-gold);"></i> Travel & Transfer Logistics Command
         </h2>
         <span class="badge badge-warning">NCL Reservation #64139255</span>
       </div>
@@ -75,22 +75,10 @@
           </div>
         </div>
 
-        <!-- 2. Pre-Cruise Hotel Stay -->
-        <div class="travel-box">
+        <!-- 2. Dynamic Selected Day Focus Card (Updates when any day is clicked!) -->
+        <div class="travel-box" id="dynamic-day-travel-box" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.08);">
           <div class="travel-box-title">
-            <i class="fa-solid fa-hotel"></i> Pre-Cruise Hotel (09-10 Aug)
-          </div>
-          <div class="travel-box-content">
-            <strong>Hotel Del Borgo, Bologna</strong>
-            <p>Via Marco Emilio Lepido 195 (8 mins from BLQ Airport)</p>
-            <p>Booking #<strong>5007213355</strong> • 2 single + 1 double bed setup</p>
-          </div>
-        </div>
-
-        <!-- 3. Embarkation Travel & Timing -->
-        <div class="travel-box" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.08);">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-anchor"></i> Cruise Embarkation (Mon 10 Aug)
+            <i class="fa-solid fa-location-crosshairs"></i> Dynamic Day Travel Focus
           </div>
           <div class="travel-box-content">
             <strong>12:30 PM – 1:30 PM Priority Embarkation Window</strong>
@@ -100,6 +88,18 @@
             <a href="https://www.viaggiatreno.it/" target="_blank" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;">
               <i class="fa-solid fa-train"></i> Track 11:06 Train Live
             </a>
+          </div>
+        </div>
+
+        <!-- 3. Pre-Cruise Hotel Stay -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-hotel"></i> Pre-Cruise Hotel (09-10 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>Hotel Del Borgo, Bologna</strong>
+            <p>Via Marco Emilio Lepido 195 (8 mins from BLQ Airport)</p>
+            <p>Booking #<strong>5007213355</strong> • 2 single + 1 double bed setup</p>
           </div>
         </div>
 
@@ -228,6 +228,6 @@
     Norwegian Viva Mediterranean Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family ☀️
   </footer>
 
-  <script src="app.js?v=14"></script>
+  <script src="app.js?v=15"></script>
 </body>
 </html>

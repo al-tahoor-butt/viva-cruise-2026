@@ -16,8 +16,8 @@ const cruiseData = [
     day: 0,
     date: 'Sun 09 Aug 2026',
     port: 'Manchester ➔ Bologna (Hotel Del Borgo)',
-    arrive: '9:05 PM',
-    depart: '5:45 PM',
+    arrive: '9:05 PM (BLQ)',
+    depart: '5:45 PM (MAN)',
     lat: 44.5167,
     lng: 11.2721,
     heroImage: 'https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=1200&q=80',
@@ -275,7 +275,7 @@ function renderDayList() {
   });
 }
 
-// Select Day & Update Views
+// Select Day & Update Views + Dynamic Master Travel Command Box
 async function selectDay(index) {
   previousDayIndex = selectedDayIndex;
   selectedDayIndex = index;
@@ -283,6 +283,21 @@ async function selectDay(index) {
 
   const data = cruiseData[index];
   document.getElementById('current-port-badge').innerText = `Focus: ${data.port}`;
+
+  // Update Dynamic Master Travel Command Center at the Top!
+  const masterFocusBox = document.getElementById('dynamic-day-travel-box');
+  if (masterFocusBox) {
+    masterFocusBox.innerHTML = `
+      <div class="travel-box-title">
+        <i class="fa-solid fa-location-crosshairs"></i> Day ${data.day} Travel Focus: ${data.port.split(',')[0]} (${data.date})
+      </div>
+      <div class="travel-box-content">
+        <strong>Arrive: ${data.arrive} | Depart: ${data.depart}</strong>
+        <p style="margin-top: 4px; color: #ffffff; font-size: 13px;">${data.transferInfo}</p>
+        ${data.liveTrainLink ? `<a href="${data.liveTrainLink}" target="_blank" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;"><i class="fa-solid fa-train"></i> Track 11:06 Train Live</a>` : ''}
+      </div>
+    `;
+  }
 
   const liveTrainBtn = data.liveTrainLink ? `
     <div style="margin-top: 10px;">
