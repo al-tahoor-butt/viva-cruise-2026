@@ -194,14 +194,14 @@ function initGoogleAuthClient() {
   if (window.google && window.google.accounts && window.google.accounts.oauth2) {
     gtokenClient = google.accounts.oauth2.initTokenClient({
       client_id: GOOGLE_CLIENT_ID,
-      scope: "https://www.googleapis.com/auth/photoslibrary.readonly https://www.googleapis.com/auth/drive.readonly",
+      scope: "https://www.googleapis.com/auth/drive.readonly",
       callback: async (response) => {
         if (response.error) {
           alert("Google Sign-In Error: " + response.error);
           return;
         }
         if (response.access_token) {
-          fetchCloudPhotos(response.access_token);
+          openVisualGoogleDrivePicker(response.access_token);
         }
       }
     });
@@ -458,7 +458,7 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
-// Google Photos & Google Drive Dual Fetcher
+// Google Photos & Google Drive Visual Picker Handler
 function openGooglePhotosPicker() {
   if (!gtokenClient) {
     initGoogleAuthClient();
@@ -471,53 +471,35 @@ function openGooglePhotosPicker() {
   }
 }
 
-async function fetchCloudPhotos(accessToken) {
-  // Try Google Photos Library REST API first
-  try {
-    const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=25', {
-      headers: { Authorization: `Bearer ${accessToken}` }
+function openVisualGoogleDrivePicker(accessToken) {
+  if (window.gapi) {
+    gapi.load('picker', () => {
+      try {
+        const view = new google.picker.View(google.picker.ViewId.DOCS_IMAGES);
+        const picker = new google.picker.PickerBuilder()
+          .addView(view)
+          .setOAuthToken(accessToken)
+          .setDeveloperKey(GOOGLE_MAPS_API_KEY)
+          .setCallback((data) => {
+            if (data.action === google.picker.Action.PICKED) {
+              const doc = data.docs[0];
+              const photoUrl = doc.url || doc.thumbnails[0].url;
+              
+              const saved = localStorage.getItem('viva_family_photos');
+              let photos = saved ? JSON.parse(saved) : [];
+              photos.unshift({ src: photoUrl, title: doc.name || 'Selected Photo' });
+              localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
+              renderPhotoAlbum();
+              alert(`Selected "${doc.name}"! Added to your cruise album.`);
+            }
+          })
+          .build();
+        picker.setVisible(true);
+      } catch (e) {
+        alert("Please use the 'Upload' button to pick photos directly from your phone/device camera roll.");
+      }
     });
-    const data = await res.json();
-
-    if (data.mediaItems && data.mediaItems.length > 0) {
-      const saved = localStorage.getItem('viva_family_photos');
-      let photos = saved ? JSON.parse(saved) : [];
-      
-      // Filter out non-camera files
-      data.mediaItems.forEach(item => {
-        if (item.mimeType && item.mimeType.startsWith('image/')) {
-          photos.unshift({ src: item.baseUrl, title: item.filename || 'Google Photo' });
-        }
-      });
-      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
-      renderPhotoAlbum();
-      alert("Successfully imported photos from Google Photos!");
-      return;
-    }
-  } catch (e) {}
-
-  // Fallback to Google Drive non-screenshot camera photos (JPEG only, exclude Screenshot)
-  try {
-    const q = "mimeType = 'image/jpeg' and not name contains 'Screenshot' and not name contains 'Screen'";
-    const res = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}&pageSize=20&fields=files(id,name,thumbnailLink,webContentLink)`, {
-      headers: { Authorization: `Bearer ${accessToken}` }
-    });
-    const data = await res.json();
-
-    if (data.files && data.files.length > 0) {
-      const saved = localStorage.getItem('viva_family_photos');
-      let photos = saved ? JSON.parse(saved) : [];
-      data.files.forEach(file => {
-        photos.unshift({ src: file.thumbnailLink || file.webContentLink, title: file.name || 'Drive Photo' });
-      });
-      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
-      renderPhotoAlbum();
-      alert("Imported camera photos from Google Drive!");
-      return;
-    }
-  } catch (e) {}
-
-  alert("No non-screenshot photos found in Google Photos or Drive.");
+  }
 }
 
 function clearPhotoAlbum() {
@@ -539,12 +521,23 @@ function renderPhotoAlbum() {
   const grid = document.getElementById('photo-grid');
   grid.innerHTML = '';
 
-  photos.forEach(photo => {
+  photos.forEach((photo, idx) => {
     const card = document.createElement('div');
     card.className = 'photo-card';
-    card.innerHTML = `<img src="${photo.src}" alt="${photo.title || 'Memory'}" title="${photo.title || 'Memory'}" />`;
+    card.innerHTML = `
+      <img src="${photo.src}" alt="${photo.title || 'Memory'}" title="${photo.title || 'Memory'}" />
+      <button style="position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.6); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: 10px;" onclick="removePhoto(${idx})">✕</button>
+    `;
     grid.appendChild(card);
   });
+}
+
+function removePhoto(index) {
+  const saved = localStorage.getItem('viva_family_photos');
+  let photos = saved ? JSON.parse(saved) : [];
+  photos.splice(index, 1);
+  localStorage.setItem('viva_family_photos', JSON.stringify(photos));
+  renderPhotoAlbum();
 }
 
 function handlePhotoUpload(event) {
