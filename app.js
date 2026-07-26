@@ -445,7 +445,7 @@ function openGooglePhotosPicker() {
   }
 
   const tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: "72159083313-placeholder.apps.googleusercontent.com", // Trigger OAuth popup
+    client_id: "72159083313-placeholder.apps.googleusercontent.com",
     scope: "https://www.googleapis.com/auth/photoslibrary.readonly",
     callback: async (response) => {
       if (response.access_token) {
@@ -483,8 +483,6 @@ async function fetchGooglePhotosMediaItems(accessToken) {
 // User Photo Album Upload & LocalStorage Persistence
 function renderPhotoAlbum() {
   const defaultPhotos = [
-    { src: 'images/iorek.jpg', title: 'Iorek' },
-    { src: 'images/lyra.jpg', title: 'Lyra' },
     { src: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=400&q=80', title: 'Ravenna' },
     { src: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=400&q=80', title: 'Dubrovnik' },
     { src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=400&q=80', title: 'Rome' }
@@ -509,10 +507,7 @@ function handlePhotoUpload(event) {
   if (!files || files.length === 0) return;
 
   const saved = localStorage.getItem('viva_family_photos');
-  let photos = saved ? JSON.parse(saved) : [
-    { src: 'images/iorek.jpg', title: 'Iorek' },
-    { src: 'images/lyra.jpg', title: 'Lyra' }
-  ];
+  let photos = saved ? JSON.parse(saved) : [];
 
   Array.from(files).forEach(file => {
     const reader = new FileReader();
