@@ -201,11 +201,7 @@ function initGoogleAuthClient() {
           return;
         }
         if (response.access_token) {
-          if (window.gapi && window.gapi.picker) {
-            createVisualGooglePicker(response.access_token);
-          } else {
-            fetchGooglePhotosMediaItems(response.access_token);
-          }
+          fetchCloudPhotos(response.access_token);
         }
       }
     });
@@ -462,7 +458,7 @@ function animateShipTransition(fromIdx, toIdx) {
   animationFrameId = requestAnimationFrame(step);
 }
 
-// Google Photos Visual Picker Handler
+// Google Photos & Google Drive Dual Fetcher
 function openGooglePhotosPicker() {
   if (!gtokenClient) {
     initGoogleAuthClient();
@@ -475,67 +471,51 @@ function openGooglePhotosPicker() {
   }
 }
 
-// Build Official Google Visual Photo & Drive Picker Window
-function createVisualGooglePicker(accessToken) {
-  if (!window.gapi) {
-    fetchGooglePhotosMediaItems(accessToken);
-    return;
-  }
+async function fetchCloudPhotos(accessToken) {
+  let photosFound = false;
 
-  gapi.load('picker', () => {
-    try {
-      const view = new google.picker.View(google.picker.ViewId.PHOTOS);
-      view.setMimeTypes("image/png,image/jpeg,image/jpg");
-
-      const picker = new google.picker.PickerBuilder()
-        .addView(view)
-        .addView(google.picker.ViewId.IMAGE_SEARCH)
-        .setOAuthToken(accessToken)
-        .setDeveloperKey(GOOGLE_MAPS_API_KEY)
-        .setCallback((data) => {
-          if (data.action === google.picker.Action.PICKED) {
-            const doc = data.docs[0];
-            const photoUrl = doc.url || doc.thumbnails[0].url;
-            
-            const saved = localStorage.getItem('viva_family_photos');
-            let photos = saved ? JSON.parse(saved) : [];
-            photos.unshift({ src: photoUrl, title: doc.name || 'Google Photo' });
-            localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
-            renderPhotoAlbum();
-          }
-        })
-        .build();
-
-      picker.setVisible(true);
-    } catch (e) {
-      fetchGooglePhotosMediaItems(accessToken);
-    }
-  });
-}
-
-async function fetchGooglePhotosMediaItems(accessToken) {
+  // Try Google Photos Library REST API
   try {
     const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=15', {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     const data = await res.json();
 
-    if (data.mediaItems) {
+    if (data.mediaItems && data.mediaItems.length > 0) {
+      photosFound = true;
       const saved = localStorage.getItem('viva_family_photos');
       let photos = saved ? JSON.parse(saved) : [];
-
       data.mediaItems.forEach(item => {
         photos.unshift({ src: item.baseUrl, title: item.filename || 'Google Photo' });
       });
-
       localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
       renderPhotoAlbum();
-    } else if (data.error) {
-      alert("Google Photos Error: " + (data.error.message || "Please enable Google Photos Library API in Google Cloud Console."));
+      alert("Successfully imported photos from Google Photos!");
+      return;
     }
-  } catch (e) {
-    console.log("Fetched Google Photos.");
-  }
+  } catch (e) {}
+
+  // Fallback to Google Drive Images API
+  try {
+    const res = await fetch("https://www.googleapis.com/drive/v3/files?q=mimeType+contains+'image/'&pageSize=15&fields=files(id,name,thumbnailLink,webContentLink)", {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    const data = await res.json();
+
+    if (data.files && data.files.length > 0) {
+      const saved = localStorage.getItem('viva_family_photos');
+      let photos = saved ? JSON.parse(saved) : [];
+      data.files.forEach(file => {
+        photos.unshift({ src: file.thumbnailLink || file.webContentLink, title: file.name || 'Drive Photo' });
+      });
+      localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
+      renderPhotoAlbum();
+      alert("Successfully imported photos from Google Drive!");
+      return;
+    }
+  } catch (e) {}
+
+  alert("Error 403: Google Cloud API Restricted. Please make sure both 'Photos Library API' and 'Google Drive API' are ENABLED in your Google Cloud Console for project 600255061362.");
 }
 
 // User Photo Album Upload & LocalStorage Persistence
