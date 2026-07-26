@@ -13,14 +13,13 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
 
-  <!-- Google Identity Services & Official Google Picker API -->
+  <!-- Google Identity Services -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://apis.google.com/js/api.js" async defer></script>
 </head>
 <body>
 
@@ -156,6 +155,9 @@
               <i class="fa-solid fa-upload"></i> Upload
               <input type="file" id="photo-upload-input" accept="image/*" multiple style="display: none;" onchange="handlePhotoUpload(event)" />
             </label>
+            <button class="btn btn-sm btn-outline" onclick="clearPhotoAlbum()" title="Clear imported photos">
+              <i class="fa-solid fa-trash"></i> Clear
+            </button>
           </div>
         </div>
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
@@ -185,6 +187,6 @@
     <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dedicated for Al-Tahoor, Sarah & Family • Powered by Open-Meteo & Google Maps</p>
   </footer>
 
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=9"></script>
 </body>
 </html>

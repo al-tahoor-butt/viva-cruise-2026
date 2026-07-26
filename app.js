@@ -472,21 +472,22 @@ function openGooglePhotosPicker() {
 }
 
 async function fetchCloudPhotos(accessToken) {
-  let photosFound = false;
-
-  // Try Google Photos Library REST API
+  // Try Google Photos Library REST API first
   try {
-    const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=15', {
+    const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=25', {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     const data = await res.json();
 
     if (data.mediaItems && data.mediaItems.length > 0) {
-      photosFound = true;
       const saved = localStorage.getItem('viva_family_photos');
       let photos = saved ? JSON.parse(saved) : [];
+      
+      // Filter out non-camera files
       data.mediaItems.forEach(item => {
-        photos.unshift({ src: item.baseUrl, title: item.filename || 'Google Photo' });
+        if (item.mimeType && item.mimeType.startsWith('image/')) {
+          photos.unshift({ src: item.baseUrl, title: item.filename || 'Google Photo' });
+        }
       });
       localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
       renderPhotoAlbum();
@@ -495,9 +496,10 @@ async function fetchCloudPhotos(accessToken) {
     }
   } catch (e) {}
 
-  // Fallback to Google Drive Images API
+  // Fallback to Google Drive non-screenshot camera photos (JPEG only, exclude Screenshot)
   try {
-    const res = await fetch("https://www.googleapis.com/drive/v3/files?q=mimeType+contains+'image/'&pageSize=15&fields=files(id,name,thumbnailLink,webContentLink)", {
+    const q = "mimeType = 'image/jpeg' and not name contains 'Screenshot' and not name contains 'Screen'";
+    const res = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}&pageSize=20&fields=files(id,name,thumbnailLink,webContentLink)`, {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     const data = await res.json();
@@ -510,12 +512,17 @@ async function fetchCloudPhotos(accessToken) {
       });
       localStorage.setItem('viva_family_photos', JSON.stringify(photos.slice(0, 20)));
       renderPhotoAlbum();
-      alert("Successfully imported photos from Google Drive!");
+      alert("Imported camera photos from Google Drive!");
       return;
     }
   } catch (e) {}
 
-  alert("Error 403: Google Cloud API Restricted. Please make sure both 'Photos Library API' and 'Google Drive API' are ENABLED in your Google Cloud Console for project 600255061362.");
+  alert("No non-screenshot photos found in Google Photos or Drive.");
+}
+
+function clearPhotoAlbum() {
+  localStorage.removeItem('viva_family_photos');
+  renderPhotoAlbum();
 }
 
 // User Photo Album Upload & LocalStorage Persistence
