@@ -337,44 +337,45 @@ body {
   gap: 8px;
 }
 
+/* Flight Card */
+.flight-card {
+  background: rgba(0, 210, 255, 0.06);
+  border-color: rgba(0, 210, 255, 0.25);
+}
+
+.flight-leg {
+  margin-bottom: 4px;
+}
+
+.leg-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.leg-details strong {
+  font-size: 13px;
+  color: #ffffff;
+  display: block;
+}
+
+.leg-details small {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
 /* Pet Card */
 .pet-card {
   background: rgba(255, 183, 3, 0.05);
   border-color: rgba(255, 183, 3, 0.2);
-}
-
-.pet-gallery {
-  display: flex;
-  justify-content: space-around;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.pet-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.pet-img {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease;
-}
-
-.pet-img:hover {
-  transform: scale(1.08);
-}
-
-.pet-item span {
-  font-size: 12px;
-  font-weight: 600;
-  color: #ffffff;
 }
 
 /* Map View */

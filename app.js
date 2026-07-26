@@ -193,16 +193,16 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchSharedCloudPhotos();
 });
 
-// Countdown Timer to Aug 10, 2026 17:00:00 GMT
+// Countdown Timer to Outbound Flight: Sun 09 Aug 2026 17:45:00 GMT
 function initCountdown() {
-  const embarkationDate = new Date('2026-08-10T17:00:00Z').getTime();
+  const flightOutboundDate = new Date('2026-08-09T17:45:00Z').getTime();
   
   function updateTimer() {
     const now = new Date().getTime();
-    const diff = embarkationDate - now;
+    const diff = flightOutboundDate - now;
 
     if (diff <= 0) {
-      document.getElementById('countdown-timer').innerHTML = '<strong>Bon Voyage! Sailing Active</strong>';
+      document.getElementById('countdown-timer').innerHTML = '<strong>Bon Voyage! Vacation Active</strong>';
       return;
     }
 

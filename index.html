@@ -13,7 +13,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -32,7 +32,7 @@
       </div>
       
       <div class="countdown-card" id="countdown-card">
-        <span class="countdown-label"><i class="fa-regular fa-clock"></i> Countdown to Embarkation</span>
+        <span class="countdown-label"><i class="fa-regular fa-clock"></i> Countdown to Outbound Flight</span>
         <div class="timer" id="countdown-timer">
           <div class="unit"><span id="days">00</span><small>Days</small></div>
           <div class="unit"><span id="hours">00</span><small>Hrs</small></div>
@@ -52,17 +52,24 @@
   <!-- Quick Info Bar -->
   <section class="info-bar">
     <div class="info-item">
-      <i class="fa-solid fa-calendar-days"></i>
+      <i class="fa-solid fa-plane-departure"></i>
       <div>
-        <small>Sailing Dates</small>
-        <strong>10 Aug – 19 Aug 2026</strong>
+        <small>Outbound Flight</small>
+        <strong>09 Aug: MAN ➔ BLQ (FR2242)</strong>
       </div>
     </div>
     <div class="info-item">
-      <i class="fa-solid fa-route"></i>
+      <i class="fa-solid fa-ship"></i>
       <div>
-        <small>Route</small>
-        <strong>Ravenna (Venice) to Barcelona</strong>
+        <small>Cruise Sailing</small>
+        <strong>10 Aug – 19 Aug (Ravenna ➔ BCN)</strong>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fa-solid fa-plane-arrival"></i>
+      <div>
+        <small>Inbound Flight</small>
+        <strong>19 Aug: BCN ➔ MAN (FR6597)</strong>
       </div>
     </div>
     <div class="info-item">
@@ -72,23 +79,39 @@
         <strong>2 Adults, 2 Kids (14M, 11F)</strong>
       </div>
     </div>
-    <div class="info-item">
-      <i class="fa-solid fa-dog"></i>
-      <div>
-        <small>Home Team Guard</small>
-        <strong>Iorek & Lyra (Chow Chows)</strong>
-      </div>
-    </div>
   </section>
 
   <!-- Main Grid Layout -->
   <main class="main-container">
     
-    <!-- Left Column: Day Selector & Pet Placeholder Card -->
+    <!-- Left Column: Day Selector & Flight Info Cards -->
     <aside class="sidebar">
       <h2><i class="fa-solid fa-compass"></i> Itinerary Days</h2>
       <div class="day-list" id="day-list">
         <!-- Rendered via JS -->
+      </div>
+
+      <!-- Flight Summary Card -->
+      <div class="tech-card flight-card">
+        <h3><i class="fa-solid fa-plane"></i> Flight Bookings (Ryanair)</h3>
+        
+        <div class="flight-route-box">
+          <div class="flight-leg">
+            <span class="leg-title">OUTBOUND • Sun 09 Aug 2026</span>
+            <div class="leg-details">
+              <strong>MAN 17:45 ➔ BLQ 21:05</strong>
+              <small>Flight FR2242 • PNR: <span class="badge badge-warning">WTUR5S</span></small>
+            </div>
+          </div>
+
+          <div class="flight-leg" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+            <span class="leg-title">INBOUND • Wed 19 Aug 2026</span>
+            <div class="leg-details">
+              <strong>BCN 12:35 ➔ MAN 14:10</strong>
+              <small>Flight FR6597 • PNR: <span class="badge badge-warning">F8YGQR</span></small>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Family Pets Card Placeholder -->
@@ -181,6 +204,6 @@
     <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dedicated for Al-Tahoor, Sarah & Family • Powered by Open-Meteo & Google Maps</p>
   </footer>
 
-  <script src="app.js?v=10"></script>
+  <script src="app.js?v=11"></script>
 </body>
 </html>
