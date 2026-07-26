@@ -20,7 +20,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="styles.css?v=17">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -39,7 +39,7 @@
       </div>
       
       <div class="countdown-card" id="countdown-card">
-        <span class="countdown-label"><i class="fa-regular fa-clock"></i> Outbound Flight Countdown</span>
+        <span class="countdown-label" id="countdown-label"><i class="fa-regular fa-clock"></i> Outbound Flight Countdown</span>
         <div class="timer" id="countdown-timer">
           <div class="unit"><span id="days">00</span><small>Days</small></div>
           <div class="unit"><span id="hours">00</span><small>Hrs</small></div>
@@ -131,11 +131,25 @@
   <!-- Main Grid Layout -->
   <main class="main-container">
     
-    <!-- Left Column: Day Selector & Home Squad -->
+    <!-- Left Column: Day Selector, Currency Converter & Home Squad -->
     <aside class="sidebar">
       <h2><i class="fa-solid fa-compass"></i> Port & Cruise Schedule</h2>
       <div class="day-list" id="day-list">
         <!-- Rendered via JS -->
+      </div>
+
+      <!-- Currency Converter Card -->
+      <div class="tech-card">
+        <h3><i class="fa-solid fa-coins"></i> Port Currency Converter</h3>
+        <p style="font-size: 11px; color: var(--text-muted);">Quickly convert port prices to £ GBP:</p>
+        <div class="currency-converter-box">
+          <input type="number" id="currency-amount" class="currency-input" value="10" min="1" oninput="convertCurrency()" />
+          <select id="currency-from" class="currency-select" onchange="convertCurrency()">
+            <option value="EUR">€ EUR (Port)</option>
+            <option value="USD">$ USD (Ship)</option>
+          </select>
+          <div class="currency-result" id="currency-output">£8.55</div>
+        </div>
       </div>
 
       <!-- Real Family Pets Profile Card -->
@@ -172,7 +186,7 @@
       </div>
     </aside>
 
-    <!-- Right Column: Interactive Map, Day Details & Photo Showcase -->
+    <!-- Right Column: Interactive Map, Day Details, Phrasebook & Photo Showcase -->
     <section class="content-area">
 
       <!-- Map Card -->
@@ -216,6 +230,22 @@
         </div>
       </div>
 
+      <!-- Local Port Phrasebook Card -->
+      <div class="card phrasebook-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-language" style="color: var(--sunset-gold);"></i> Port Explorer Phrasebook</h2>
+          <div class="phrase-tabs">
+            <button class="phrase-tab active" onclick="switchLanguage('it')">🇮🇹 Italian</button>
+            <button class="phrase-tab" onclick="switchLanguage('hr')">🇭🇷 Croatian</button>
+            <button class="phrase-tab" onclick="switchLanguage('fr')">🇫🇷 French</button>
+            <button class="phrase-tab" onclick="switchLanguage('es')">🇪🇸 Spanish</button>
+          </div>
+        </div>
+        <div class="phrase-grid" id="phrase-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
       <!-- Daily Port Excursion Packing Checklist Card -->
       <div class="card packing-card">
         <div class="card-header">
@@ -246,7 +276,7 @@
     Norwegian Viva Mediterranean Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family ☀️
   </footer>
 
-  <script src="app.js?v=16"></script>
+  <script src="app.js?v=17"></script>
 
   <!-- PWA Service Worker Registration -->
   <script>

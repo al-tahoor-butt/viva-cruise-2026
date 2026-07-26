@@ -384,6 +384,93 @@ body {
   color: var(--text-main);
 }
 
+/* Currency Converter & Phrasebook Widgets */
+.currency-converter-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.currency-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--card-border);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  width: 100px;
+}
+
+.currency-select {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--card-border);
+  color: var(--sunset-gold);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.currency-result {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--success);
+  margin-left: auto;
+}
+
+/* Phrasebook Tabs */
+.phrase-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.phrase-tab {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.phrase-tab.active {
+  background: var(--sunset-gold);
+  color: #0f172a;
+  font-weight: 700;
+  border-color: var(--sunset-gold);
+}
+
+.phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.phrase-item {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--card-border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.phrase-item strong {
+  color: var(--sunset-gold);
+  display: block;
+}
+
+.phrase-item span {
+  color: #ffffff;
+  font-weight: 600;
+}
+
 /* Pet Card Profile Showcase */
 .pet-card {
   background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 183, 3, 0.08));

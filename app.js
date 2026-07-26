@@ -180,6 +180,42 @@ const cruiseData = [
   }
 ];
 
+// Port Phrasebook Dictionary
+const phrasesData = {
+  it: [
+    { en: 'Hello / Good day', foreign: 'Buongiorno' },
+    { en: 'Thank you very much', foreign: 'Grazie mille' },
+    { en: 'Please', foreign: 'Per favore' },
+    { en: 'Table for 4, please', foreign: 'Un tavolo per quattro, per favore' },
+    { en: 'Where is the port shuttle?', foreign: 'Dov’è la navetta del porto?' },
+    { en: 'Delicious gelato!', foreign: 'Gelato delizioso!' }
+  ],
+  hr: [
+    { en: 'Hello', foreign: 'Dobar dan' },
+    { en: 'Thank you', foreign: 'Hvala vam' },
+    { en: 'Please', foreign: 'Molim' },
+    { en: 'Where is the Old Town?', foreign: 'Gdje je Stari Grad?' },
+    { en: 'One ice cream, please', foreign: 'Jedan sladoled, molim' },
+    { en: 'Goodbye', foreign: 'Doviđenja' }
+  ],
+  fr: [
+    { en: 'Hello / Good morning', foreign: 'Bonjour' },
+    { en: 'Thank you very much', foreign: 'Merci beaucoup' },
+    { en: 'Please', foreign: 'S’il vous plaît' },
+    { en: 'Where is the beach?', foreign: 'Où est la plage?' },
+    { en: 'Table for 4', foreign: 'Une table pour quatre' },
+    { en: 'Delicious!', foreign: 'Délicieux!' }
+  ],
+  es: [
+    { en: 'Hello', foreign: '¡Hola!' },
+    { en: 'Thank you very much', foreign: 'Muchas gracias' },
+    { en: 'Please', foreign: 'Por favor' },
+    { en: 'Where is the taxi stand?', foreign: '¿Dónde está la parada de taxis?' },
+    { en: 'Tapas for 4, please', foreign: 'Tapas para cuatro, por favor' },
+    { en: 'Goodbye', foreign: '¡Adiós!' }
+  ]
+};
+
 // Daily Port Excursion Packing Items
 const defaultPackingList = [
   { id: 101, text: 'NCL Cruise Keycards & Passports', category: 'Essential', done: false },
@@ -213,6 +249,7 @@ let currentMarker = null;
 let animatedShipMarker = null;
 let routePolyline = null;
 let animationFrameId = null;
+let currentLanguage = 'it';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
@@ -221,9 +258,56 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChecklist();
   renderPackingList();
   renderPhotoAlbum();
+  renderPhrasebook('it');
+  convertCurrency();
   fetchSharedCloudPhotos();
   fetchLiveFlightStatus();
 });
+
+// Live Currency Converter Logic
+function convertCurrency() {
+  const amountEl = document.getElementById('currency-amount');
+  const fromEl = document.getElementById('currency-from');
+  const outputEl = document.getElementById('currency-output');
+
+  if (!amountEl || !fromEl || !outputEl) return;
+
+  const val = parseFloat(amountEl.value) || 0;
+  const from = fromEl.value;
+
+  // Pre-set approximate exchange rates
+  const rates = {
+    EUR: 0.855, // €1 = ~£0.855
+    USD: 0.775  // $1 = ~£0.775
+  };
+
+  const gbp = (val * (rates[from] || 0.855)).toFixed(2);
+  outputEl.innerText = `£${gbp}`;
+}
+
+// Phrasebook Switcher Logic
+function switchLanguage(lang) {
+  currentLanguage = lang;
+  document.querySelectorAll('.phrase-tab').forEach(tab => tab.classList.remove('active'));
+
+  const activeBtn = Array.from(document.querySelectorAll('.phrase-tab')).find(b => b.getAttribute('onclick').includes(lang));
+  if (activeBtn) activeBtn.classList.add('active');
+
+  renderPhrasebook(lang);
+}
+
+function renderPhrasebook(lang) {
+  const container = document.getElementById('phrase-grid');
+  if (!container) return;
+
+  const items = phrasesData[lang] || phrasesData['it'];
+  container.innerHTML = items.map(item => `
+    <div class="phrase-item">
+      <strong>${item.en}</strong>
+      <span>"${item.foreign}"</span>
+    </div>
+  `).join('');
+}
 
 // Live Flight Status Auto Fetcher
 function fetchLiveFlightStatus() {
