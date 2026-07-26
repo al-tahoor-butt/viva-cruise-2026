@@ -1,18 +1,20 @@
-/* Norwegian Viva Fly-Cruise 2026 Theme */
+/* Norwegian Viva Fly-Cruise 2026 Warm Family Theme */
 :root {
-  --bg-dark: #0b1325;
-  --card-bg: rgba(18, 30, 56, 0.75);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --primary: #00d2ff;
-  --primary-hover: #3a7bd5;
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.82);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --primary: #38bdf8;
+  --primary-warm: #ff9e00;
+  --sunset-coral: #ff6b6b;
+  --sunset-gold: #ffd166;
   --accent: #ffb703;
   --accent-secondary: #fb8500;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --success: #10b981;
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --success: #34d399;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --radius: 14px;
+  --radius: 18px;
 }
 
 * {
@@ -22,10 +24,11 @@
 }
 
 body {
-  background: var(--bg-dark);
+  background: #0b1120;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(58, 123, 213, 0.12) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(255, 107, 107, 0.18) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 158, 0, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
   color: var(--text-main);
   font-family: var(--font-body);
   min-height: 100vh;
@@ -34,9 +37,9 @@ body {
 
 /* Header */
 .app-header {
-  background: rgba(11, 19, 37, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--card-border);
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 183, 3, 0.2);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -61,18 +64,20 @@ body {
 
 .brand-icon {
   font-size: 32px;
-  color: var(--primary);
-  background: rgba(0, 210, 255, 0.1);
+  color: var(--sunset-gold);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 158, 0, 0.2));
   padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 210, 255, 0.2);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 209, 102, 0.3);
 }
 
 .brand h1 {
   font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, var(--sunset-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -82,20 +87,21 @@ body {
 
 /* Countdown Card */
 .countdown-card {
-  background: rgba(255, 183, 3, 0.08);
-  border: 1px solid rgba(255, 183, 3, 0.25);
-  padding: 8px 18px;
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(255, 183, 3, 0.12));
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  padding: 10px 20px;
+  border-radius: 14px;
   text-align: center;
 }
 
 .countdown-label {
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--accent);
+  letter-spacing: 0.8px;
+  color: var(--sunset-gold);
   display: block;
   margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .timer {
@@ -111,8 +117,8 @@ body {
 
 .timer span {
   font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
   color: #ffffff;
 }
 
@@ -125,10 +131,10 @@ body {
 /* Buttons */
 .btn {
   padding: 10px 18px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
@@ -138,12 +144,13 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-  color: #0b1325;
+  background: linear-gradient(135deg, var(--sunset-coral), var(--primary-warm));
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   transform: translateY(-1px);
 }
 
@@ -154,7 +161,7 @@ body {
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .btn-sm {
@@ -162,40 +169,64 @@ body {
   font-size: 12px;
 }
 
-/* Info Bar */
-.info-bar {
+/* Prominent Travel & Logistics Banner */
+.travel-master-section {
   max-width: 1400px;
-  margin: 16px auto 0;
+  margin: 20px auto 0;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
 }
 
-.info-item {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+.travel-master-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+  border: 2px solid rgba(255, 183, 3, 0.35);
   border-radius: var(--radius);
-  padding: 14px 18px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.travel-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.travel-box:hover {
+  transform: translateY(-2px);
+  border-color: var(--sunset-gold);
+}
+
+.travel-box-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sunset-gold);
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
 }
 
-.info-item i {
-  font-size: 20px;
-  color: var(--primary);
-}
-
-.info-item small {
-  display: block;
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.info-item strong {
+.travel-box-content strong {
   font-size: 14px;
   color: #ffffff;
+  display: block;
+}
+
+.travel-box-content p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 /* Main Layout */
@@ -235,8 +266,8 @@ body {
 
 .card-header h2 {
   font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 19px;
+  font-weight: 700;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -253,21 +284,21 @@ body {
 }
 
 .badge-primary {
-  background: rgba(0, 210, 255, 0.15);
+  background: rgba(56, 189, 248, 0.15);
   color: var(--primary);
-  border: 1px solid rgba(0, 210, 255, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 .badge-success {
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(52, 211, 153, 0.15);
   color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(52, 211, 153, 0.3);
 }
 
 .badge-warning {
-  background: rgba(255, 183, 3, 0.15);
-  color: var(--accent);
-  border: 1px solid rgba(255, 183, 3, 0.3);
+  background: rgba(255, 183, 3, 0.18);
+  color: var(--sunset-gold);
+  border: 1px solid rgba(255, 183, 3, 0.4);
 }
 
 /* Sidebar & Day Selector */
@@ -288,7 +319,7 @@ body {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--card-border);
   padding: 12px 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -298,18 +329,18 @@ body {
 }
 
 .day-btn:hover {
-  background: rgba(0, 210, 255, 0.08);
-  border-color: rgba(0, 210, 255, 0.3);
+  background: rgba(255, 158, 0, 0.1);
+  border-color: rgba(255, 158, 0, 0.3);
 }
 
 .day-btn.active {
-  background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(58, 123, 213, 0.2));
-  border-color: var(--primary);
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 158, 0, 0.2));
+  border-color: var(--sunset-gold);
+  box-shadow: 0 0 15px rgba(255, 183, 3, 0.2);
 }
 
 .day-btn .day-title {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
   color: #ffffff;
 }
@@ -322,7 +353,7 @@ body {
 .tech-card {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--card-border);
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 16px;
   margin-bottom: 16px;
   font-size: 13px;
@@ -332,7 +363,7 @@ body {
 
 .tech-card h3 {
   font-size: 14px;
-  color: var(--primary);
+  color: var(--sunset-gold);
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -353,55 +384,10 @@ body {
   color: var(--text-main);
 }
 
-/* Flight Card */
-.flight-card {
-  background: rgba(0, 210, 255, 0.06);
-  border-color: rgba(0, 210, 255, 0.25);
-}
-
-.flight-leg {
-  margin-bottom: 4px;
-}
-
-.leg-title {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--accent);
-  display: block;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.leg-details strong {
-  font-size: 13px;
-  color: #ffffff;
-  display: block;
-}
-
-.leg-details small {
-  font-size: 11px;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 2px;
-}
-
-.flight-status-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 10px;
-  color: var(--success);
-  font-weight: 600;
-  margin-top: 4px;
-}
-
 /* Pet Card Profile Showcase */
 .pet-card {
-  background: rgba(255, 183, 3, 0.06);
-  border-color: rgba(255, 183, 3, 0.25);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 183, 3, 0.08));
+  border-color: rgba(255, 183, 3, 0.3);
 }
 
 .pet-profiles-container {
@@ -424,8 +410,8 @@ body {
   height: 90px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 14px rgba(255, 183, 3, 0.3);
+  border: 3px solid var(--sunset-gold);
+  box-shadow: 0 0 14px rgba(255, 183, 3, 0.35);
   margin-bottom: 8px;
   background: #111a2e;
 }
@@ -466,7 +452,7 @@ body {
 .map-view {
   width: 100%;
   height: 360px;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   background: #111a2e;
@@ -487,8 +473,8 @@ body {
 /* Hero Destination Image */
 .day-hero-container {
   width: 100%;
-  height: 180px;
-  border-radius: 10px;
+  height: 200px;
+  border-radius: 14px;
   overflow: hidden;
   margin-bottom: 16px;
   position: relative;
@@ -498,7 +484,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.85);
+  filter: brightness(0.9);
   transition: transform 0.3s ease;
 }
 
@@ -520,9 +506,9 @@ body {
 }
 
 .weather-badge-box {
-  background: rgba(0, 210, 255, 0.05);
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  border-radius: 12px;
+  background: rgba(255, 183, 3, 0.06);
+  border: 1px solid rgba(255, 183, 3, 0.25);
+  border-radius: 14px;
   padding: 16px;
   text-align: center;
   display: flex;
@@ -545,7 +531,7 @@ body {
 
 .activity-section h4 {
   font-size: 14px;
-  color: var(--accent);
+  color: var(--sunset-gold);
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -576,7 +562,7 @@ body {
 
 .photo-card {
   height: 110px;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   border: 1px solid var(--card-border);
@@ -604,7 +590,7 @@ body {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--card-border);
   padding: 12px 14px;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -637,6 +623,6 @@ footer {
   color: var(--text-muted);
   border-top: 1px solid var(--card-border);
   margin-top: 20px;
-  background: rgba(11, 19, 37, 0.7);
+  background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(8px);
 }

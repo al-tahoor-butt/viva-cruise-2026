@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Norwegian Viva | Fly-Cruise 2026 Family Dashboard</title>
+  <title>Norwegian Viva | Mediterranean Family Cruise 2026</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,26 +13,26 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
 </head>
 <body>
 
-  <!-- Header / Navigation -->
+  <!-- Warm Header / Navigation -->
   <header class="app-header">
     <div class="header-container">
       <div class="brand">
-        <i class="fa-solid fa-ship brand-icon"></i>
+        <i class="fa-solid fa-sun brand-icon"></i>
         <div>
           <h1>Norwegian Viva 2026</h1>
-          <p class="subtitle">10-Day Mediterranean Fly-Cruise • Reservation #64139255</p>
+          <p class="subtitle">☀️ 10-Day Mediterranean Fly-Cruise • Family Holiday Dashboard</p>
         </div>
       </div>
       
       <div class="countdown-card" id="countdown-card">
-        <span class="countdown-label"><i class="fa-regular fa-clock"></i> Countdown to Outbound Flight</span>
+        <span class="countdown-label"><i class="fa-regular fa-clock"></i> Outbound Flight Countdown</span>
         <div class="timer" id="countdown-timer">
           <div class="unit"><span id="days">00</span><small>Days</small></div>
           <div class="unit"><span id="hours">00</span><small>Hrs</small></div>
@@ -43,40 +43,80 @@
 
       <div class="header-actions">
         <button class="btn btn-outline" id="print-btn" onclick="window.print()">
-          <i class="fa-solid fa-print"></i> Export / Print
+          <i class="fa-solid fa-print"></i> Print / Save PDF
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Quick Info Bar -->
-  <section class="info-bar">
-    <div class="info-item">
-      <i class="fa-solid fa-plane-departure"></i>
-      <div>
-        <small>Outbound Flight</small>
-        <strong>09 Aug: MAN ➔ BLQ (FR2242)</strong>
+  <!-- Front & Center Prominent Travel & Logistics Section -->
+  <section class="travel-master-section">
+    <div class="travel-master-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <h2 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; color: #ffffff;">
+          <i class="fa-solid fa-plane-circle-check" style="color: var(--sunset-gold);"></i> Primary Travel & Transfer Itinerary
+        </h2>
+        <span class="badge badge-warning">NCL Reservation #64139255</span>
       </div>
-    </div>
-    <div class="info-item">
-      <i class="fa-solid fa-ship"></i>
-      <div>
-        <small>Cruise Sailing</small>
-        <strong>10 Aug – 19 Aug (Ravenna ➔ BCN)</strong>
-      </div>
-    </div>
-    <div class="info-item">
-      <i class="fa-solid fa-plane-arrival"></i>
-      <div>
-        <small>Inbound Flight</small>
-        <strong>19 Aug: BCN ➔ MAN (FR6597)</strong>
-      </div>
-    </div>
-    <div class="info-item">
-      <i class="fa-solid fa-users"></i>
-      <div>
-        <small>Party</small>
-        <strong>2 Adults, 2 Kids (14M, 11F)</strong>
+
+      <div class="travel-grid">
+        
+        <!-- 1. Outbound Flight -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-plane-departure"></i> Outbound Flight (Sun 09 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>Manchester (MAN) 17:45 ➔ Bologna (BLQ) 21:05</strong>
+            <p>Ryanair Flight <strong>FR2242</strong> • PNR: <span class="badge badge-warning">WTUR5S</span></p>
+            <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
+              <i class="fa-solid fa-circle-check"></i> Confirmed (Seats 20A, 20B)
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Pre-Cruise Hotel Stay -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-hotel"></i> Pre-Cruise Hotel (09-10 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>Hotel Del Borgo, Bologna</strong>
+            <p>Via Marco Emilio Lepido 195 (8 mins from BLQ Airport)</p>
+            <p>Booking #<strong>5007213355</strong> • 2 single + 1 double bed setup</p>
+          </div>
+        </div>
+
+        <!-- 3. Embarkation Travel & Timing -->
+        <div class="travel-box" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.08);">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-anchor"></i> Cruise Embarkation (Mon 10 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>12:30 PM – 1:30 PM Priority Embarkation Window</strong>
+            <p><strong>10:15 AM:</strong> Taxi to Bologna Centrale station</p>
+            <p><strong>11:06 AM:</strong> Trenitalia Train ➔ Ravenna (Arr 11:59 AM)</p>
+            <p><strong>12:05 PM:</strong> Taxi/Shuttle ➔ Porto Corsini Terminal</p>
+            <a href="https://www.viaggiatreno.it/" target="_blank" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;">
+              <i class="fa-solid fa-train"></i> Track 11:06 Train Live
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Inbound Flight -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-plane-arrival"></i> Inbound Flight (Wed 19 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>Barcelona (BCN) 12:35 ➔ Manchester (MAN) 14:10</strong>
+            <p>Ryanair Flight <strong>FR6597</strong> • PNR: <span class="badge badge-warning">F8YGQR</span></p>
+            <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
+              <i class="fa-solid fa-circle-check"></i> Confirmed (Seats 20A, 20B)
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -84,16 +124,16 @@
   <!-- Main Grid Layout -->
   <main class="main-container">
     
-    <!-- Left Column: Day Selector & Info Cards -->
+    <!-- Left Column: Day Selector & Home Squad -->
     <aside class="sidebar">
-      <h2><i class="fa-solid fa-compass"></i> Itinerary Days</h2>
+      <h2><i class="fa-solid fa-compass"></i> Port & Cruise Schedule</h2>
       <div class="day-list" id="day-list">
         <!-- Rendered via JS -->
       </div>
 
       <!-- Real Family Pets Profile Card -->
       <div class="tech-card pet-card">
-        <h3><i class="fa-solid fa-paw"></i> Home Guard Squad</h3>
+        <h3><i class="fa-solid fa-heart" style="color: var(--sunset-coral);"></i> Home Guard Squad</h3>
         <div class="pet-profiles-container">
           <div class="pet-profile">
             <div class="pet-avatar-box">
@@ -113,59 +153,14 @@
         </div>
       </div>
 
-      <!-- Live Flight Summary & Tracker Card -->
-      <div class="tech-card flight-card">
-        <h3><i class="fa-solid fa-plane"></i> Live Flight Tracker (Ryanair)</h3>
-        
-        <div class="flight-route-box">
-          <div class="flight-leg">
-            <span class="leg-title">OUTBOUND • Sun 09 Aug 2026</span>
-            <div class="leg-details">
-              <strong>MAN 17:45 ➔ BLQ 21:05</strong>
-              <small>
-                Flight FR2242 • PNR: <span class="badge badge-warning">WTUR5S</span>
-              </small>
-              <div class="flight-status-tag" id="outbound-flight-status">
-                <i class="fa-solid fa-circle-check"></i> Status: Scheduled (On Time)
-              </div>
-              <a href="https://www.ryanair.com/gb/en/flight-status" target="_blank" style="color: var(--primary); font-size: 11px; text-decoration: none; display: inline-block; margin-top: 4px;">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Gate & Radar Tracker
-              </a>
-            </div>
-          </div>
-
-          <div class="flight-leg" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
-            <span class="leg-title">INBOUND • Wed 19 Aug 2026</span>
-            <div class="leg-details">
-              <strong>BCN 12:35 ➔ MAN 14:10</strong>
-              <small>
-                Flight FR6597 • PNR: <span class="badge badge-warning">F8YGQR</span>
-              </small>
-              <div class="flight-status-tag" id="inbound-flight-status">
-                <i class="fa-solid fa-circle-check"></i> Status: Scheduled (On Time)
-              </div>
-              <a href="https://www.ryanair.com/gb/en/flight-status" target="_blank" style="color: var(--primary); font-size: 11px; text-decoration: none; display: inline-block; margin-top: 4px;">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Gate & Radar Tracker
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Tech & Transfer Card -->
+      <!-- GL.iNet Wi-Fi Guide Card -->
       <div class="tech-card">
-        <h3><i class="fa-solid fa-train"></i> Train Transfer Guide</h3>
-        <p><strong>Bologna Centrale ➔ Ravenna Station:</strong> Trenitalia Regional (~53m–1h15m, €7.88–€11/p). Departs every 30-60 mins.</p>
-        <p><strong>Ravenna Station ➔ Cruise Port:</strong> Shuttle bus from Viale Farini (€10-15/p) or pre-booked taxi (Radiotaxi Ravenna +39 0544 338 88).</p>
-      </div>
-
-      <div class="tech-card">
-        <h3><i class="fa-solid fa-network-wired"></i> GL.iNet Router Hotspot</h3>
+        <h3><i class="fa-solid fa-wifi"></i> Onboard Wi-Fi Hotspot</h3>
         <ol>
           <li>Disable Private MAC on phone.</li>
           <li>Log phone into NCL Wi-Fi portal.</li>
           <li>Clone phone MAC into GL.iNet router WAN.</li>
-          <li>Set router to Repeater mode. All 4 family devices connect for £0 extra!</li>
+          <li>Set to Repeater mode — all family devices connected for £0!</li>
         </ol>
       </div>
     </aside>
@@ -173,11 +168,11 @@
     <!-- Right Column: Interactive Map, Day Details & Photo Showcase -->
     <section class="content-area">
 
-      <!-- Map & Weather Banner -->
+      <!-- Map Card -->
       <div class="card map-card">
         <div class="card-header">
-          <h2><i class="fa-solid fa-map-location-dot"></i> Interactive Mediterranean Cruise Map</h2>
-          <span class="badge badge-primary" id="current-port-badge">Port Focus: Venice (Ravenna)</span>
+          <h2><i class="fa-solid fa-map-location-dot"></i> Mediterranean Cruise Route</h2>
+          <span class="badge badge-primary" id="current-port-badge">Focus: Venice (Ravenna)</span>
         </div>
         <div id="map-container" class="map-view">
           <div class="map-placeholder" id="map-placeholder">
@@ -195,7 +190,7 @@
       <!-- Family Photo Memory Upload Card with Shared Cloud Sync -->
       <div class="card gallery-card">
         <div class="card-header">
-          <h2><i class="fa-solid fa-camera-retro"></i> Cruise Photo Memories & Album</h2>
+          <h2><i class="fa-solid fa-camera-retro"></i> Family Cruise Album</h2>
           <div style="display: flex; gap: 8px;">
             <label class="btn btn-sm btn-primary" id="upload-btn-label" style="cursor: pointer;">
               <i class="fa-solid fa-upload"></i> Upload
@@ -217,7 +212,7 @@
       <!-- Family Checklist Card -->
       <div class="card checklist-card">
         <div class="card-header">
-          <h2><i class="fa-solid fa-list-check"></i> Kids & Teen Activity Tracker (14M & 11F)</h2>
+          <h2><i class="fa-solid fa-sparkles"></i> Kids & Teen Activity Checklist (14M & 11F)</h2>
           <span class="badge badge-success" id="checklist-progress">0 of 0 Completed</span>
         </div>
         <div class="checklist-items" id="checklist-items">
@@ -230,9 +225,9 @@
   </main>
 
   <footer>
-    Norwegian Viva Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family
+    Norwegian Viva Mediterranean Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family ☀️
   </footer>
 
-  <script src="app.js?v=13"></script>
+  <script src="app.js?v=14"></script>
 </body>
 </html>
