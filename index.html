@@ -13,7 +13,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=12">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -91,16 +91,24 @@
         <!-- Rendered via JS -->
       </div>
 
-      <!-- Flight Summary Card -->
+      <!-- Live Flight Summary & Tracker Card -->
       <div class="tech-card flight-card">
-        <h3><i class="fa-solid fa-plane"></i> Flight Bookings (Ryanair)</h3>
+        <h3><i class="fa-solid fa-plane"></i> Live Flight Tracker (Ryanair)</h3>
         
         <div class="flight-route-box">
           <div class="flight-leg">
             <span class="leg-title">OUTBOUND • Sun 09 Aug 2026</span>
             <div class="leg-details">
               <strong>MAN 17:45 ➔ BLQ 21:05</strong>
-              <small>Flight FR2242 • PNR: <span class="badge badge-warning">WTUR5S</span></small>
+              <small>
+                Flight FR2242 • PNR: <span class="badge badge-warning">WTUR5S</span>
+              </small>
+              <div class="flight-status-tag" id="outbound-flight-status">
+                <i class="fa-solid fa-circle-check"></i> Status: Scheduled (On Time)
+              </div>
+              <a href="https://www.ryanair.com/gb/en/flight-status" target="_blank" style="color: var(--primary); font-size: 11px; text-decoration: none; display: inline-block; margin-top: 4px;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Gate & Radar Tracker
+              </a>
             </div>
           </div>
 
@@ -108,7 +116,15 @@
             <span class="leg-title">INBOUND • Wed 19 Aug 2026</span>
             <div class="leg-details">
               <strong>BCN 12:35 ➔ MAN 14:10</strong>
-              <small>Flight FR6597 • PNR: <span class="badge badge-warning">F8YGQR</span></small>
+              <small>
+                Flight FR6597 • PNR: <span class="badge badge-warning">F8YGQR</span>
+              </small>
+              <div class="flight-status-tag" id="inbound-flight-status">
+                <i class="fa-solid fa-circle-check"></i> Status: Scheduled (On Time)
+              </div>
+              <a href="https://www.ryanair.com/gb/en/flight-status" target="_blank" style="color: var(--primary); font-size: 11px; text-decoration: none; display: inline-block; margin-top: 4px;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Gate & Radar Tracker
+              </a>
             </div>
           </div>
         </div>
@@ -201,9 +217,9 @@
   </main>
 
   <footer>
-    <p>Norwegian Viva Mediterranean Fly-Cruise Family Itinerary • Dedicated for Al-Tahoor, Sarah & Family • Powered by Open-Meteo & Google Maps</p>
+    Norwegian Viva Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family
   </footer>
 
-  <script src="app.js?v=11"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>
