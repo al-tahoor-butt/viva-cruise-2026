@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Norwegian Viva | Mediterranean Family Cruise 2026</title>
   
+  <!-- PWA Manifest & Mobile Icons -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff9e00">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="images/lyra.jpg">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +20,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
 
   <!-- Direct Google Maps API Script -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -75,7 +82,7 @@
           </div>
         </div>
 
-        <!-- 2. Dynamic Selected Day Focus Card (Updates when any day is clicked!) -->
+        <!-- 2. Dynamic Selected Day Focus Card -->
         <div class="travel-box" id="dynamic-day-travel-box" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.08);">
           <div class="travel-box-title">
             <i class="fa-solid fa-location-crosshairs"></i> Dynamic Day Travel Focus
@@ -209,7 +216,18 @@
         </div>
       </div>
 
-      <!-- Family Checklist Card -->
+      <!-- Daily Port Excursion Packing Checklist Card -->
+      <div class="card packing-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-backpack" style="color: var(--sunset-gold);"></i> Daily Port Excursion Packing List</h2>
+          <span class="badge badge-warning" id="packing-progress">0 of 0 Ready</span>
+        </div>
+        <div class="checklist-items" id="packing-items">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Family Activity Checklist Card -->
       <div class="card checklist-card">
         <div class="card-header">
           <h2><i class="fa-solid fa-sparkles"></i> Kids & Teen Activity Checklist (14M & 11F)</h2>
@@ -228,6 +246,19 @@
     Norwegian Viva Mediterranean Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family ☀️
   </footer>
 
-  <script src="app.js?v=15"></script>
+  <script src="app.js?v=16"></script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then((reg) => {
+          console.log('PWA Service Worker registered:', reg.scope);
+        }).catch((err) => {
+          console.log('PWA Service Worker registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>

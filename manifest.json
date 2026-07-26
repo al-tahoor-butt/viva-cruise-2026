@@ -1,0 +1,21 @@
+{
+  "name": "Norwegian Viva Mediterranean Fly-Cruise 2026",
+  "short_name": "Viva 2026",
+  "description": "Family Fly-Cruise Dashboard & Itinerary for Al-Tahoor, Sarah & Family",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#ff9e00",
+  "icons": [
+    {
+      "src": "images/lyra.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "images/iorek.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

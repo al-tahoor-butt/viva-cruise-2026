@@ -180,6 +180,16 @@ const cruiseData = [
   }
 ];
 
+// Daily Port Excursion Packing Items
+const defaultPackingList = [
+  { id: 101, text: 'NCL Cruise Keycards & Passports', category: 'Essential', done: false },
+  { id: 102, text: 'Euros (€) / Credit Cards for local markets', category: 'Essential', done: false },
+  { id: 103, text: 'Reef-Safe Sunscreen & Sunglasses', category: 'Protection', done: false },
+  { id: 104, text: 'Snorkel Masks & Water Shoes (Lokrum / Villefranche)', category: 'Gear', done: false },
+  { id: 105, text: 'Fully Charged Phones & Portable Power Bank', category: 'Tech', done: false },
+  { id: 106, text: 'Refillable Water Bottles (Stay Hydrated!)', category: 'Health', done: false }
+];
+
 // Family Activity Checklist items
 const defaultChecklist = [
   { id: 1, text: 'Climb Torre d’Accursio in Bologna', category: '14M & 11F', done: false },
@@ -209,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDayList();
   selectDay(0);
   renderChecklist();
+  renderPackingList();
   renderPhotoAlbum();
   fetchSharedCloudPhotos();
   fetchLiveFlightStatus();
@@ -595,6 +606,50 @@ function handlePhotoUpload(event) {
     };
     reader.readAsDataURL(file);
   });
+}
+
+// Daily Port Excursion Packing List Persistence
+function renderPackingList() {
+  const saved = localStorage.getItem('viva_packing_list');
+  const items = saved ? JSON.parse(saved) : defaultPackingList;
+
+  const container = document.getElementById('packing-items');
+  if (!container) return;
+
+  container.innerHTML = '';
+  let readyCount = 0;
+
+  items.forEach(item => {
+    if (item.done) readyCount++;
+
+    const div = document.createElement('div');
+    div.className = `check-item ${item.done ? 'completed' : ''}`;
+    div.onclick = () => togglePackingItem(item.id);
+    div.innerHTML = `
+      <input type="checkbox" ${item.done ? 'checked' : ''} readonly />
+      <div>
+        <div style="font-weight: 600; font-size: 13px; color: #ffffff;">${item.text}</div>
+        <small style="color: var(--sunset-gold); font-size: 11px;">#${item.category}</small>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  const progress = document.getElementById('packing-progress');
+  if (progress) progress.innerText = `${readyCount} of ${items.length} Ready`;
+}
+
+function togglePackingItem(id) {
+  const saved = localStorage.getItem('viva_packing_list');
+  let items = saved ? JSON.parse(saved) : defaultPackingList;
+
+  items = items.map(item => {
+    if (item.id === id) item.done = !item.done;
+    return item;
+  });
+
+  localStorage.setItem('viva_packing_list', JSON.stringify(items));
+  renderPackingList();
 }
 
 // Family Activity Checklist Persistence
