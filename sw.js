@@ -1,10 +1,12 @@
-const CACHE_NAME = 'viva-cruise-pwa-v13';
+const CACHE_NAME = 'viva-cruise-pwa-v14';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.json',
+  './favicon.svg',
+  './favicon.ico',
   './images/iorek.jpg',
   './images/lyra.jpg',
   './images/squeak1.jpg',
