@@ -240,7 +240,7 @@ let animationFrameId = null;
 let currentLanguage = 'it';
 
 // Private Family Travel Portal Gatekeeper (Passcode Splash Screen)
-const VALID_PASSCODES = ['2026', 'viva2026', 'viva', 'norwegian'];
+const VALID_PASSCODES = ['viva2026', '2026', 'viva', 'norwegian', 'altahoor', 'sarah', 'iorek', 'lyra', 'squeak', 'sherman'];
 
 function initAuth() {
   const isUnlocked = localStorage.getItem('viva_cruise_unlocked') === 'true';

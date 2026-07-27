@@ -21,10 +21,10 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=24">
+  <link rel="stylesheet" href="styles.css?v=25">
 
   <!-- Core App Logic (must load before Google Maps callback fires) -->
-  <script src="app.js?v=24"></script>
+  <script src="app.js?v=25"></script>
 
   <!-- Google Maps API (key restricted to GitHub Pages domain via Cloud Console) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap" async defer></script>
@@ -41,7 +41,7 @@
       <div class="splash-form" onsubmit="event.preventDefault(); unlockPortal();">
         <div class="splash-input-group">
           <i class="fa-solid fa-lock splash-icon"></i>
-          <input type="password" id="passcode-input" placeholder="Enter Passcode (e.g. 2026)" autocomplete="off" onkeyup="if(event.key==='Enter') unlockPortal()" />
+          <input type="password" id="passcode-input" placeholder="Enter Family Passcode" autocomplete="off" onkeyup="if(event.key==='Enter') unlockPortal()" />
           <button type="button" onclick="unlockPortal()" class="btn btn-primary splash-btn">
             Unlock <i class="fa-solid fa-arrow-right-to-bracket"></i>
           </button>
