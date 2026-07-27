@@ -23,10 +23,10 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=40">
+  <link rel="stylesheet" href="styles.css?v=41">
 
   <!-- Core App Logic (must load before Google Maps callback fires) -->
-  <script src="app.js?v=40"></script>
+  <script src="app.js?v=41"></script>
 
   <!-- Google Maps API (key restricted to GitHub Pages domain via Cloud Console) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap&loading=async" async defer></script>
@@ -188,6 +188,22 @@
           </div>
         </div>
 
+        <!-- 7. Interactive Norwegian Viva Deck Plan Navigator -->
+        <div class="travel-box" style="border-color: rgba(255, 183, 3, 0.5); background: rgba(15, 23, 42, 0.85); grid-column: span 2;">
+          <div class="travel-box-title" style="color: var(--sunset-gold); font-size: 13.5px;">
+            <i class="fa-solid fa-ship"></i> Norwegian Viva Interactive Deck Plan & Venue Navigator
+          </div>
+          <div class="travel-box-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <strong style="color: #ffffff; font-size: 13.5px;">143,000 GT Prima-Class Ship Layout & Specialty Dining Map</strong>
+              <p style="margin: 3px 0 0 0; color: #94a3b8; font-size: 12px;">Inspect Deck 8 Ocean Boulevard, Deck 7 Hasuki Teppanyaki, Deck 17 Palomar, and Decks 18–20 Viva Speedway & VR Pavilion.</p>
+            </div>
+            <button onclick="openDeckPlanModal()" class="btn btn-primary" style="padding: 10px 18px; font-weight: 700; font-size: 13px;">
+              <i class="fa-solid fa-map-location-dot"></i> Open Viva Deck Navigator
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -252,6 +268,17 @@
             <small>Ginger Guinea Pig</small>
           </div>
         </div>
+      </div>
+
+      <!-- Norwegian Viva Ship Deck Navigator Card -->
+      <div class="tech-card" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.05);">
+        <h3><i class="fa-solid fa-ship" style="color: var(--sunset-gold);"></i> Norwegian Viva Ship Map</h3>
+        <p style="font-size: 12px; color: #e2e8f0; line-height: 1.4; margin-bottom: 10px;">
+          Find your 4 reserved specialty restaurants, Speedway go-karts, Mandara Spa, Indulge Food Hall & pools across Decks 6 to 20.
+        </p>
+        <button onclick="openDeckPlanModal()" class="btn btn-sm btn-primary" style="width: 100%; font-weight: 700;">
+          <i class="fa-solid fa-map-location-dot"></i> Open Deck Plan Navigator
+        </button>
       </div>
 
       <!-- GL.iNet Wi-Fi Guide Card -->
@@ -365,7 +392,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=40').then((reg) => {
+        navigator.serviceWorker.register('./sw.js?v=41').then((reg) => {
           reg.update();
           console.log('PWA Service Worker registered & updated:', reg.scope);
         }).catch((err) => {

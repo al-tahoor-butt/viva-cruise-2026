@@ -1840,4 +1840,198 @@ function closeWifiTechModal() {
 window.openWifiTechModal = openWifiTechModal;
 window.closeWifiTechModal = closeWifiTechModal;
 
+// Norwegian Viva Prima-Class Deck Plan Data & Interactive Navigator
+const vivaDeckData = [
+  {
+    deck: 'Deck 8',
+    title: 'Ocean Boulevard & Specialty Dining',
+    highlight: '360° Waterfront Promenade, Infinity Pools & Key Specialty Dining',
+    venues: [
+      { name: 'Los Lobos', location: 'Deck 8 Aft', type: 'Specialty Mexican', status: 'Specialty ($)', reserved: 'Booked: Tue 11 Aug @ 19:00', icon: 'fa-pepper-hot', desc: 'Premium handcrafted Mexican: table-side fresh guacamole, carne asada, and artisanal margaritas.' },
+      { name: 'Onda by Scarpetta', location: 'Deck 8 Mid', type: 'Specialty Italian', status: 'Specialty ($)', reserved: 'Booked: Sun 16 Aug @ 18:30', icon: 'fa-wine-glass', desc: 'High-end Italian seafood: signature Scarpetta spaghetti with tomato & basil, yellowtail crudo, braised short rib.' },
+      { name: 'Indulge Food Hall', location: 'Deck 8 Aft', type: 'Global Food Hall', status: 'Complimentary', reserved: null, icon: 'fa-utensils', desc: 'Complimentary 11-station food hall: Seabode (seafood), Tamara (Indian tandoori), Noodle Shack, Q Texas BBQ, Tapas, Latin Grill & Coco’s desserts.' },
+      { name: 'The Local Bar & Grill', location: 'Deck 8 Mid', type: '24/7 Pub Dining', status: 'Complimentary', reserved: null, icon: 'fa-beer-mug-empty', desc: '24/7 pub comfort food: classic fish & chips, burgers, buffalo wings, and draft beers.' },
+      { name: 'Oceanwalk', location: 'Deck 8 Port/Starboard', type: 'Glass Bridge', status: 'Highlight', reserved: null, icon: 'fa-shoe-prints', desc: 'Glass-bottomed walkway suspended directly over the ocean for thrilling sea views.' },
+      { name: 'Infinity Beach Pools', location: 'Deck 8 Aft', type: 'Infinity Pools', status: 'Highlight', reserved: null, icon: 'fa-water', desc: 'Twin infinity plunge pools positioned right at the ocean edge.' },
+      { name: 'The Concourse', location: 'Deck 8 Starboard', type: 'Sculpture Garden', status: 'Highlight', reserved: null, icon: 'fa-palette', desc: 'Outdoor artwork walkway featuring multi-million-dollar interactive light & metal sculptures.' },
+      { name: 'Soleil Bar', location: 'Deck 8 Aft', type: 'Sunset Lounge Bar', status: 'Bar', reserved: null, icon: 'fa-glass-cheers', desc: 'Outdoor aft bar with panoramic views over the ship’s wake.' }
+    ]
+  },
+  {
+    deck: 'Deck 7',
+    title: 'Teppanyaki, Nightlife & Atrium',
+    highlight: 'Hasuki Teppanyaki, Syd Norman’s Rock Club & Viva Theatre',
+    venues: [
+      { name: 'Hasuki', location: 'Deck 7 Aft', type: 'Japanese Teppanyaki', status: 'Specialty ($)', reserved: 'Booked: Sat 15 Aug @ 17:00', icon: 'fa-fire-burner', desc: 'Interactive Japanese hibachi grill show: flying egg tricks, chef spatula acrobatics, steak & teppan seafood.' },
+      { name: 'Cagney’s Steakhouse', location: 'Deck 7 Aft', type: 'American Steakhouse', status: 'Specialty ($)', reserved: null, icon: 'fa-drumstick-bite', desc: 'NCL’s flagship American steakhouse: premium Angus beef cuts, jumbo lump crab cakes, and truffle fries.' },
+      { name: 'Metropolitan Bar', location: 'Deck 7 Mid', type: 'Sustainable Eco-Bar', status: 'Bar', reserved: null, icon: 'fa-leaf', desc: 'NCL’s first eco-friendly bar serving sustainable zero-waste cocktails and bio-dynamic wines.' },
+      { name: 'Belvedere Bar', location: 'Deck 7 Mid', type: 'Craft Cocktail Bar', status: 'Bar', reserved: null, icon: 'fa-martini-glass-citrus', desc: 'Sophisticated cocktail lounge featuring handcrafted spirits and modern mixology.' },
+      { name: 'Syd Norman’s Pour House', location: 'Deck 7 Forward', type: 'Live Rock Club', status: 'Entertainment', reserved: null, icon: 'fa-guitar', desc: 'High-energy 1970s/80s rock club with a live house band performing classic rock hits.' },
+      { name: 'Viva Theatre & Club', location: 'Decks 6, 7 & 8', type: 'Transformation Theater', status: 'Entertainment', reserved: null, icon: 'fa-masks-theater', desc: '3-story theater featuring Beetlejuice the Musical, converting into a multi-level Vegas nightclub!' },
+      { name: 'Penrose Atrium', location: 'Decks 6, 7 & 8', type: '3-Story Atrium', status: 'Highlight', reserved: null, icon: 'fa-building', desc: 'Futuristic glass-walled atrium designed by Studio Dado with Starbucks coffee lounge.' },
+      { name: 'Viva Casino', location: 'Deck 7 Mid', type: 'Casino', status: 'Entertainment', reserved: null, icon: 'fa-dice', desc: 'Full-service casino with slot machines, blackjack, roulette, and poker tables.' }
+    ]
+  },
+  {
+    deck: 'Deck 17',
+    title: 'Palomar Seafood, Buffet & Mandara Spa',
+    highlight: 'Palomar Mediterranean Seafood, Thermal Suite & Vibe Beach Club',
+    venues: [
+      { name: 'Palomar', location: 'Deck 17 Mid', type: 'Mediterranean Seafood', status: 'Specialty ($)', reserved: 'Booked: Tue 18 Aug @ 18:00', icon: 'fa-fish', desc: 'Upscale Mediterranean seafood restaurant: salt-crusted whole sea bass, grilled octopus, and fine wines.' },
+      { name: 'Mandara Spa & Thermal Suite', location: 'Deck 16/17 Forward', type: 'Spa & Wellness', status: 'Relaxation ($)', reserved: null, icon: 'fa-spa', desc: 'World-class thermal suite featuring hydrotherapy pool, salt room, ice room, charcoal sauna, and ocean loungers.' },
+      { name: 'Surfside Cafe & Grill', location: 'Deck 17 Mid', type: 'Main Buffet', status: 'Complimentary', reserved: null, icon: 'fa-plate-wheat', desc: 'Full-service main buffet with live cooking stations, carving stations, salads, pizza, and dessert bar.' },
+      { name: 'Vibe Beach Club', location: 'Deck 17 Aft', type: 'Adults Private Retreat', status: 'Adults Only ($)', reserved: null, icon: 'fa-umbrella-beach', desc: 'Private 18+ sanctuary with dedicated hot tubs, plush sun loungers, and private bar service.' },
+      { name: 'Infinity Beach Deck 17', location: 'Deck 17 Aft', type: 'Plunge Pools', status: 'Pool Deck', reserved: null, icon: 'fa-water', desc: 'Upper deck infinity plunge pools and luxury daybeds overlooking the ocean.' }
+    ]
+  },
+  {
+    deck: 'Decks 18–20',
+    title: 'Viva Speedway & Thrill Complex',
+    highlight: '3-Level Go-Kart Racetrack, 10-Story Dry Slides & VR Galaxy Pavilion',
+    venues: [
+      { name: 'Viva Speedway', location: 'Decks 18–20 Aft', type: 'Go-Kart Racetrack', status: 'Thrill Attraction', reserved: null, icon: 'fa-flag-checkered', desc: 'The largest 3-level electric go-kart racetrack at sea! 1,400 feet of track with 15 turns over the ocean (speeds up to 30 mph).' },
+      { name: 'The Drop', location: 'Deck 18 Port', type: '10-Story Dry Slide', status: 'Thrill Attraction', reserved: null, icon: 'fa-bolt', desc: 'World’s first 10-story free-fall dry slide delivering 1.5G acceleration down the side of the ship.' },
+      { name: 'The Rush', location: 'Deck 18 Starboard', type: 'Dueling Dry Slides', status: 'Thrill Attraction', reserved: null, icon: 'fa-arrows-split-up-and-left', desc: 'Dueling 10-story spiral dry slides for racing family members down to Ocean Boulevard.' },
+      { name: 'Galaxy Pavilion VR', location: 'Deck 18 Forward', type: 'VR Arcade & Simulators', status: 'VR Arcade ($)', reserved: null, icon: 'fa-vr-cardboard', desc: 'High-tech Virtual Reality arcade: VR flight simulators, VR rollercoasters, Top-Golf swing suite & escape room.' },
+      { name: 'Tee Time', location: 'Deck 18 Mid', type: 'Interactive Mini-Golf', status: 'Sports', reserved: null, icon: 'fa-golf-ball-tee', desc: 'Tech-enhanced 9-hole mini-golf course with automated scoring and obstacle effects.' },
+      { name: 'Bull’s Eye', location: 'Deck 18 Mid', type: 'Tech Dart Suites', status: 'Sports ($)', reserved: null, icon: 'fa-bullseye', desc: 'Private upscale dart suites with automated scoring and interactive game modes.' },
+      { name: 'The Wave', location: 'Deck 19 Mid', type: 'Tidal Water Slide', status: 'Water Slide', reserved: null, icon: 'fa-water', desc: 'Thrilling tidal tube water slide extending over the side of the ship.' },
+      { name: 'Kids Aqua Park', location: 'Deck 18 Mid', type: 'Splash Zone', status: 'Kids Fun', reserved: null, icon: 'fa-shower', desc: 'Interactive splash pad, water cannons, tipping buckets, and mini slides for kids.' }
+    ]
+  },
+  {
+    deck: 'Deck 6',
+    title: 'Main Dining Rooms & Penrose Atrium',
+    highlight: 'Hudson’s & Commodore Room Main Dining Rooms',
+    venues: [
+      { name: 'Hudson’s Main Dining Room', location: 'Deck 6 Aft', type: 'Main Dining Room', status: 'Complimentary', reserved: null, icon: 'fa-utensils', desc: 'Elegant 270-degree floor-to-ceiling glass wall dining room with panoramic ocean views.' },
+      { name: 'Commodore Room', location: 'Deck 6 Aft', type: 'Main Dining Room', status: 'Complimentary', reserved: null, icon: 'fa-wine-bottle', desc: 'Classic upscale main dining room serving multi-course rotational dinners.' },
+      { name: 'Starbucks Atrium Coffee', location: 'Deck 6 Mid', type: 'Coffee Lounge', status: 'Starbucks ($ / FAS+ Included)', reserved: null, icon: 'fa-mug-hot', desc: 'Full-service Starbucks espresso bar in the heart of Penrose Atrium (included with Free at Sea Plus!).' }
+    ]
+  }
+];
+
+let currentSelectedDeck = 'Deck 8';
+
+function openDeckPlanModal(defaultDeck = 'Deck 8') {
+  currentSelectedDeck = defaultDeck;
+
+  let modalEl = document.getElementById('deck-plan-modal');
+  if (!modalEl) {
+    modalEl = document.createElement('div');
+    modalEl.id = 'deck-plan-modal';
+    modalEl.className = 'modal-overlay';
+    document.body.appendChild(modalEl);
+  }
+
+  modalEl.innerHTML = `
+    <div class="modal-card tech-card" style="max-width: 840px; max-height: 88vh; overflow-y: auto; padding: 24px; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+        <div>
+          <span class="badge badge-warning" style="font-size: 11px; margin-bottom: 4px;">143,000 GT Prima Class Flagship</span>
+          <h2 style="font-size: 22px; color: var(--sunset-gold); margin: 4px 0 0 0;">
+            <i class="fa-solid fa-ship"></i> Norwegian Viva Interactive Deck Navigator
+          </h2>
+        </div>
+        <button onclick="closeDeckPlanModal()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
+      </div>
+
+      <!-- Deck Selector Tabs Bar -->
+      <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--sunset-gold); border-radius: 12px; padding: 14px; margin-bottom: 20px; text-align: center;">
+        <div style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+          Select Ship Deck to Inspect Layout & Reserved Dining Locations:
+        </div>
+        <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+          ${vivaDeckData.map(d => `
+            <button onclick="switchDeck('${d.deck}')" id="deck-tab-${d.deck.replace(/[^a-zA-Z0-9]/g, '')}" class="btn btn-sm ${d.deck === currentSelectedDeck ? 'btn-primary' : 'btn-outline'}" style="font-weight: 700; padding: 8px 14px;">
+              <i class="fa-solid fa-layer-group"></i> ${d.deck}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Dynamic Deck Content Container -->
+      <div id="deck-content-container">
+        <!-- Rendered by switchDeck() -->
+      </div>
+
+      <div style="text-align: right; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 20px;">
+        <button onclick="closeDeckPlanModal()" class="btn btn-primary" style="padding: 10px 24px; font-weight: 700;">
+          Close Deck Navigator <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+    </div>
+  `;
+
+  modalEl.style.display = 'flex';
+  switchDeck(currentSelectedDeck);
+}
+
+function closeDeckPlanModal() {
+  const modalEl = document.getElementById('deck-plan-modal');
+  if (modalEl) modalEl.style.display = 'none';
+}
+
+function switchDeck(deckName) {
+  currentSelectedDeck = deckName;
+  const deckObj = vivaDeckData.find(d => d.deck === deckName) || vivaDeckData[0];
+
+  // Update tab highlights
+  vivaDeckData.forEach(d => {
+    const tabEl = document.getElementById(`deck-tab-${d.deck.replace(/[^a-zA-Z0-9]/g, '')}`);
+    if (tabEl) {
+      if (d.deck === deckName) {
+        tabEl.className = 'btn btn-sm btn-primary';
+      } else {
+        tabEl.className = 'btn btn-sm btn-outline';
+      }
+    }
+  });
+
+  const container = document.getElementById('deck-content-container');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+        <h3 style="color: var(--sunset-gold); margin: 0; font-size: 17px;"><i class="fa-solid fa-layer-group"></i> ${deckObj.deck}: ${deckObj.title}</h3>
+        <span class="badge badge-info" style="font-size: 11px;">${deckObj.venues.length} Key Venues</span>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: #cbd5e1; line-height: 1.5;">${deckObj.highlight}</p>
+    </div>
+
+    <!-- Venue Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+      ${deckObj.venues.map(v => `
+        <div style="background: ${v.reserved ? 'rgba(255, 183, 3, 0.08)' : 'rgba(15, 23, 42, 0.65)'}; border: 1.5px solid ${v.reserved ? 'var(--sunset-gold)' : 'rgba(255,255,255,0.08)'}; border-radius: 12px; padding: 14px; position: relative;">
+          ${v.reserved ? `
+            <div style="background: var(--sunset-gold); color: #000; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px 0 8px 0; position: absolute; top: 0; left: 0; text-transform: uppercase;">
+              <i class="fa-solid fa-star"></i> ${v.reserved}
+            </div>
+            <div style="height: 12px;"></div>
+          ` : ''}
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 8px;">
+            <div>
+              <strong style="color: #ffffff; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid ${v.icon}" style="color: ${v.reserved ? 'var(--sunset-gold)' : 'var(--primary)'};"></i> ${v.name}
+              </strong>
+              <small style="color: #94a3b8; font-size: 11.5px;"><i class="fa-solid fa-location-dot"></i> ${v.location}</small>
+            </div>
+            <span class="badge ${v.status.includes('Specialty') ? 'badge-warning' : v.status.includes('Complimentary') ? 'badge-success' : 'badge-primary'}" style="font-size: 10px;">
+              ${v.status}
+            </span>
+          </div>
+          <p style="margin: 6px 0 0 0; font-size: 12.5px; color: #e2e8f0; line-height: 1.45;">
+            ${v.desc}
+          </p>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+window.openDeckPlanModal = openDeckPlanModal;
+window.closeDeckPlanModal = closeDeckPlanModal;
+window.switchDeck = switchDeck;
+
 
