@@ -1840,8 +1840,48 @@ function closeWifiTechModal() {
 window.openWifiTechModal = openWifiTechModal;
 window.closeWifiTechModal = closeWifiTechModal;
 
-// Norwegian Viva Prima-Class Deck Plan Data & Interactive Navigator
+// Norwegian Viva Prima-Class Deck Plan Data & Interactive Navigator (Complete 20-Deck Coverage)
 const vivaDeckData = [
+  {
+    deck: 'Decks 18–20',
+    title: 'Viva Speedway & Thrill Complex (Top Decks)',
+    highlight: '3-Level Go-Kart Racetrack, 10-Story Dry Slides, VR Galaxy Pavilion & Sports Stadium',
+    venues: [
+      { name: 'Viva Speedway (Decks 18, 19 & 20)', location: 'Decks 18–20 Aft', type: 'Go-Kart Racetrack', status: 'Thrill Attraction', reserved: null, icon: 'fa-flag-checkered', desc: 'The largest 3-level electric go-kart racetrack at sea! 1,400 feet of track with 15 turns extending over the ocean (speeds up to 30 mph).' },
+      { name: 'The Drop', location: 'Deck 18 Port Aft', type: '10-Story Dry Slide', status: 'Thrill Attraction', reserved: null, icon: 'fa-bolt', desc: 'World’s first 10-story free-fall dry slide delivering 1.5G acceleration down the side of the ship to Deck 8.' },
+      { name: 'The Rush', location: 'Deck 18 Starboard Aft', type: 'Dueling Dry Slides', status: 'Thrill Attraction', reserved: null, icon: 'fa-arrows-split-up-and-left', desc: 'Dueling 10-story spiral dry slides for racing family members down to Ocean Boulevard.' },
+      { name: 'Galaxy Pavilion VR', location: 'Deck 18 Forward', type: 'VR Arcade & Simulators', status: 'VR Arcade ($)', reserved: null, icon: 'fa-vr-cardboard', desc: 'High-tech Virtual Reality arcade: VR flight simulators, VR rollercoasters, Top-Golf swing suite & escape room.' },
+      { name: 'Tee Time', location: 'Deck 18 Mid', type: 'Interactive Mini-Golf', status: 'Sports', reserved: null, icon: 'fa-golf-ball-tee', desc: 'Tech-enhanced 9-hole mini-golf course with automated scoring and obstacle effects.' },
+      { name: 'Bull’s Eye', location: 'Deck 18 Mid', type: 'Tech Dart Suites', status: 'Sports ($)', reserved: null, icon: 'fa-bullseye', desc: 'Private upscale dart suites with automated scoring and interactive game modes.' },
+      { name: 'The Wave Water Slide', location: 'Deck 19 Mid', type: 'Tidal Water Slide', status: 'Water Slide', reserved: null, icon: 'fa-water', desc: 'Thrilling tidal tube water slide extending over the ocean edge.' },
+      { name: 'The Stadium', location: 'Deck 19 Mid', type: 'Sports & Games', status: 'Complimentary', reserved: null, icon: 'fa-table-tennis-paddle-ball', desc: 'Outdoor sports arena: pickleball court, table tennis, foosball, and shuffleboard.' },
+      { name: 'Kids Aqua Park & Splash Academy', location: 'Deck 18 Mid', type: 'Youth & Splash Zone', status: 'Youth Program', reserved: null, icon: 'fa-child-reaching', desc: 'Splash pad, water cannons, buckets & NCL Splash Academy youth clubrooms for kids & teens.' }
+    ]
+  },
+  {
+    deck: 'Deck 17',
+    title: 'Palomar Seafood, Buffet & Pool Deck',
+    highlight: 'Palomar Mediterranean Seafood, Main Buffet & Observation Lounge',
+    venues: [
+      { name: 'Palomar', location: 'Deck 17 Mid', type: 'Mediterranean Seafood', status: 'Specialty ($)', reserved: 'Booked: Tue 18 Aug @ 18:00', icon: 'fa-fish', desc: 'Upscale Mediterranean seafood restaurant: salt-crusted whole sea bass, grilled octopus, and fine wines.' },
+      { name: 'Surfside Cafe & Grill', location: 'Deck 17 Mid', type: 'Main Buffet', status: 'Complimentary', reserved: null, icon: 'fa-plate-wheat', desc: 'Full-service main buffet with live cooking stations, carving stations, salads, pizza, and dessert bar.' },
+      { name: 'Food Republic', location: 'Deck 17 Mid', type: 'Pan-Asian Fusion', status: 'Specialty ($)', reserved: null, icon: 'fa-utensils', desc: 'Global fusion sharing plates: sushi rolls, pork belly bao buns, and Asian street noodles ordered via iPad.' },
+      { name: 'Observation Lounge', location: 'Deck 17 Forward', type: '270° Panoramic Lounge', status: 'Complimentary', reserved: null, icon: 'fa-eye', desc: '270-degree floor-to-ceiling glass lounge with panoramic ocean views, light bites, and quiet bar service.' },
+      { name: 'Waves Pool & Pool Bar', location: 'Deck 17 Mid', type: 'Main Pool Deck', status: 'Pool Deck', reserved: null, icon: 'fa-person-swimming', desc: 'Central outdoor swimming pool, sun loungers, and main pool bar service.' },
+      { name: 'Vibe Beach Club', location: 'Deck 17 Aft', type: 'Adults Private Retreat', status: 'Adults Only ($)', reserved: null, icon: 'fa-umbrella-beach', desc: 'Private 18+ sanctuary with dedicated hot tubs, plush sun loungers, and private bar service.' },
+      { name: 'Infinity Beach Deck 17', location: 'Deck 17 Aft', type: 'Plunge Pools', status: 'Pool Deck', reserved: null, icon: 'fa-water', desc: 'Upper deck infinity plunge pools and luxury daybeds overlooking the ocean.' }
+    ]
+  },
+  {
+    deck: 'Deck 16',
+    title: 'Mandara Spa Thermal Suite & Fitness Center',
+    highlight: 'Hydrotherapy Pools, Ice Room, Salt Room & Technogym Fitness Center',
+    venues: [
+      { name: 'Mandara Spa & Thermal Suite', location: 'Deck 16/17 Forward', type: 'Spa & Wellness', status: 'Relaxation ($)', reserved: null, icon: 'fa-spa', desc: 'World-class thermal suite featuring hydrotherapy pool, salt room, ice room, charcoal sauna, and ocean loungers.' },
+      { name: 'Pulse Fitness Center', location: 'Deck 16 Forward', type: 'Gym & Fitness', status: 'Complimentary', reserved: null, icon: 'fa-dumbbell', desc: 'State-of-the-art Technogym cardio equipment, free weights, and spin studio with ocean views.' },
+      { name: 'Salon at Mandara Spa', location: 'Deck 16 Forward', type: 'Beauty Salon', status: 'Salon ($)', reserved: null, icon: 'fa-scissors', desc: 'Full hair salon, barber shop, manicures, and pedicures.' }
+    ]
+  },
   {
     deck: 'Deck 8',
     title: 'Ocean Boulevard & Specialty Dining',
@@ -1873,40 +1913,31 @@ const vivaDeckData = [
     ]
   },
   {
-    deck: 'Deck 17',
-    title: 'Palomar Seafood, Buffet & Mandara Spa',
-    highlight: 'Palomar Mediterranean Seafood, Thermal Suite & Vibe Beach Club',
-    venues: [
-      { name: 'Palomar', location: 'Deck 17 Mid', type: 'Mediterranean Seafood', status: 'Specialty ($)', reserved: 'Booked: Tue 18 Aug @ 18:00', icon: 'fa-fish', desc: 'Upscale Mediterranean seafood restaurant: salt-crusted whole sea bass, grilled octopus, and fine wines.' },
-      { name: 'Mandara Spa & Thermal Suite', location: 'Deck 16/17 Forward', type: 'Spa & Wellness', status: 'Relaxation ($)', reserved: null, icon: 'fa-spa', desc: 'World-class thermal suite featuring hydrotherapy pool, salt room, ice room, charcoal sauna, and ocean loungers.' },
-      { name: 'Surfside Cafe & Grill', location: 'Deck 17 Mid', type: 'Main Buffet', status: 'Complimentary', reserved: null, icon: 'fa-plate-wheat', desc: 'Full-service main buffet with live cooking stations, carving stations, salads, pizza, and dessert bar.' },
-      { name: 'Vibe Beach Club', location: 'Deck 17 Aft', type: 'Adults Private Retreat', status: 'Adults Only ($)', reserved: null, icon: 'fa-umbrella-beach', desc: 'Private 18+ sanctuary with dedicated hot tubs, plush sun loungers, and private bar service.' },
-      { name: 'Infinity Beach Deck 17', location: 'Deck 17 Aft', type: 'Plunge Pools', status: 'Pool Deck', reserved: null, icon: 'fa-water', desc: 'Upper deck infinity plunge pools and luxury daybeds overlooking the ocean.' }
-    ]
-  },
-  {
-    deck: 'Decks 18–20',
-    title: 'Viva Speedway & Thrill Complex',
-    highlight: '3-Level Go-Kart Racetrack, 10-Story Dry Slides & VR Galaxy Pavilion',
-    venues: [
-      { name: 'Viva Speedway', location: 'Decks 18–20 Aft', type: 'Go-Kart Racetrack', status: 'Thrill Attraction', reserved: null, icon: 'fa-flag-checkered', desc: 'The largest 3-level electric go-kart racetrack at sea! 1,400 feet of track with 15 turns over the ocean (speeds up to 30 mph).' },
-      { name: 'The Drop', location: 'Deck 18 Port', type: '10-Story Dry Slide', status: 'Thrill Attraction', reserved: null, icon: 'fa-bolt', desc: 'World’s first 10-story free-fall dry slide delivering 1.5G acceleration down the side of the ship.' },
-      { name: 'The Rush', location: 'Deck 18 Starboard', type: 'Dueling Dry Slides', status: 'Thrill Attraction', reserved: null, icon: 'fa-arrows-split-up-and-left', desc: 'Dueling 10-story spiral dry slides for racing family members down to Ocean Boulevard.' },
-      { name: 'Galaxy Pavilion VR', location: 'Deck 18 Forward', type: 'VR Arcade & Simulators', status: 'VR Arcade ($)', reserved: null, icon: 'fa-vr-cardboard', desc: 'High-tech Virtual Reality arcade: VR flight simulators, VR rollercoasters, Top-Golf swing suite & escape room.' },
-      { name: 'Tee Time', location: 'Deck 18 Mid', type: 'Interactive Mini-Golf', status: 'Sports', reserved: null, icon: 'fa-golf-ball-tee', desc: 'Tech-enhanced 9-hole mini-golf course with automated scoring and obstacle effects.' },
-      { name: 'Bull’s Eye', location: 'Deck 18 Mid', type: 'Tech Dart Suites', status: 'Sports ($)', reserved: null, icon: 'fa-bullseye', desc: 'Private upscale dart suites with automated scoring and interactive game modes.' },
-      { name: 'The Wave', location: 'Deck 19 Mid', type: 'Tidal Water Slide', status: 'Water Slide', reserved: null, icon: 'fa-water', desc: 'Thrilling tidal tube water slide extending over the side of the ship.' },
-      { name: 'Kids Aqua Park', location: 'Deck 18 Mid', type: 'Splash Zone', status: 'Kids Fun', reserved: null, icon: 'fa-shower', desc: 'Interactive splash pad, water cannons, tipping buckets, and mini slides for kids.' }
-    ]
-  },
-  {
     deck: 'Deck 6',
     title: 'Main Dining Rooms & Penrose Atrium',
-    highlight: 'Hudson’s & Commodore Room Main Dining Rooms',
+    highlight: 'Hudson’s & Commodore Room Main Dining Rooms, Starbucks & Guest Services',
     venues: [
       { name: 'Hudson’s Main Dining Room', location: 'Deck 6 Aft', type: 'Main Dining Room', status: 'Complimentary', reserved: null, icon: 'fa-utensils', desc: 'Elegant 270-degree floor-to-ceiling glass wall dining room with panoramic ocean views.' },
       { name: 'Commodore Room', location: 'Deck 6 Aft', type: 'Main Dining Room', status: 'Complimentary', reserved: null, icon: 'fa-wine-bottle', desc: 'Classic upscale main dining room serving multi-course rotational dinners.' },
-      { name: 'Starbucks Atrium Coffee', location: 'Deck 6 Mid', type: 'Coffee Lounge', status: 'Starbucks ($ / FAS+ Included)', reserved: null, icon: 'fa-mug-hot', desc: 'Full-service Starbucks espresso bar in the heart of Penrose Atrium (included with Free at Sea Plus!).' }
+      { name: 'Starbucks Atrium Coffee', location: 'Deck 6 Mid', type: 'Coffee Lounge', status: 'Starbucks ($ / FAS+ Included)', reserved: null, icon: 'fa-mug-hot', desc: 'Full-service Starbucks espresso bar in the heart of Penrose Atrium (included with Free at Sea Plus!).' },
+      { name: 'Guest Services & Shore Excursions', location: 'Deck 6 Mid', type: 'Guest Desk', status: 'Services', reserved: null, icon: 'fa-headset', desc: '24/7 Guest Services reception desk, shore excursion booking desk & port info.' }
+    ]
+  },
+  {
+    deck: 'Decks 9–15',
+    title: 'Guest Staterooms & Accommodations',
+    highlight: 'Staterooms, Balconies & Suites (Cabin #64139255 Area)',
+    venues: [
+      { name: 'Family Balcony & Club Suites', location: 'Decks 9–15', type: 'Guest Cabins', status: 'Cabins', reserved: 'NCL Reservation #64139255', icon: 'fa-bed', desc: 'Spacious staterooms with private glass balconies, USB charging stations & modern bathrooms.' }
+    ]
+  },
+  {
+    deck: 'Deck 4 & 5',
+    title: 'Gangway, Tender Boarding & Medical Center',
+    highlight: 'Ship Disembarkation Gangway, Tender Pier & Medical Desk',
+    venues: [
+      { name: 'Ship Gangway & Tender Pier', location: 'Deck 4 Port / Starboard', type: 'Port Disembarkation', status: 'Gangway', reserved: null, icon: 'fa-door-open', desc: 'Primary gangway for stepping off the ship into European ports & boarding tender boats (Villefranche).' },
+      { name: 'Medical Center', location: 'Deck 4 Mid', type: 'Medical Clinic', status: 'Services', reserved: null, icon: 'fa-kit-medical', desc: 'Fully equipped medical facility staffed by maritime doctors and nurses.' }
     ]
   }
 ];
