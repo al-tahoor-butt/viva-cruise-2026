@@ -68,8 +68,8 @@ const cruiseData = [
     port: 'At Sea (Mediterranean)',
     arrive: '—',
     depart: '—',
-    lat: 39.5000,
-    lng: 14.0000,
+    lat: 38.1000,
+    lng: 17.5000,
     heroImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     highlight: 'Viva Speedway, Galaxy Pavilion VR & Ocean Boulevard Pools',
     adultsActivities: 'Indulge Food Hall, Mandara Spa, infinity pool relaxation on Ocean Boulevard.',
@@ -598,6 +598,19 @@ function getWeatherDesc(code) {
   return 'Sunny & Warm';
 }
 
+// Flight Paths (Manchester MAN <-> Bologna BLQ & Barcelona BCN <-> Manchester MAN)
+const flightInboundCoordinates = [
+  { lat: 53.3650, lng: -2.2728, day: -1 }, // Manchester Airport (MAN)
+  { lat: 48.8566, lng: 2.3522 },
+  { lat: 44.4949, lng: 11.3426, day: 0 }   // Bologna (BLQ)
+];
+
+const flightOutboundCoordinates = [
+  { lat: 41.3851, lng: 2.1734, day: 10 },  // Barcelona Airport (BCN)
+  { lat: 47.0000, lng: 0.5000 },
+  { lat: 53.3650, lng: -2.2728, day: 11 }  // Manchester Airport (MAN)
+];
+
 // Realistic Overland Train Route (Bologna Centrale -> Imola -> Faenza -> Lugo -> Ravenna Port)
 const trainRouteCoordinates = [
   { lat: 44.4949, lng: 11.3426, day: 0 }, // Bologna
@@ -616,27 +629,28 @@ const seaRouteCoordinates = [
   { lat: 42.6507, lng: 18.0944, day: 2 }, // Dubrovnik
   { lat: 42.3500, lng: 18.6000 },
   { lat: 42.0931, lng: 19.0989, day: 3 }, // Bar, Montenegro
-  { lat: 40.5000, lng: 19.1000 }, // Strait of Otranto
-  { lat: 39.7500, lng: 18.5000 }, // Rounding Heel of Italy (Santa Maria di Leuca)
-  { lat: 39.2000, lng: 17.2000 }, // Gulf of Taranto
-  { lat: 37.8500, lng: 16.1500 }, // Calabria Coast
-  { lat: 38.3000, lng: 15.5000 }, // Strait of Messina
-  { lat: 39.3000, lng: 14.8000 }, // Tyrrhenian Sea
-  { lat: 40.3000, lng: 14.6000 },
-  { lat: 40.6782, lng: 14.7657, day: 5 }, // Salerno (Day 4 is At Sea)
+  { lat: 40.5000, lng: 19.1000 }, // Strait of Otranto (between Italy & Albania)
+  { lat: 39.7500, lng: 18.5500 }, // Rounding Heel of Italy (Santa Maria di Leuca)
+  { lat: 38.1000, lng: 17.5000, day: 4 }, // At Sea (Ionian Sea off south coast of Italy)
+  { lat: 37.9500, lng: 15.6800 }, // Southern entrance to Strait of Messina
+  { lat: 38.2250, lng: 15.6150 }, // Exact shipping lane between Messina and Villa San Giovanni
+  { lat: 38.3000, lng: 15.5800 }, // Northern exit of Strait of Messina (Capo Peloro / Scilla)
+  { lat: 38.8000, lng: 15.1500 }, // Tyrrhenian Sea (passing Stromboli)
+  { lat: 40.3000, lng: 14.6500 }, // Approaching Gulf of Salerno
+  { lat: 40.6780, lng: 14.7650, day: 5 }, // Salerno / Amalfi Coast
   { lat: 40.5500, lng: 14.2500 }, // West of Capri
-  { lat: 41.2000, lng: 12.8000 },
-  { lat: 42.0924, lng: 11.7954, day: 6 }, // Rome / Civitavecchia
-  { lat: 42.4500, lng: 11.0000 },
-  { lat: 43.0000, lng: 9.8000 },  // West of Elba
-  { lat: 43.5485, lng: 10.3106, day: 7 }, // Florence / Livorno
-  { lat: 43.6500, lng: 9.3000 },
+  { lat: 41.2000, lng: 12.8000 }, // Off Gaeta coast
+  { lat: 41.8902, lng: 12.4922, day: 6 }, // Civitavecchia / Rome
+  { lat: 42.4500, lng: 11.0000 }, // West of Monte Argentario
+  { lat: 43.0000, lng: 9.8000 },  // West of Elba Island
+  { lat: 43.5485, lng: 10.3106, day: 7 }, // Livorno / Florence
+  { lat: 43.6500, lng: 9.3000 },  // Ligurian Sea crossing
   { lat: 43.5528, lng: 7.0174, day: 8 },  // Cannes
-  { lat: 42.2000, lng: 5.5000 },
-  { lat: 40.5000, lng: 3.8000 },
-  { lat: 39.5000, lng: 2.3500 },
+  { lat: 42.2000, lng: 5.5000 },  // Gulf of Lion / Balearic Sea
+  { lat: 40.5000, lng: 3.8000 },  // North of Menorca/Mallorca
+  { lat: 39.5000, lng: 2.3500 },  // Rounding Mallorca southwest cape
   { lat: 39.5696, lng: 2.6502, day: 9 },  // Palma de Mallorca
-  { lat: 40.5000, lng: 2.4000 },
+  { lat: 40.5000, lng: 2.4000 },  // Balearic Sea channel
   { lat: 41.3851, lng: 2.1734, day: 10 }  // Barcelona
 ];
 
@@ -675,6 +689,25 @@ window.initMap = function() {
     ]
   });
 
+  // Dashed Sky-Blue Inbound Flight Path (Manchester -> Bologna)
+  const flightInPolyline = new google.maps.Polyline({
+    path: flightInboundCoordinates,
+    geodesic: true,
+    strokeColor: '#38bdf8',
+    strokeOpacity: 0,
+    strokeWeight: 3,
+    icons: [{
+      icon: {
+        path: 'M 0,-1 0,1',
+        strokeOpacity: 0.85,
+        scale: 3
+      },
+      offset: '0',
+      repeat: '16px'
+    }],
+    map: gmap
+  });
+
   // Dashed Golden Overland Railway (Bologna -> Imola -> Faenza -> Lugo -> Ravenna)
   const trainPolyline = new google.maps.Polyline({
     path: trainRouteCoordinates,
@@ -701,6 +734,25 @@ window.initMap = function() {
     strokeColor: '#00f2fe',
     strokeOpacity: 0.85,
     strokeWeight: 4,
+    map: gmap
+  });
+
+  // Dashed Sky-Blue Outbound Flight Path (Barcelona -> Manchester)
+  const flightOutPolyline = new google.maps.Polyline({
+    path: flightOutboundCoordinates,
+    geodesic: true,
+    strokeColor: '#38bdf8',
+    strokeOpacity: 0,
+    strokeWeight: 3,
+    icons: [{
+      icon: {
+        path: 'M 0,-1 0,1',
+        strokeOpacity: 0.85,
+        scale: 3
+      },
+      offset: '0',
+      repeat: '16px'
+    }],
     map: gmap
   });
 
@@ -838,27 +890,71 @@ function calculateBearing(startLat, startLng, destLat, destLng) {
   return (brng + 360) % 360;
 }
 
-// Helper: Get realistic curved waypoints between two day indices
-function getPathBetweenDays(fromDay, toDay) {
-  if (fromDay === 0 && toDay === 1) return trainRouteCoordinates;
-  if (fromDay === 1 && toDay === 0) return [...trainRouteCoordinates].reverse();
+// Transport Mode SVG Paths
+const PLANE_SVG_PATH = "M 0,-18 L 3,-8 L 16,1 L 16,4 L 3,-2 L 3,10 L 8,14 L 8,17 L 0,14 L -8,17 L -8,14 L -3,10 L -3,-2 L -16,4 L -16,1 L -3,-8 Z";
+const TRAIN_SVG_PATH = "M -6,-16 L 6,-16 L 8,-10 L 8,12 L 6,16 L -6,16 L -8,12 L -8,-10 Z M -5,-12 L 5,-12 L 5,-4 L -5,-4 Z M -5,10 L -2,10 L -2,13 L -5,13 Z M 2,10 L 5,10 L 5,13 L 2,13 Z";
+const SHIP_SVG_PATH = "M 0,-18 L 6,-10 L 6,10 C 6,15 0,20 0,20 C 0,20 -6,15 -6,10 L -6,-10 Z";
 
+// Helper: Determine transport mode, SVG icon, and curved path between two day indices
+function getTransportConfig(fromDay, toDay) {
+  // Flight: Manchester (MAN) <-> Bologna (BLQ)
+  if ((fromDay === 0 && toDay === 0) || (fromDay === -1 && toDay === 0) || (toDay === 0 && fromDay !== 1)) {
+    return {
+      mode: 'PLANE',
+      svgPath: PLANE_SVG_PATH,
+      fillColor: '#38bdf8',
+      path: flightInboundCoordinates
+    };
+  }
+  // Flight: Barcelona (BCN) <-> Manchester (MAN)
+  if (fromDay === 10 && toDay === 10) {
+    return {
+      mode: 'PLANE',
+      svgPath: PLANE_SVG_PATH,
+      fillColor: '#38bdf8',
+      path: flightOutboundCoordinates
+    };
+  }
+  // Train: Bologna Centrale <-> Ravenna Port
+  if (fromDay === 0 && toDay === 1) {
+    return {
+      mode: 'TRAIN',
+      svgPath: TRAIN_SVG_PATH,
+      fillColor: '#ffb703',
+      path: trainRouteCoordinates
+    };
+  }
+  if (fromDay === 1 && toDay === 0) {
+    return {
+      mode: 'TRAIN',
+      svgPath: TRAIN_SVG_PATH,
+      fillColor: '#ffb703',
+      path: [...trainRouteCoordinates].reverse()
+    };
+  }
+
+  // Ship: Cruise sea lanes (Days 1 to 10)
   const idxA = seaRouteCoordinates.findIndex(p => p.day === fromDay);
   const idxB = seaRouteCoordinates.findIndex(p => p.day === toDay);
 
+  let seaPath;
   if (idxA !== -1 && idxB !== -1) {
-    if (idxA < idxB) {
-      return seaRouteCoordinates.slice(idxA, idxB + 1);
-    } else {
-      return [...seaRouteCoordinates.slice(idxB, idxA + 1)].reverse();
-    }
+    seaPath = idxA < idxB
+      ? seaRouteCoordinates.slice(idxA, idxB + 1)
+      : [...seaRouteCoordinates.slice(idxB, idxA + 1)].reverse();
+  } else {
+    seaPath = [
+      { lat: cruiseData[fromDay]?.lat || 44.4949, lng: cruiseData[fromDay]?.lng || 12.2818 },
+      { lat: cruiseData[toDay]?.lat || 44.4949, lng: cruiseData[toDay]?.lng || 12.2818 }
+    ];
   }
 
-  // Fallback direct line
-  return [
-    { lat: cruiseData[fromDay]?.lat || 44.4949, lng: cruiseData[fromDay]?.lng || 12.2818 },
-    { lat: cruiseData[toDay]?.lat || 44.4949, lng: cruiseData[toDay]?.lng || 12.2818 }
-  ];
+  return {
+    mode: 'SHIP',
+    svgPath: SHIP_SVG_PATH,
+    fillColor: '#ffb703',
+    path: seaPath
+  };
 }
 
 // Helper: Interpolate coordinate and bearing along a multi-waypoint path
@@ -902,7 +998,7 @@ function interpolatePath(path, progress) {
   return { ...path[path.length - 1], heading: 0 };
 }
 
-// Smooth Sailing Transition Animation between Ports with Curved Waypoint Navigation
+// Smooth Multi-Transport Transition Animation (Plane, Train, Ship) with Curved Waypoints
 function animateShipTransition(fromIdx, toIdx) {
   if (!animatedShipMarker || !gmap) return;
 
@@ -911,9 +1007,10 @@ function animateShipTransition(fromIdx, toIdx) {
   const fromDay = cruiseData[fromIdx].day;
   const toDay = cruiseData[toIdx].day;
 
-  if (fromDay === toDay) return;
+  // Don't re-animate the same sea day, unless it's Day 0 (Fly-In) or Day 10 (Fly-Home)
+  if (fromDay === toDay && toDay !== 0 && toDay !== 10) return;
 
-  const path = getPathBetweenDays(fromDay, toDay);
+  const config = getTransportConfig(fromDay, toDay);
 
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
 
@@ -928,20 +1025,23 @@ function animateShipTransition(fromIdx, toIdx) {
       ? 4 * progress * progress * progress 
       : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
-    const currentPosData = interpolatePath(path, easeProgress);
+    const currentPosData = interpolatePath(config.path, easeProgress);
     const currentPos = new google.maps.LatLng(currentPosData.lat, currentPosData.lng);
     
     animatedShipMarker.setPosition(currentPos);
     animatedShipMarker.setIcon({
-      path: "M 0,-18 L 6,-10 L 6,10 C 6,15 0,20 0,20 C 0,20 -6,15 -6,10 L -6,-10 Z",
-      fillColor: "#ffb703",
+      path: config.svgPath,
+      fillColor: config.fillColor,
       fillOpacity: 1,
       strokeColor: "#ffffff",
       strokeWeight: 2.5,
-      scale: 1.2,
+      scale: config.mode === 'PLANE' ? 1.4 : 1.25,
       anchor: new google.maps.Point(0, 0),
       rotation: currentPosData.heading
     });
+    animatedShipMarker.setTitle(
+      config.mode === 'PLANE' ? "Flight Mode (✈️)" : config.mode === 'TRAIN' ? "Train Mode (🚆)" : "Norwegian Viva (🚢)"
+    );
 
     gmap.panTo(currentPos);
 
