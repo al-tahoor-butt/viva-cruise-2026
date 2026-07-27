@@ -12,26 +12,25 @@ const cruiseData = [
     lng: 11.2721,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Bologna_Piazza_Maggiore.jpg',
     highlight: 'Flight FR2242 & Stay at Hotel Del Borgo, Bologna',
-    adultsActivities: 'Land in Bologna Airport (BLQ) at 21:05, 8-min taxi to Hotel Del Borgo (Booking #5007213355), late-night aperitivo.',
+    adultsActivities: 'Land in Bologna Airport (BLQ) at 21:05, 8-min taxi to Hotel Del Borgo (Booking #5007213355), late-night aperitivo under porticoes.',
     kidsActivities: 'Exciting evening flight & cozy stay at Hotel Del Borgo (2 single + 1 double bed configured).',
-    transferInfo: 'Flight FR2242 (PNR: WTUR5S) MAN 17:45 ➔ BLQ 21:05. Hotel Del Borgo: Via Marco Emilio Lepido 195 (Booking #5007213355). 8-min taxi from BLQ airport.',
+    transferInfo: 'Flight FR2242 (PNR: WTUR5S) MAN 17:45 ➔ BLQ 21:05. Hotel Del Borgo: Via Marco Emilio Lepido 195 (Booking #5007213355). 8-min taxi (~€20) from BLQ airport rank.',
     tags: ['Hotel Del Borgo', 'Flight FR2242', 'Pre-Cruise', 'Bologna'],
     deepDive: {
-      verdict: "100% DIY (Pre-Cruise)",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€11/pax (Marconi Express)",
-      costNcl: "— (Pre-Cruise Stay)",
-      nclVsDiySummary: "This is your independent pre-cruise arrival day in Bologna. The Marconi Express monorail gets you from BLQ Airport to Bologna Centrale in 7 minutes.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "Independent Fly-In & Airport Transfer",
+      badgeClass: "badge-success",
+      estCost: "€11/pax (Monorail) or ~€20 Taxi",
+      logisticsSummary: "Ryanair Flight FR2242 lands at BLQ Airport at 21:05. Exit terminal directly to the official taxi rank for an 8-min cab (~€20) to Hotel Del Borgo (Via Marco Emilio Lepido 195). Alternatively, Marconi Express monorail runs every 7 mins directly to Bologna Centrale (€11/pax).",
       timedItinerary: [
-        "2:00 PM — Check into Hotel Del Borgo & freshen up.",
-        "3:15 PM — Walk to Piazza Maggiore & Fountain of Neptune.",
-        "4:15 PM — Climb Torre degli Asinelli (498 wooden steps for teens).",
-        "5:30 PM — Explore Archiginnasio & Anatomical Theatre.",
-        "7:00 PM — Authentic Bolognese dinner in Quadrilatero market district."
+        "05:45 PM — Ryanair Flight FR2242 departs Manchester Airport (MAN) Terminal 3 (PNR: WTUR5S).",
+        "09:05 PM — Land at Bologna Guglielmo Marconi Airport (BLQ). Collect checked bags.",
+        "09:30 PM — Take 8-min official taxi from BLQ rank directly to Hotel Del Borgo.",
+        "10:00 PM — Hotel check-in (Booking #5007213355), drop bags, & late-night aperitivo under the porticoes."
       ],
       diningSpots: [
         { name: "Osteria dell'Orsa (Via Mentana, 1)", type: "Dinner", note: "Legendary local tavern famous for authentic Tagliatelle al Ragù (true Bolognese) & Tortellini in Brodo." },
-        { name: "Cremeria Santo Stefano", type: "Gelato", note: "Artisanal gelato under the porticoes; try Crema di Sette Chiese." }
+        { name: "Cremeria Santo Stefano", type: "Gelato", note: "Artisanal gelato under the historic porticoes; try Crema di Sette Chiese." }
       ]
     }
   },
@@ -46,25 +45,25 @@ const cruiseData = [
     lng: 12.2818,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Norwegian_Viva_in_Venice.jpg',
     highlight: 'Hotel Del Borgo ➔ Ravenna Port (12:30-13:30 Embarkation Window)',
-    adultsActivities: 'Breakfast at Hotel Del Borgo, 10:15 taxi to Bologna Centrale, 11:06 train to Ravenna, check-in & welcome champagne on Norwegian Viva.',
-    kidsActivities: 'First glimpse of 143,000-ton Norwegian Viva, explore Speedway racetrack & pool deck!',
-    transferInfo: 'Option A (Train): 10:15 Taxi to Bologna Centrale ➔ 11:06 Trenitalia Regional train (53m, arr 11:59 Ravenna) ➔ 12:05 Taxi/Shuttle to Porto Corsini ➔ 12:30 Embarkation. Option B (Direct Transfer): 11:00 Taxi from Hotel Del Borgo directly to Ravenna Terminal (A14 Highway, 1h10m).',
+    adultsActivities: 'Breakfast at Hotel Del Borgo, 10:15 taxi to Bologna Centrale, 11:06 Trenitalia train to Ravenna, check-in & welcome champagne on Norwegian Viva.',
+    kidsActivities: 'First glimpse of 143,000-ton Norwegian Viva, explore Speedway go-kart racetrack & pool deck!',
+    transferInfo: 'Option A (Train): 10:15 Taxi to Bologna Centrale ➔ 11:06 Trenitalia Regional train #3957 (53m, arr 11:59 Ravenna, €8/pax) ➔ 12:05 Taxi (~€25) to Porto Corsini ➔ 12:30 Embarkation. Option B (Direct Transfer): 11:00 Direct taxi from Hotel Del Borgo to Ravenna Terminal (A14 Highway, 1h10m).',
     liveTrainLink: 'https://www.viaggiatreno.it/',
     tags: ['Hotel Del Borgo', '11:06 Train', '12:30 Embarkation', 'Ravenna Port'],
     deepDive: {
-      verdict: "DIY Train + Taxi",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€35 total (4 pax)",
-      costNcl: "$300+ (NCL Bus Transfer)",
-      nclVsDiySummary: "Do not pay $75+/person for an NCL shuttle from Bologna. Trenitalia regional trains take 53 minutes and cost €8/person. Take a short taxi from Ravenna station to Porto Corsini.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY Train & Port Taxi",
+      badgeClass: "badge-success",
+      estCost: "€35 total for family of 4",
+      logisticsSummary: "Take a 10-min taxi (€10) from Hotel Del Borgo to Bologna Centrale. Board Trenitalia Regional Train #3957 (53 mins, €8/pax, departs 11:06 AM, arrives 11:59 AM in Ravenna). From Ravenna station rank, take a short 15-min taxi (~€25 flat rate) straight to Porto Corsini cruise terminal.",
       timedItinerary: [
-        "09:30 AM — Check out of Bologna hotel; take regional train to Ravenna Station (53 mins).",
-        "10:45 AM — Store luggage at Ravenna Station depot (€5/bag).",
-        "11:00 AM — Visit early Christian mosaics at Basilica di San Vitale & Galla Placidia.",
-        "01:30 PM — Romagna Piadina lunch in Ravenna historic center.",
-        "02:45 PM — Taxi (~€25 total) from Ravenna to Porto Corsini cruise terminal.",
-        "03:30 PM — Check-in, security & board Norwegian Viva!",
-        "05:00 PM — All-Aboard & Sailaway from Venice (Ravenna)."
+        "09:30 AM — Relaxed breakfast at Hotel Del Borgo & check-out.",
+        "10:15 AM — Take taxi from hotel to Bologna Centrale station.",
+        "11:06 AM — Board Trenitalia Regional Train #3957 directly to Ravenna Station (53 mins, arr 11:59 AM).",
+        "12:05 PM — Take 15-min taxi from Ravenna Station rank to Porto Corsini Cruise Terminal.",
+        "12:30 PM — Check-in window, security & board Norwegian Viva!",
+        "02:00 PM — Welcome lunch at Indulge Food Hall & explore Viva Speedway.",
+        "05:00 PM — All-Aboard & Sailaway from Venice (Ravenna) into the Adriatic Sea."
       ],
       diningSpots: [
         { name: "Ca' de Ven (Via Corrado Ricci, 24)", type: "Lunch", note: "15th-century wine cellar famous for warm Romagna Piadina flatbreads with prosciutto di Parma." },
@@ -88,24 +87,24 @@ const cruiseData = [
     lng: 18.0944,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Dubrovnik_Old_Town_from_City_Walls.jpg',
     highlight: 'Ancient City Walls & Los Lobos Specialty Dining (19:00)',
-    adultsActivities: 'Walk historic ramparts, Adriatic views, ending with sunset cocktails & dinner at Los Lobos (19:00).',
+    adultsActivities: 'Walk historic ramparts, Adriatic sea views, ending with sunset cocktails & dinner at Los Lobos (19:00).',
     kidsActivities: 'Guided sea kayaking around Lokrum Island and Betina Cave, plus Dubrovnik Cable Car ride.',
-    transferInfo: 'Tender/Port shuttle into Old Town Pile Gate. Ship docked 10:00 AM – 11:59 PM.',
+    transferInfo: 'Ship docks at Gruž Port (3 km from Old Town). Take official taxi rank cab (€15 flat rate, 10 mins) OR local Libertas bus #1A / #1B (€2/pax) directly to Old Town Pile Gate. Ship docked 10:00 AM – 11:59 PM.',
     tags: ['City Walls', 'Los Lobos 19:00', 'Sea Kayaking', 'Cable Car', 'Game of Thrones'],
     deepDive: {
-      verdict: "DIY (Highly Recommended)",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€80–120 total (4 pax)",
-      costNcl: "$500–650 (Walking Tour)",
-      nclVsDiySummary: "Dubrovnik's Old Town is 10 mins by taxi (€15) from Gruž Port. NCL walking tours move slowly in 40-person crowds. DIY lets you start early, walk the City Walls at your own pace, and return in plenty of time for Los Lobos (19:00).",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY Taxi / Local Bus #1A",
+      badgeClass: "badge-success",
+      estCost: "€40–80 total (4 pax)",
+      logisticsSummary: "Ship docks at Gruž Port. Walk out of terminal directly to the official taxi rank for a 10-min drive (€15 flat rate) to Old Town Pile Gate, or take Libertas Bus #1A / #1B (€2/pax). Buy Medieval City Walls tickets (€35/adult, €15/teen) right at Pile Gate.",
       timedItinerary: [
         "10:00 AM — Ship docks at Gruž Port.",
-        "10:30 AM — Take local bus #1a/1b or taxi (€15) directly to Old Town Pile Gate.",
-        "11:00 AM — Walk the Medieval City Walls (~1.5–2 hours).",
-        "01:00 PM — Authentic seafood lunch in Old Town alleyways.",
-        "02:30 PM — Guided Family Sea Kayaking tour to Betina Cave OR Dubrovnik Cable Car to Mount Srđ.",
-        "05:00 PM — Stroll Stradun promenade & return by taxi to Gruž Port.",
-        "07:00 PM — Specialty Dining: Dinner at Los Lobos (Booked 19:00).",
+        "10:20 AM — Take taxi (€15 flat rate) or Libertas Bus #1A directly to Old Town Pile Gate.",
+        "10:45 AM — Walk the Medieval City Walls before peak afternoon heat (1.5–2 hours, panoramic views).",
+        "01:00 PM — Seafood street food lunch at Barba (octopus burgers & fried calamari cones).",
+        "02:30 PM — Option A: Guided Family Sea Kayaking tour to Lokrum Island & Betina Cave • Option B: Dubrovnik Cable Car (€27/pax) to Mount Srđ.",
+        "05:30 PM — Stroll Stradun limestone promenade, craft gelato at Peppino's, taxi back to Gruž Port.",
+        "07:00 PM — Specialty Dining: Dinner at Los Lobos onboard Viva (Booked 19:00).",
         "11:30 PM — All-Aboard onboard Viva (Ship sails 11:59 PM)."
       ],
       diningSpots: [
@@ -127,20 +126,21 @@ const cruiseData = [
     highlight: 'Stari Bar Fortress Ruins & Lake Skadar Boat Excursion',
     adultsActivities: 'Explore Stari Bar ancient cliffside fortress and 2,000-year-old olive trees.',
     kidsActivities: 'Lake Skadar boat ride through lily pads with freshwater swim stops, or King’s Beach swim.',
-    transferInfo: 'Local taxi or pre-booked tour to Stari Bar / Lake Skadar. Ship docked 08:00 – 18:00.',
+    transferInfo: 'Ship docks at Port of Bar. Hire an official licensed port taxi driver at pier for a 5-hour private tour (~€60-80 total for family). Route: Stari Bar Fortress -> Stara Maslina -> Virpazar (Lake Skadar). Ship docked 08:00 – 18:00.',
     tags: ['Fortress', 'Lake Skadar', 'Nature', 'Montenegro'],
     deepDive: {
-      verdict: "DIY Port Taxi / Boat",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€40–110 total (4 pax)",
-      costNcl: "$440–550 (Coach Tour)",
-      nclVsDiySummary: "Official port taxis at Bar harbor offer private half-day tours to Stari Bar fortress ruins and Lake Skadar for a fraction of NCL's coach bus prices.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "Private Licensed Port Taxi Driver",
+      badgeClass: "badge-success",
+      estCost: "€60–80 total half-day hire",
+      logisticsSummary: "Disembark at Port of Bar and hire a licensed port taxi driver at the pier for a half-day custom tour (€60–80 total). Driver takes you to Stari Bar Fortress (15 mins), Stara Maslina Olive Tree (5 mins), and Virpazar on Lake Skadar (25 mins) for a private wooden boat cruise.",
       timedItinerary: [
+        "08:00 AM — Ship docks at Port of Bar.",
         "08:30 AM — Disembark ship; hire an official port taxi driver for half-day tour.",
         "09:00 AM — Explore Stari Bar cliffside fortress ruins & Ottoman cobblestone bazaar.",
         "10:30 AM — Visit Stara Maslina (2,400-year-old Roman olive tree).",
-        "11:30 AM — Authentic Balkan lunch in Stari Bar courtyard overlooking ruins.",
-        "01:30 PM — Option A: 2-hour wooden boat cruise on Lake Skadar • Option B: Swim at King's Beach.",
+        "11:30 AM — Authentic Balkan lunch at Konoba Bedem (ćevapi & Montenegrin cheese pies).",
+        "01:30 PM — Drive 25 mins to Virpazar for 2-hour wooden boat cruise on Lake Skadar (lily pads & pelicans) OR swim at King's Beach.",
         "04:30 PM — Return to Port of Bar terminal.",
         "05:15 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
       ],
@@ -163,20 +163,20 @@ const cruiseData = [
     highlight: 'Viva Speedway, Galaxy Pavilion VR & Ocean Boulevard Pools',
     adultsActivities: 'Indulge Food Hall, Mandara Spa, infinity pool relaxation on Ocean Boulevard.',
     kidsActivities: 'Race on the 3-level Viva Speedway, Galaxy Pavilion VR flight simulators, and The Drop 10-story free-fall dry slide!',
-    transferInfo: 'Full sea day navigating the Ionian Sea towards Salerno.',
+    transferInfo: 'Full sea day navigating the Ionian Sea and passing through the narrow Strait of Messina between Sicily & Calabria.',
     tags: ['Viva Speedway', 'Galaxy Pavilion', 'Sea Day', 'Starlink Wi-Fi'],
     deepDive: {
-      verdict: "Included Onboard",
-      verdictBadgeClass: "badge-info",
-      costDiy: "Included",
-      costNcl: "Included",
-      nclVsDiySummary: "Full day at sea navigating the Ionian Sea and the Strait of Messina between Sicily and Calabria. Make sure to book Viva Speedway go-karts on the NCL app early!",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "Full Ship Day Onboard",
+      badgeClass: "badge-info",
+      estCost: "Included Onboard",
+      logisticsSummary: "Full sea day navigating the Ionian Sea towards Salerno. Make sure to book electric go-kart race slots on the Viva Speedway via the NCL mobile app early in the morning!",
       timedItinerary: [
         "09:00 AM — Family breakfast on Ocean Boulevard open-air deck.",
         "10:30 AM — Race the 3-level electric Viva Speedway go-kart track!",
-        "12:30 PM — Global lunch at Indulge Food Hall (11 mini-restaurants).",
+        "12:30 PM — Global lunch at Indulge Food Hall (11 complimentary mini-restaurants).",
         "02:30 PM — Galaxy Pavilion VR flight simulators & 10-story free-fall dry slide (The Drop).",
-        "04:30 PM — Watch ship pass through the Strait of Messina narrows.",
+        "04:30 PM — Watch ship pass through the narrow Strait of Messina between Sicily and Italian mainland.",
         "07:30 PM — Family dinner & evening theater show."
       ],
       diningSpots: [
@@ -198,22 +198,23 @@ const cruiseData = [
     highlight: 'Coastal Speedboat Excursion to Positano & Amalfi',
     adultsActivities: 'Limoncello tasting, cliffside views, scenic lemon groves of Positano.',
     kidsActivities: 'Speedboat ride along the coastline with cave swim stops & authentic Positano gelato.',
-    transferInfo: 'Ferry/Speedboat from Salerno harbor directly to Positano. Ship docked 07:00 – 18:00.',
+    transferInfo: 'Ship docks in Salerno (Molo Manfredi). Walk 10 mins along seaside promenade to TravelMar Ferry Dock (Piazza della Concordia). Board TravelMar High-Speed Ferry (€15/pax, 70 mins) directly to Positano. Ship docked 07:00 – 18:00.',
     tags: ['Positano', 'Amalfi Coast', 'Speedboat', 'Cliff Swim'],
     deepDive: {
-      verdict: "DIY TravelMar Ferry",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€120–140 total (4 pax)",
-      costNcl: "$750–950 (Coach Bus)",
-      nclVsDiySummary: "Never take a bus or car on the Amalfi Coast road in August—coaches get trapped in 3-hour traffic jams! TravelMar high-speed ferries glide from Salerno harbor to Positano in 70 mins with zero traffic.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY TravelMar High-Speed Ferry",
+      badgeClass: "badge-success",
+      estCost: "€120 total (4 pax)",
+      logisticsSummary: "Never take a road bus or car on the Amalfi Coast road in August (3-hour traffic jams!). Walk 10 mins from Salerno Molo Manfredi pier to Piazza della Concordia ferry dock. Board TravelMar High-Speed Ferry (€15/pax, 70 mins, departs 08:40 AM) directly to Positano. Return via 25-min ferry to Amalfi Town.",
       timedItinerary: [
-        "07:45 AM — Disembark ship in Salerno; walk 10 mins to Piazza della Concordia ferry dock.",
-        "08:40 AM — Board TravelMar high-speed ferry directly to Positano (arrive 9:50 AM).",
+        "07:00 AM — Ship docks in Salerno (Molo Manfredi).",
+        "07:45 AM — Disembark ship; walk 10 mins along seaside promenade to Piazza della Concordia ferry dock.",
+        "08:40 AM — Board TravelMar high-speed ferry directly to Positano (arrive 09:50 AM, zero traffic!).",
         "10:00 AM — Swim at Spiaggia Grande beach in Positano & explore cliffside stairways.",
-        "12:30 PM — Beachfront lunch in Positano.",
-        "01:30 PM — Board 25-min ferry from Positano to Amalfi Town.",
-        "02:00 PM — Visit Amalfi Cathedral (Duomo di Sant'Andrea) & try lemon granita.",
-        "03:40 PM — Board ferry from Amalfi back to Salerno (arrive 4:15 PM).",
+        "12:30 PM — Beachfront lunch at Chez Black.",
+        "01:30 PM — Board 25-min TravelMar ferry from Positano to Amalfi Town.",
+        "02:00 PM — Visit Amalfi Cathedral (Duomo di Sant'Andrea) & try lemon granita at Pasticceria Pansa.",
+        "03:40 PM — Board ferry from Amalfi back to Salerno (arrive 04:15 PM).",
         "05:15 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
       ],
       diningSpots: [
@@ -243,15 +244,16 @@ const cruiseData = [
     transferInfo: 'Staying Onboard! Ship docked in Civitavecchia (06:45 – 18:00). Enjoy maximum ship amenities with zero traffic or long 2-hour transfers into Rome.',
     tags: ['Ship Day', 'Hasuki 17:00', 'Viva Speedway', 'Galaxy Pavilion', 'Onboard Relax'],
     deepDive: {
-      verdict: "Onboard Ship Day",
-      verdictBadgeClass: "badge-warning",
-      costDiy: "Included + Hasuki",
-      costNcl: "Included",
-      nclVsDiySummary: "Civitavecchia is 80 km from Rome (nearly 2 hours each way in highway traffic or train). Staying onboard allows full uncrowded access to Norwegian Viva's Speedway, pool deck, and spa, ending with Teppanyaki at Hasuki (17:00).",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "100% Onboard Ship Day",
+      badgeClass: "badge-warning",
+      estCost: "Included + Hasuki",
+      logisticsSummary: "Civitavecchia is 80 km from Rome (nearly 2 hours each way in highway traffic or train). Staying onboard allows full uncrowded access to Norwegian Viva's Speedway, pool deck, and Mandara Spa, ending with Teppanyaki at Hasuki (17:00).",
       timedItinerary: [
+        "06:45 AM — Ship docks in Civitavecchia.",
         "08:30 AM — Relaxed breakfast at Indulge Food Hall / Ocean Boulevard.",
         "10:00 AM — Electric go-kart racing on the 3-level Viva Speedway with zero queues!",
-        "12:00 PM — Pool deck & infinity pool relaxation while passengers are off ship in Rome.",
+        "12:00 PM — Pool deck & infinity pool relaxation while 80% of passengers are off ship in Rome.",
         "02:30 PM — VR Flight Simulators & dry slides at Galaxy Pavilion.",
         "05:00 PM — Specialty Dining: Teppanyaki Dinner at Hasuki (Booked 17:00).",
         "07:30 PM — Live evening entertainment & deck party."
@@ -280,25 +282,26 @@ const cruiseData = [
     highlight: 'Pisa & Florence Day Excursion & Onda by Scarpetta (18:30)',
     adultsActivities: 'Pisa photo-op, Florence Duomo stroll, returning for gourmet dinner at Onda by Scarpetta (18:30).',
     kidsActivities: 'Climb Giotto’s Campanile tower, forced-perspective photo holding up Pisa tower, Boboli Gardens.',
-    transferInfo: 'Regional train from Livorno Centrale to Pisa (15m) and Florence (1h). Ship docked 07:00 – 22:00 (Late Departure).',
+    transferInfo: 'Take Livorno Port Shuttle Bus (€5/pax) to Piazza Grande + Bus #1 to Livorno Centrale. Board Trenitalia train to Pisa Centrale (15 mins, €3/pax). Train from Pisa to Florence S.M. Novella (50 mins). Direct return train to Livorno Centrale (1h15m). Ship docked 07:00 – 22:00 (Late Departure).',
     tags: ['Leaning Tower', 'Onda Scarpetta 18:30', 'Florence', 'Duomo', 'Tuscany'],
     deepDive: {
-      verdict: "DIY Train (Pisa/Lucca)",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€60–80 total (4 pax)",
-      costNcl: "$800–1,100 (Coach Tour)",
-      nclVsDiySummary: "Livorno train station connects to Pisa Centrale in just 15 minutes (€3), and Florence in 1 hr 15 mins. Late 10:00 PM departure gives plenty of cushion to return for Onda by Scarpetta (18:30).",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY Trenitalia Train",
+      badgeClass: "badge-success",
+      estCost: "€60 total (4 pax)",
+      logisticsSummary: "Take Livorno Port Shuttle Bus (€5/pax) to Piazza Grande + Bus #1 to Livorno Centrale. Board Trenitalia train to Pisa Centrale (15 mins, €3/pax). After Pisa Tower photo-op, board train to Florence S.M. Novella (50 mins). Direct return train to Livorno Centrale (1h15m). Late 10:00 PM departure gives plenty of cushion to return for Onda by Scarpetta (18:30).",
       timedItinerary: [
-        "07:30 AM — Take Livorno port shuttle to Livorno Centrale station (€5).",
-        "08:10 AM — Train to Pisa Centrale (15 mins); walk to Leaning Tower.",
+        "07:00 AM — Ship docks at Livorno Porto Mediceo.",
+        "07:30 AM — Take Livorno port shuttle bus (€5/pax) to Livorno Centrale station.",
+        "08:12 AM — Regional train to Pisa Centrale (15 mins); walk 15 mins to Leaning Tower.",
         "08:30 AM — Leaning Tower of Pisa photo-op & Cathedral square.",
-        "10:30 AM — Train from Pisa to Florence S.M. Novella (50 mins).",
+        "10:30 AM — Regional train from Pisa to Florence S.M. Novella (50 mins).",
         "11:30 AM — Explore Duomo square, Piazza della Signoria, Ponte Vecchio & Mercato Nuovo.",
-        "01:30 PM — Tuscan Schiacciata sandwich lunch.",
-        "04:00 PM — Board direct return train from Florence to Livorno Centrale.",
-        "05:30 PM — Return to Norwegian Viva.",
+        "01:30 PM — Tuscan Schiacciata sandwiches at All'Antico Vinaio (Via dei Neri 65).",
+        "04:00 PM — Board direct return train from Florence S.M.N. to Livorno Centrale (1 hr 15 mins).",
+        "05:30 PM — Taxi/shuttle back to ship.",
         "06:30 PM — Specialty Dining: Dinner at Onda by Scarpetta (Booked 18:30).",
-        "09:15 PM — All-Aboard onboard Viva (Ship sails 10:00 PM)."
+        "09:15 PM — All-Aboard onboard Viva (Late departure ship sails 10:00 PM)."
       ],
       diningSpots: [
         { name: "Onda by Scarpetta (Deck 8 Mid)", type: "Specialty Dining (Booked 18:30)", note: "High-end Italian seafood specialty restaurant: iconic Scarpetta spaghetti, yellowtail crudo & braised short rib." },
@@ -319,21 +322,22 @@ const cruiseData = [
     highlight: 'Villefranche Bay Watersports & Nice Promenade Ride',
     adultsActivities: 'Stroll Old Town Nice (Vieux Nice), sample Socca chickpea crepes.',
     kidsActivities: 'Rent paddleboards/snorkels in Villefranche turquoise bay, or ride e-scooters along Promenade des Anglais.',
-    transferInfo: 'Tender into Villefranche-sur-Mer harbor. Ship anchored 07:00 – 16:30.',
+    transferInfo: 'Ship anchors in Villefranche-sur-Mer bay (Tender Port). Take early tender boat to Villefranche pier (15 mins). Walk 5 mins up to Gare de Villefranche-sur-Mer station and board TER regional train to Nice Ville (10 mins, €2.50/pax). Ship anchored 07:00 – 16:30.',
     tags: ['French Riviera', 'Villefranche', 'Paddleboarding', 'Nice'],
     deepDive: {
-      verdict: "100% DIY (Tender Port)",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€64 total (4 pax)",
-      costNcl: "$550–750 (Monaco Coach)",
-      nclVsDiySummary: "Tender boats drop you right in the center of Villefranche harbor. 10-minute train ride connects straight to Nice Ville station.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY TER Train & Tender",
+      badgeClass: "badge-success",
+      estCost: "€30 total (4 pax)",
+      logisticsSummary: "Ship anchors in Villefranche-sur-Mer bay (Tender Port). Take early tender boat to Villefranche pier (15 mins). Walk 5 mins up to Gare de Villefranche-sur-Mer station and board TER regional train to Nice Ville (10 mins, €2.50/pax). Return to Villefranche for afternoon bay swimming.",
       timedItinerary: [
-        "08:15 AM — Board early tender boat from Viva to harbor (15 mins).",
-        "09:00 AM — Board 10-min TER regional train to Nice Ville station.",
-        "09:30 AM — Walk Vieux Nice Old Town & Promenade des Anglais.",
-        "11:30 AM — Swim & paddleboard in turquoise Villefranche bay.",
-        "01:30 PM — Socca chickpea crepe lunch in Old Town.",
-        "03:00 PM — French macarons & gelato strolling back to tender pier.",
+        "07:00 AM — Ship anchors in Villefranche bay.",
+        "08:15 AM — Board early tender boat from Viva to Villefranche harbor (15 mins).",
+        "08:45 AM — Walk 5 mins to Gare de Villefranche station; board 10-min TER train to Nice Ville.",
+        "09:15 AM — Walk Vieux Nice (Old Town), Cours Saleya market & Promenade des Anglais.",
+        "11:30 AM — Take train back to Villefranche. Swim & paddleboard in turquoise Villefranche bay.",
+        "01:30 PM — Authentic Socca chickpea crepe lunch at Chez Pipo.",
+        "03:30 PM — Flower gelato at Amorino, walk to tender pier.",
         "03:45 PM — Last Tender / All-Aboard onboard Viva (Ship sails 4:30 PM)."
       ],
       diningSpots: [
@@ -360,20 +364,21 @@ const cruiseData = [
     highlight: 'Palma Old Town Exploration & Palomar Specialty Dining (18:00)',
     adultsActivities: 'Palma Cathedral (La Seu) visit, Old Town strolling, returning for dinner at Palomar (18:00).',
     kidsActivities: 'Bellver Castle circular fortress or Palma Bay beach swim before dinner.',
-    transferInfo: 'Port bus #1 or taxi from Estació Marítima into Old Town. Ship docked 13:00 – 21:00.',
+    transferInfo: 'Ship docks at Estació Marítima. Take official taxi rank cab (€12 flat rate) or EMT Bus #1 directly to Palma Cathedral (La Seu). Walk Old Town alleys, visit Mercat de l\'Olivar indoor market. Ship docked 13:00 – 21:00.',
     tags: ['Palma', 'Palomar 18:00', 'Majorca', 'Cathedral', 'La Seu'],
     deepDive: {
-      verdict: "DIY Bus / Walk",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€40–90 total (4 pax)",
-      costNcl: "$500–650 (Coach Tour)",
-      nclVsDiySummary: "Palma is an extremely walkable Spanish capital. Bus #1 or a 10-minute taxi (€12) takes you from the cruise pier directly to Palma Cathedral.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY Taxi / Bus #1",
+      badgeClass: "badge-success",
+      estCost: "€30 total (4 pax)",
+      logisticsSummary: "Ship docks at Estació Marítima. Walk out to taxi rank for a 10-min ride (€12 flat rate) or EMT Bus #1 directly to Palma Cathedral (La Seu). Walk Old Town alleys, visit Mercat de l'Olivar indoor market.",
       timedItinerary: [
-        "01:00 PM — Ship docks in Palma. Disembark & take taxi (€12) or bus #1 to Old Town.",
-        "01:30 PM — Tapas & sangria at Mercat de l'Olivar indoor market.",
-        "02:45 PM — Explore Palma Cathedral (La Seu) & Royal Palace of La Almudaina.",
-        "04:30 PM — Mallorcan Ensaimada pastry at Ca'n Joan de s'Aigo.",
-        "05:30 PM — Return to ship.",
+        "01:00 PM — Ship docks in Palma (Estació Marítima).",
+        "01:20 PM — Disembark & take taxi (€12) or EMT Bus #1 to Old Town.",
+        "01:45 PM — Tapas & sangria at Mercat de l'Olivar indoor market.",
+        "03:00 PM — Explore Palma Cathedral (La Seu) & Royal Palace of La Almudaina.",
+        "04:30 PM — Sample traditional Mallorcan Ensaimada pastry at Ca'n Joan de s'Aigo.",
+        "05:30 PM — Taxi back to cruise terminal.",
         "06:00 PM — Specialty Dining: Dinner at Palomar (Booked 18:00).",
         "08:15 PM — All-Aboard onboard Viva (Ship sails 9:00 PM)."
       ],
@@ -396,22 +401,22 @@ const cruiseData = [
     highlight: 'Cruise Disembarkation & Flight FR6597 to Manchester',
     adultsActivities: 'Disembark Norwegian Viva at 08:30 AM, transfer to Barcelona Airport (BCN).',
     kidsActivities: 'Souvenir shopping at BCN airport before flight home.',
-    transferInfo: '08:30 Disembark ➔ 09:30 Taxi/Aerobús to BCN Terminal 2 ➔ 10:35 Check-in ➔ 12:35 Flight FR6597 (PNR: F8YGQR) ➔ 14:10 Arrive Manchester (MAN).',
+    transferInfo: '08:30 Disembark ➔ 09:15 Official Taxi rank (~€35-40, 25 mins) to BCN Airport Terminal 2 ➔ 10:35 Check-in ➔ 12:35 Flight FR6597 (PNR: F8YGQR) ➔ 14:10 Arrive Manchester (MAN).',
     tags: ['Disembarkation', 'Barcelona', 'Inbound Flight', 'Ryanair FR6597'],
     deepDive: {
-      verdict: "100% DIY (Disembarkation)",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€40 total (Taxis)",
-      costNcl: "— (Inbound Flight)",
-      nclVsDiySummary: "Disembark Norwegian Viva at 8:30 AM. Taxis outside the Barcelona cruise terminal take you directly to Barcelona Airport (BCN) Terminal 2 for flight FR6597.",
+      logisticsTitle: "DIY Master Execution Strategy",
+      logisticsMode: "DIY Airport Taxi / Aerobús",
+      badgeClass: "badge-success",
+      estCost: "€40 total (Taxi)",
+      logisticsSummary: "Disembark Norwegian Viva at 08:30 AM at Port of Barcelona (Moll Adossat). Take official taxi rank cab directly to Barcelona Airport (BCN) Terminal 2 (~€35-40, 25 mins) for Ryanair Flight FR6597.",
       timedItinerary: [
         "06:30 AM — Ship docks at Port of Barcelona.",
         "07:30 AM — Family breakfast onboard Norwegian Viva.",
         "08:30 AM — Disembark ship & collect checked luggage in terminal.",
         "09:15 AM — Take official taxi (~€35–40) or Aerobús to BCN Airport Terminal 2.",
         "10:35 AM — Check-in & security for Ryanair flight FR6597.",
-        "12:35 PM — Flight FR6597 departs Barcelona for Manchester (MAN).",
-        "02:10 PM — Land in Manchester, UK!"
+        "12:35 PM — Flight FR6597 departs Barcelona for Manchester (MAN) (PNR: F8YGQR).",
+        "02:10 PM — Land at Manchester Airport (MAN) Terminal 3!"
       ],
       diningSpots: [
         { name: "Cervecería Catalana (Carrer de Mallorca, 236)", type: "Tapas", note: "Incredible Spanish tapas: honey-drizzled fried eggplant, garlic prawns & beef tenderloin skewers." },
@@ -810,18 +815,9 @@ async function selectDay(index) {
         <div class="activity-section">
           <h4><i class="fa-solid fa-child-reaching"></i> Teen & Kids Activities (14M & 11F)</h4>
           <p style="color: var(--text-muted); font-size: 13px;">${data.kidsActivities}</p>
-        </div>
-
-        <div class="activity-section">
-          <h4><i class="fa-solid fa-route"></i> Transfer & Schedule Timeline</h4>
-          <p style="color: var(--text-muted); font-size: 13px;">
-            <strong>Timing:</strong> Arrive ${data.arrive} | Depart ${data.depart}<br>
-            ${data.transferInfo}
-          </p>
-          ${liveTrainBtn}
           <div style="margin-top: 12px;">
             <button onclick="openPortDeepDive(${index})" class="btn btn-sm btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary); font-weight: 600; padding: 10px;">
-              <i class="fa-solid fa-book-open"></i> Open Port Deep-Dive (DIY vs. NCL & Dining)
+              <i class="fa-solid fa-book-open"></i> Open Port Deep-Dive (DIY Logistics & Dining)
             </button>
           </div>
         </div>
