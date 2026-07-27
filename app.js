@@ -7,6 +7,7 @@ const cruiseData = [
     port: 'Manchester ➔ Bologna (Hotel Del Borgo)',
     arrive: '9:05 PM (BLQ)',
     depart: '5:45 PM (MAN)',
+    specialtyDining: null,
     lat: 44.5167,
     lng: 11.2721,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Bologna_Piazza_Maggiore.jpg',
@@ -40,6 +41,7 @@ const cruiseData = [
     port: 'Bologna ➔ Ravenna Cruise Port',
     arrive: '12:30 PM Check-in',
     depart: '5:00 PM Sailing',
+    specialtyDining: null,
     lat: 44.4949,
     lng: 12.2818,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Norwegian_Viva_in_Venice.jpg',
@@ -62,7 +64,7 @@ const cruiseData = [
         "01:30 PM — Romagna Piadina lunch in Ravenna historic center.",
         "02:45 PM — Taxi (~€25 total) from Ravenna to Porto Corsini cruise terminal.",
         "03:30 PM — Check-in, security & board Norwegian Viva!",
-        "08:00 PM — Ship sails for the Adriatic Sea."
+        "05:00 PM — All-Aboard & Sailaway from Venice (Ravenna)."
       ],
       diningSpots: [
         { name: "Ca' de Ven (Via Corrado Ricci, 24)", type: "Lunch", note: "15th-century wine cellar famous for warm Romagna Piadina flatbreads with prosciutto di Parma." },
@@ -76,33 +78,39 @@ const cruiseData = [
     port: 'Dubrovnik, Croatia',
     arrive: '10:00 AM',
     depart: '11:59 PM',
+    specialtyDining: {
+      restaurant: 'Los Lobos',
+      time: '7:00 PM (19:00)',
+      cuisine: 'Premium Mexican & Tequila Bar',
+      icon: 'fa-pepper-hot'
+    },
     lat: 42.6507,
     lng: 18.0944,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Dubrovnik_Old_Town_from_City_Walls.jpg',
-    highlight: 'Ancient City Walls Walk & Lokrum Island Sea Kayaking',
-    adultsActivities: 'Walk the historic ramparts, drink wine overlooking the Adriatic coast.',
-    kidsActivities: 'Guided sea kayaking around Lokrum Island and Betina Cave, plus Dubrovnik Cable Car ride for sunset.',
-    transferInfo: 'Tender/Port shuttle into Old Town Pile Gate.',
-    tags: ['City Walls', 'Sea Kayaking', 'Cable Car', 'Game of Thrones'],
+    highlight: 'Ancient City Walls & Los Lobos Specialty Dining (19:00)',
+    adultsActivities: 'Walk historic ramparts, Adriatic views, ending with sunset cocktails & dinner at Los Lobos (19:00).',
+    kidsActivities: 'Guided sea kayaking around Lokrum Island and Betina Cave, plus Dubrovnik Cable Car ride.',
+    transferInfo: 'Tender/Port shuttle into Old Town Pile Gate. Ship docked 10:00 AM – 11:59 PM.',
+    tags: ['City Walls', 'Los Lobos 19:00', 'Sea Kayaking', 'Cable Car', 'Game of Thrones'],
     deepDive: {
       verdict: "DIY (Highly Recommended)",
       verdictBadgeClass: "badge-success",
       costDiy: "€80–120 total (4 pax)",
       costNcl: "$500–650 (Walking Tour)",
-      nclVsDiySummary: "Dubrovnik's Old Town is 10 mins by taxi (€15) from Gruž Port. NCL walking tours move slowly in 40-person crowds. DIY lets you start early, walk the City Walls at your own pace, and book the sea kayaking tour for the kids without stress.",
+      nclVsDiySummary: "Dubrovnik's Old Town is 10 mins by taxi (€15) from Gruž Port. NCL walking tours move slowly in 40-person crowds. DIY lets you start early, walk the City Walls at your own pace, and return in plenty of time for Los Lobos (19:00).",
       timedItinerary: [
-        "11:30 AM — Ship docks at Gruž Port.",
-        "11:50 AM — Take local bus #1a/1b or taxi (€15) directly to Old Town Pile Gate.",
-        "12:15 PM — Walk the Medieval City Walls before afternoon heat (~1.5–2 hours).",
-        "02:15 PM — Authentic seafood lunch in Old Town alleyways.",
-        "03:30 PM — Guided Family Sea Kayaking tour to Betina Cave OR Dubrovnik Cable Car to Mount Srđ.",
-        "05:45 PM — Stroll Stradun promenade & grab craft gelato.",
-        "06:30 PM — Take taxi back to Gruž Port.",
-        "07:00 PM — All-Aboard onboard Viva (Ship sails 8:00 PM)."
+        "10:00 AM — Ship docks at Gruž Port.",
+        "10:30 AM — Take local bus #1a/1b or taxi (€15) directly to Old Town Pile Gate.",
+        "11:00 AM — Walk the Medieval City Walls (~1.5–2 hours).",
+        "01:00 PM — Authentic seafood lunch in Old Town alleyways.",
+        "02:30 PM — Guided Family Sea Kayaking tour to Betina Cave OR Dubrovnik Cable Car to Mount Srđ.",
+        "05:00 PM — Stroll Stradun promenade & return by taxi to Gruž Port.",
+        "07:00 PM — Specialty Dining: Dinner at Los Lobos (Booked 19:00).",
+        "11:30 PM — All-Aboard onboard Viva (Ship sails 11:59 PM)."
       ],
       diningSpots: [
-        { name: "Barba (Boškovićeva ul. 5)", type: "Lunch", note: "Hip seafood street food: famous octopus burgers, fried calamari cones, and shrimp tempura." },
-        { name: "Peppino's Gelato Artigianale", type: "Gelato", note: "Premium craft gelato in waffle rolls; must-try Dalmatian Fig & Mozart flavors." }
+        { name: "Los Lobos (Deck 8 Aft)", type: "Specialty Dining (Booked 19:00)", note: "Premium handcrafted Mexican: table-side fresh guacamole, carne asada, and artisanal margaritas." },
+        { name: "Barba (Boškovićeva ul. 5)", type: "Lunch", note: "Hip seafood street food: famous octopus burgers & fried calamari cones." }
       ]
     }
   },
@@ -112,13 +120,14 @@ const cruiseData = [
     port: 'Bar, Montenegro',
     arrive: '8:00 AM',
     depart: '6:00 PM',
+    specialtyDining: null,
     lat: 42.0931,
     lng: 19.0989,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Stari_Bar_fortress_2016.jpg',
     highlight: 'Stari Bar Fortress Ruins & Lake Skadar Boat Excursion',
     adultsActivities: 'Explore Stari Bar ancient cliffside fortress and 2,000-year-old olive trees.',
     kidsActivities: 'Lake Skadar boat ride through lily pads with freshwater swim stops, or King’s Beach swim.',
-    transferInfo: 'Local taxi or pre-booked tour to Stari Bar / Lake Skadar.',
+    transferInfo: 'Local taxi or pre-booked tour to Stari Bar / Lake Skadar. Ship docked 08:00 – 18:00.',
     tags: ['Fortress', 'Lake Skadar', 'Nature', 'Montenegro'],
     deepDive: {
       verdict: "DIY Port Taxi / Boat",
@@ -133,7 +142,7 @@ const cruiseData = [
         "11:30 AM — Authentic Balkan lunch in Stari Bar courtyard overlooking ruins.",
         "01:30 PM — Option A: 2-hour wooden boat cruise on Lake Skadar • Option B: Swim at King's Beach.",
         "04:30 PM — Return to Port of Bar terminal.",
-        "05:00 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
+        "05:15 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
       ],
       diningSpots: [
         { name: "Konoba Bedem (Stari Bar Bazaar)", type: "Lunch", note: "Traditional Balkan grilled meats (Ćevapi), stuffed vine leaves, and Montenegrin cheese pies." },
@@ -147,13 +156,14 @@ const cruiseData = [
     port: 'At Sea (Mediterranean)',
     arrive: '—',
     depart: '—',
+    specialtyDining: null,
     lat: 38.1000,
     lng: 17.5000,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Norwegian_Viva_in_Venice_Lagoon.jpg',
     highlight: 'Viva Speedway, Galaxy Pavilion VR & Ocean Boulevard Pools',
     adultsActivities: 'Indulge Food Hall, Mandara Spa, infinity pool relaxation on Ocean Boulevard.',
     kidsActivities: 'Race on the 3-level Viva Speedway, Galaxy Pavilion VR flight simulators, and The Drop 10-story free-fall dry slide!',
-    transferInfo: 'Enjoy full ship amenities onboard Norwegian Viva.',
+    transferInfo: 'Full sea day navigating the Ionian Sea towards Salerno.',
     tags: ['Viva Speedway', 'Galaxy Pavilion', 'Sea Day', 'Starlink Wi-Fi'],
     deepDive: {
       verdict: "Included Onboard",
@@ -181,13 +191,14 @@ const cruiseData = [
     port: 'Amalfi Coast (Salerno), Italy',
     arrive: '7:00 AM',
     depart: '6:00 PM',
+    specialtyDining: null,
     lat: 40.6780,
     lng: 14.7650,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Positano_from_the_sea.jpg',
     highlight: 'Coastal Speedboat Excursion to Positano & Amalfi',
     adultsActivities: 'Limoncello tasting, cliffside views, scenic lemon groves of Positano.',
     kidsActivities: 'Speedboat ride along the coastline with cave swim stops & authentic Positano gelato.',
-    transferInfo: 'Ferry/Speedboat from Salerno harbor directly to Positano.',
+    transferInfo: 'Ferry/Speedboat from Salerno harbor directly to Positano. Ship docked 07:00 – 18:00.',
     tags: ['Positano', 'Amalfi Coast', 'Speedboat', 'Cliff Swim'],
     deepDive: {
       verdict: "DIY TravelMar Ferry",
@@ -203,7 +214,7 @@ const cruiseData = [
         "01:30 PM — Board 25-min ferry from Positano to Amalfi Town.",
         "02:00 PM — Visit Amalfi Cathedral (Duomo di Sant'Andrea) & try lemon granita.",
         "03:40 PM — Board ferry from Amalfi back to Salerno (arrive 4:15 PM).",
-        "04:45 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
+        "05:15 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
       ],
       diningSpots: [
         { name: "Chez Black (Positano Beachfront)", type: "Lunch", note: "Legendary restaurant with wood-fired pizzas, heart-shaped kids pizza & Spaghetti alle Vongole." },
@@ -217,33 +228,37 @@ const cruiseData = [
     port: 'Civitavecchia (Rome), Italy',
     arrive: '6:45 AM',
     depart: '6:00 PM',
+    specialtyDining: {
+      restaurant: 'Hasuki',
+      time: '5:00 PM (17:00)',
+      cuisine: 'Japanese Teppanyaki Grill Show',
+      icon: 'fa-utensils'
+    },
     lat: 41.8902,
     lng: 12.4922,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Colosseo_2020.jpg',
-    highlight: 'Civitavecchia Express to Rome: Colosseum & Trevi Fountain',
-    adultsActivities: 'Roman Forum, Pantheon exploration, authentic Roman carbonara.',
-    kidsActivities: 'Skip-the-line Colosseum Gladiator tour & coin toss into Trevi Fountain.',
-    transferInfo: 'Civitavecchia Express train (50 mins) into Rome San Pietro/Termini.',
-    tags: ['Rome', 'Colosseum', 'Express Train', 'Trevi Fountain'],
+    highlight: 'Ship Day Onboard Norwegian Viva & Hasuki Teppanyaki (17:00)',
+    adultsActivities: 'Staying onboard! Enjoy peaceful Ocean Boulevard, Mandara Spa, infinity pools with zero crowds, ending with Teppanyaki dinner at Hasuki (17:00).',
+    kidsActivities: 'Uncrowded Viva Speedway go-karts, Galaxy Pavilion VR flight simulators, dry slides & interactive chef tricks at Hasuki!',
+    transferInfo: 'Staying Onboard! Ship docked in Civitavecchia (06:45 – 18:00). Enjoy maximum ship amenities with zero traffic or long 2-hour transfers into Rome.',
+    tags: ['Ship Day', 'Hasuki 17:00', 'Viva Speedway', 'Galaxy Pavilion', 'Onboard Relax'],
     deepDive: {
-      verdict: "DIY Express Train",
-      verdictBadgeClass: "badge-success",
-      costDiy: "€48–70 total (4 pax)",
-      costNcl: "$400–1,000+ (Coach / Tour)",
-      nclVsDiySummary: "Civitavecchia is 80 km from Rome. NCL coach transfers take nearly 2 hours in highway traffic. The Civitavecchia Express train takes 50–60 mins directly into Roma San Pietro or Termini.",
+      verdict: "Onboard Ship Day",
+      verdictBadgeClass: "badge-warning",
+      costDiy: "Included + Hasuki",
+      costNcl: "Included",
+      nclVsDiySummary: "Civitavecchia is 80 km from Rome (nearly 2 hours each way in highway traffic or train). Staying onboard allows full uncrowded access to Norwegian Viva's Speedway, pool deck, and spa, ending with Teppanyaki at Hasuki (17:00).",
       timedItinerary: [
-        "07:15 AM — Take port shuttle bus from ship to Civitavecchia train station (€6).",
-        "08:00 AM — Board Civitavecchia Express or regional train to Rome (50–60 mins).",
-        "09:15 AM — Skip-the-line tour of Colosseum & Roman Forum (pre-book 30 days prior!).",
-        "12:00 PM — Walk to Trevi Fountain, Pantheon & Piazza Navona.",
-        "01:30 PM — Crispy Roman slab pizza lunch near Pantheon.",
-        "03:00 PM — Walk to Roma San Pietro / Termini station.",
-        "03:15 PM — Board return train to Civitavecchia (CRITICAL: leave by 3:15 PM!).",
-        "04:50 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
+        "08:30 AM — Relaxed breakfast at Indulge Food Hall / Ocean Boulevard.",
+        "10:00 AM — Electric go-kart racing on the 3-level Viva Speedway with zero queues!",
+        "12:00 PM — Pool deck & infinity pool relaxation while passengers are off ship in Rome.",
+        "02:30 PM — VR Flight Simulators & dry slides at Galaxy Pavilion.",
+        "05:00 PM — Specialty Dining: Teppanyaki Dinner at Hasuki (Booked 17:00).",
+        "07:30 PM — Live evening entertainment & deck party."
       ],
       diningSpots: [
-        { name: "Antico Forno Roscioli (Via dei Chiavari, 34)", type: "Lunch", note: "World-class Roman Pizza al Taglio (crispy slab pizza sold by weight: margherita & mortadella)." },
-        { name: "Frigidarium (Via del Governo Vecchio, 112)", type: "Gelato", note: "Artisanal gelato dipped in a free molten white or dark chocolate shell near Piazza Navona!" }
+        { name: "Hasuki (Deck 7 Aft)", type: "Specialty Dining (Booked 17:00)", note: "Interactive Japanese Teppanyaki grill show: flying egg tricks, flaming grills, hibachi steak & seafood." },
+        { name: "Indulge Food Hall", type: "Lunch Onboard", note: "Quiet uncrowded lunch while the ship is in port." }
       ]
     }
   },
@@ -253,20 +268,26 @@ const cruiseData = [
     port: 'Livorno (Florence/Pisa), Italy',
     arrive: '7:00 AM',
     depart: '10:00 PM',
+    specialtyDining: {
+      restaurant: 'Onda by Scarpetta',
+      time: '6:30 PM (18:30)',
+      cuisine: 'Upscale Italian Seafood & Signature Pasta',
+      icon: 'fa-wine-glass'
+    },
     lat: 43.7228,
     lng: 10.3966,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg',
-    highlight: 'Leaning Tower of Pisa Photo-Op & Florence Duomo Walk',
-    adultsActivities: 'Uffizi Gallery, Ponte Vecchio stroll, Tuscan wine tasting.',
+    highlight: 'Pisa & Florence Day Excursion & Onda by Scarpetta (18:30)',
+    adultsActivities: 'Pisa photo-op, Florence Duomo stroll, returning for gourmet dinner at Onda by Scarpetta (18:30).',
     kidsActivities: 'Climb Giotto’s Campanile tower, forced-perspective photo holding up Pisa tower, Boboli Gardens.',
-    transferInfo: 'Regional train from Livorno Centrale to Pisa (15 mins) and Florence (1 hr).',
-    tags: ['Leaning Tower', 'Florence', 'Duomo', 'Tuscany'],
+    transferInfo: 'Regional train from Livorno Centrale to Pisa (15m) and Florence (1h). Ship docked 07:00 – 22:00 (Late Departure).',
+    tags: ['Leaning Tower', 'Onda Scarpetta 18:30', 'Florence', 'Duomo', 'Tuscany'],
     deepDive: {
       verdict: "DIY Train (Pisa/Lucca)",
       verdictBadgeClass: "badge-success",
       costDiy: "€60–80 total (4 pax)",
       costNcl: "$800–1,100 (Coach Tour)",
-      nclVsDiySummary: "Livorno train station connects to Pisa Centrale in just 15 minutes (€3), and Florence in 1 hr 15 mins. Alternatively, visit Pisa Tower and rent bicycles to ride along the medieval walls of Lucca!",
+      nclVsDiySummary: "Livorno train station connects to Pisa Centrale in just 15 minutes (€3), and Florence in 1 hr 15 mins. Late 10:00 PM departure gives plenty of cushion to return for Onda by Scarpetta (18:30).",
       timedItinerary: [
         "07:30 AM — Take Livorno port shuttle to Livorno Centrale station (€5).",
         "08:10 AM — Train to Pisa Centrale (15 mins); walk to Leaning Tower.",
@@ -274,12 +295,14 @@ const cruiseData = [
         "10:30 AM — Train from Pisa to Florence S.M. Novella (50 mins).",
         "11:30 AM — Explore Duomo square, Piazza della Signoria, Ponte Vecchio & Mercato Nuovo.",
         "01:30 PM — Tuscan Schiacciata sandwich lunch.",
-        "04:30 PM — Board direct return train from Florence to Livorno Centrale.",
-        "05:55 PM — All-Aboard onboard Viva (Ship sails 7:00 PM)."
+        "04:00 PM — Board direct return train from Florence to Livorno Centrale.",
+        "05:30 PM — Return to Norwegian Viva.",
+        "06:30 PM — Specialty Dining: Dinner at Onda by Scarpetta (Booked 18:30).",
+        "09:15 PM — All-Aboard onboard Viva (Ship sails 10:00 PM)."
       ],
       diningSpots: [
-        { name: "All'Antico Vinaio (Via dei Neri, 65, Florence)", type: "Lunch", note: "World-famous warm Tuscan Schiacciata flatbread sandwiches stuffed with prosciutto & truffle cream." },
-        { name: "Gelateria Edoardo (Piazza del Duomo, Florence)", type: "Gelato", note: "Certified organic artisanal gelato served in handmade cinnamon waffle cones." }
+        { name: "Onda by Scarpetta (Deck 8 Mid)", type: "Specialty Dining (Booked 18:30)", note: "High-end Italian seafood specialty restaurant: iconic Scarpetta spaghetti, yellowtail crudo & braised short rib." },
+        { name: "All'Antico Vinaio (Florence)", type: "Lunch", note: "World-famous warm Tuscan Schiacciata flatbread sandwiches." }
       ]
     }
   },
@@ -289,31 +312,32 @@ const cruiseData = [
     port: 'Nice (Villefranche), France',
     arrive: '7:00 AM',
     depart: '4:30 PM',
+    specialtyDining: null,
     lat: 43.7042,
     lng: 7.3117,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Cannes_harbour.jpg',
     highlight: 'Villefranche Bay Watersports & Nice Promenade Ride',
     adultsActivities: 'Stroll Old Town Nice (Vieux Nice), sample Socca chickpea crepes.',
     kidsActivities: 'Rent paddleboards/snorkels in Villefranche turquoise bay, or ride e-scooters along Promenade des Anglais.',
-    transferInfo: 'Tender into Villefranche-sur-Mer harbor. 10-min train into central Nice.',
+    transferInfo: 'Tender into Villefranche-sur-Mer harbor. Ship anchored 07:00 – 16:30.',
     tags: ['French Riviera', 'Villefranche', 'Paddleboarding', 'Nice'],
     deepDive: {
       verdict: "100% DIY (Tender Port)",
       verdictBadgeClass: "badge-success",
       costDiy: "€64 total (4 pax)",
       costNcl: "$550–750 (Monaco Coach)",
-      nclVsDiySummary: "Tender boats drop you right in the center of Villefranche / Cannes harbor. Take the 15-minute public ferry to Île Sainte-Marguerite island to swim in turquoise coves and see Fort Royal.",
+      nclVsDiySummary: "Tender boats drop you right in the center of Villefranche harbor. 10-minute train ride connects straight to Nice Ville station.",
       timedItinerary: [
         "08:15 AM — Board early tender boat from Viva to harbor (15 mins).",
-        "09:00 AM — Board public ferry to Île Sainte-Marguerite (€16 roundtrip).",
-        "09:45 AM — Explore Fort Royal (Man in the Iron Mask prison cell) & scented eucalyptus trails.",
-        "11:30 AM — Swim & snorkel in crystal-clear turquoise island coves.",
-        "01:30 PM — Ferry back to harbor; walk La Croisette / Promenade.",
-        "03:00 PM — Old Town walk & French macarons / gelato.",
-        "04:30 PM — All-Aboard onboard Viva."
+        "09:00 AM — Board 10-min TER regional train to Nice Ville station.",
+        "09:30 AM — Walk Vieux Nice Old Town & Promenade des Anglais.",
+        "11:30 AM — Swim & paddleboard in turquoise Villefranche bay.",
+        "01:30 PM — Socca chickpea crepe lunch in Old Town.",
+        "03:00 PM — French macarons & gelato strolling back to tender pier.",
+        "03:45 PM — Last Tender / All-Aboard onboard Viva (Ship sails 4:30 PM)."
       ],
       diningSpots: [
-        { name: "Marché Forville (Cannes Old Town Market)", type: "Lunch", note: "Covered market: sample Socca chickpea crepes, artisan cheeses & fresh baguettes for a beach picnic." },
+        { name: "Chez Pipo (Nice Old Town)", type: "Lunch", note: "Authentic wood-fired Socca (crispy chickpea crepes) & Niçoise salad." },
         { name: "Amorino Gelato", type: "Dessert", note: "Flower-shaped gelato cones topped with a signature French macaron." }
       ]
     }
@@ -324,32 +348,38 @@ const cruiseData = [
     port: 'Palma de Majorca, Spain',
     arrive: '1:00 PM',
     depart: '9:00 PM',
+    specialtyDining: {
+      restaurant: 'Palomar',
+      time: '6:00 PM (18:00)',
+      cuisine: 'Mediterranean Seafood Specialty',
+      icon: 'fa-fish'
+    },
     lat: 39.5696,
     lng: 2.6502,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Cathedral_of_Palma_de_Mallorca.jpg',
-    highlight: 'Katmandu Theme Park or Palma Bay Beach & Kayaking',
-    adultsActivities: 'Palma Cathedral (La Seu) visit, tapas & sangria at Mercat de l’Olivar.',
-    kidsActivities: 'Upside-down splash park at Katmandu Park or Palma Aquarium deep ocean tunnel.',
-    transferInfo: 'Port bus #1 or taxi from Estació Marítima into Old Town.',
-    tags: ['Palma', 'Majorca', 'Katmandu Park', 'Cathedral'],
+    highlight: 'Palma Old Town Exploration & Palomar Specialty Dining (18:00)',
+    adultsActivities: 'Palma Cathedral (La Seu) visit, Old Town strolling, returning for dinner at Palomar (18:00).',
+    kidsActivities: 'Bellver Castle circular fortress or Palma Bay beach swim before dinner.',
+    transferInfo: 'Port bus #1 or taxi from Estació Marítima into Old Town. Ship docked 13:00 – 21:00.',
+    tags: ['Palma', 'Palomar 18:00', 'Majorca', 'Cathedral', 'La Seu'],
     deepDive: {
       verdict: "DIY Bus / Walk",
       verdictBadgeClass: "badge-success",
       costDiy: "€40–90 total (4 pax)",
       costNcl: "$500–650 (Coach Tour)",
-      nclVsDiySummary: "Palma is an extremely walkable Spanish capital. Bus #1 or a 10-minute taxi (€12) takes you from the cruise pier directly to Palma Cathedral and the historic Old Town.",
+      nclVsDiySummary: "Palma is an extremely walkable Spanish capital. Bus #1 or a 10-minute taxi (€12) takes you from the cruise pier directly to Palma Cathedral.",
       timedItinerary: [
-        "11:30 AM — Ship docks in Palma. Take taxi (€12) or bus #1 to Old Town.",
-        "12:00 PM — Explore Palma Cathedral (La Seu) & Royal Palace of La Almudaina.",
-        "01:30 PM — Tapas lunch at Mercat de l'Olivar indoor market.",
-        "03:00 PM — Visit Bellver Castle (circular 14th-century castle on pine hill with bay views).",
-        "05:00 PM — Sample traditional Mallorcan Ensaimada pastry & hot chocolate.",
-        "06:30 PM — Taxi back to cruise terminal.",
-        "07:00 PM — All-Aboard onboard Viva (Ship sails 8:00 PM)."
+        "01:00 PM — Ship docks in Palma. Disembark & take taxi (€12) or bus #1 to Old Town.",
+        "01:30 PM — Tapas & sangria at Mercat de l'Olivar indoor market.",
+        "02:45 PM — Explore Palma Cathedral (La Seu) & Royal Palace of La Almudaina.",
+        "04:30 PM — Mallorcan Ensaimada pastry at Ca'n Joan de s'Aigo.",
+        "05:30 PM — Return to ship.",
+        "06:00 PM — Specialty Dining: Dinner at Palomar (Booked 18:00).",
+        "08:15 PM — All-Aboard onboard Viva (Ship sails 9:00 PM)."
       ],
       diningSpots: [
-        { name: "Mercat de l'Olivar (Plaça de l'Olivar)", type: "Lunch", note: "Vibrant indoor market with fresh grilled prawns, Iberian ham (Jamón Ibérico), and Patatas Bravas." },
-        { name: "Ca'n Joan de s'Aigo (Carrer de Can Sanç, 10)", type: "Sweet Specialty", note: "300-year-old cafe: must order warm Ensaimada pastry with almond ice cream or thick hot chocolate!" }
+        { name: "Palomar (Deck 17 Mid)", type: "Specialty Dining (Booked 18:00)", note: "Exquisite Mediterranean seafood restaurant with panoramic ocean views: salt-crusted sea bass & grilled octopus." },
+        { name: "Mercat de l'Olivar", type: "Tapas Lunch", note: "Vibrant indoor market with fresh grilled prawns & Jamón Ibérico." }
       ]
     }
   },
@@ -359,6 +389,7 @@ const cruiseData = [
     port: 'Barcelona, Spain ➔ Manchester, UK',
     arrive: '6:30 AM',
     depart: '12:35 PM Flight',
+    specialtyDining: null,
     lat: 41.3851,
     lng: 2.1734,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Sagrada_Familia_01.jpg',
@@ -682,9 +713,16 @@ function renderDayList() {
     const btn = document.createElement('div');
     btn.className = `day-btn ${index === selectedDayIndex ? 'active' : ''}`;
     btn.onclick = () => selectDay(index);
+
+    const diningBadge = day.specialtyDining ? `
+      <span title="Specialty Dining Booked: ${day.specialtyDining.restaurant} @ ${day.specialtyDining.time}" style="font-size: 10px; background: rgba(255, 183, 3, 0.2); color: var(--sunset-gold); padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 6px;">
+        <i class="fa-solid ${day.specialtyDining.icon}"></i> ${day.specialtyDining.restaurant}
+      </span>
+    ` : '';
+
     btn.innerHTML = `
       <div>
-        <div class="day-title">${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port.split(',')[0]}</div>
+        <div class="day-title">${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port.split(',')[0]} ${diningBadge}</div>
         <div class="day-date">${day.date}</div>
       </div>
       <i class="fa-solid fa-chevron-right" style="font-size: 11px; opacity: 0.5;"></i>
@@ -702,6 +740,19 @@ async function selectDay(index) {
   const data = cruiseData[index];
   document.getElementById('current-port-badge').innerText = `Focus: ${data.port}`;
 
+  // Specialty Dining Banner if booked
+  const diningBanner = data.specialtyDining ? `
+    <div style="background: rgba(255, 183, 3, 0.12); border: 1.5px solid var(--sunset-gold); border-radius: 10px; padding: 10px 14px; margin-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+      <div>
+        <span style="color: var(--sunset-gold); font-weight: 700; font-size: 12.5px;">
+          <i class="fa-solid ${data.specialtyDining.icon}"></i> Specialty Dining Booked: ${data.specialtyDining.restaurant} (${data.specialtyDining.time})
+        </span>
+        <span style="display: block; color: var(--text-muted); font-size: 11.5px;">${data.specialtyDining.cuisine}</span>
+      </div>
+      <span class="badge badge-warning" style="font-size: 10px;">Reserved</span>
+    </div>
+  ` : '';
+
   // Update Dynamic Master Travel Command Center at the Top!
   const masterFocusBox = document.getElementById('dynamic-day-travel-box');
   if (masterFocusBox) {
@@ -712,6 +763,7 @@ async function selectDay(index) {
       <div class="travel-box-content">
         <strong>Arrive: ${data.arrive} | Depart: ${data.depart}</strong>
         <p style="margin-top: 4px; color: #ffffff; font-size: 13px;">${data.transferInfo}</p>
+        ${diningBanner}
         ${data.liveTrainLink ? `<a href="${data.liveTrainLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;"><i class="fa-solid fa-train"></i> Track 11:06 Train Live</a>` : ''}
       </div>
     `;
@@ -742,6 +794,13 @@ async function selectDay(index) {
         <p style="font-size: 15px; color: #ffffff; margin-bottom: 12px; font-weight: 500;">
           <i class="fa-solid fa-star" style="color: var(--accent);"></i> ${data.highlight}
         </p>
+
+        ${data.specialtyDining ? `
+          <div style="background: rgba(255, 183, 3, 0.1); border-left: 4px solid var(--sunset-gold); border-radius: 6px; padding: 12px; margin-bottom: 14px;">
+            <strong style="color: var(--sunset-gold); font-size: 13.5px;"><i class="fa-solid ${data.specialtyDining.icon}"></i> Confirmed Specialty Dining: ${data.specialtyDining.restaurant}</strong>
+            <p style="color: #ffffff; font-size: 12.5px; margin: 4px 0 0 0;">Reserved for <strong>${data.specialtyDining.time}</strong> • ${data.specialtyDining.cuisine}</p>
+          </div>
+        ` : ''}
 
         <div class="activity-section">
           <h4><i class="fa-solid fa-user-tie"></i> Adults Activity Highlights</h4>
@@ -1561,4 +1620,98 @@ function closePortDeepDive() {
 
 window.openPortDeepDive = openPortDeepDive;
 window.closePortDeepDive = closePortDeepDive;
+
+// Onboard Wi-Fi Router & Free at Sea Plus Strategy Modal
+function openWifiTechModal() {
+  let modalEl = document.getElementById('wifi-tech-modal');
+  if (!modalEl) {
+    modalEl = document.createElement('div');
+    modalEl.id = 'wifi-tech-modal';
+    modalEl.className = 'modal-overlay';
+    document.body.appendChild(modalEl);
+  }
+
+  modalEl.innerHTML = `
+    <div class="modal-card tech-card" style="max-width: 720px; max-height: 85vh; overflow-y: auto; padding: 24px; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+        <div>
+          <span class="badge badge-warning" style="font-size: 11px; margin-bottom: 4px;">NCL Technical Strategy</span>
+          <h2 style="font-size: 20px; color: var(--sunset-gold); margin: 4px 0 0 0;">
+            <i class="fa-solid fa-wifi"></i> Free at Sea Plus & GL.iNet Router Guide
+          </h2>
+        </div>
+        <button onclick="closeWifiTechModal()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
+      </div>
+
+      <!-- Section 1: Free at Sea Plus Package Evaluation -->
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--sunset-gold); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+        <h3 style="color: var(--sunset-gold); font-size: 16px; margin: 0 0 10px 0;">
+          <i class="fa-solid fa-calculator"></i> 1. Free at Sea Plus Package Evaluation (£359.91 / person)
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; font-size: 12.5px;">
+          <div style="background: rgba(255, 183, 3, 0.1); padding: 10px; border-radius: 8px; border-left: 3px solid var(--sunset-gold);">
+            <strong>Upgrading Adults (Guests 1 & 2):</strong><br>
+            Cost: <strong>£719.82 Total</strong> (2 pax)
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; border-left: 3px solid #10b981;">
+            <strong>Offsetting Value:</strong><br>
+            Wi-Fi (£423.66) + Gratuities (~£310) = <strong>£733.66</strong>
+          </div>
+        </div>
+
+        <p style="font-size: 13px; color: #e2e8f0; line-height: 1.5; margin: 0 0 10px 0;">
+          <strong>Financial Verdict:</strong> Upgrading Guests 1 & 2 to Free at Sea Plus actually <em>saves money</em> compared to paying for standalone adult Streaming Wi-Fi (£423.66) plus Guest 1 & 2 daily service charges (~£310 offset from your £558 total pre-pay). Plus you get unlimited Starbucks, bottled water & top-shelf liquors included!
+        </p>
+
+        <div style="background: rgba(239, 68, 68, 0.12); border-left: 4px solid #ef4444; border-radius: 6px; padding: 10px 12px; font-size: 12.5px; color: #fca5a5;">
+          <strong>Why NOT swap kids to Guests 1 & 2?</strong> NCL fine print states: <em>"Additional guests 21+ receive Premium Plus Beverage Package ONLY."</em> If adults become Guests 3 & 4, you lose adult Streaming Wi-Fi and adult gratuity coverage, forcing you to pay for Wi-Fi separately!
+        </div>
+      </div>
+
+      <!-- Section 2: GL.iNet Router Stealth Mode Guide -->
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #38bdf8; border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+        <h3 style="color: #38bdf8; font-size: 16px; margin: 0 0 10px 0;">
+          <i class="fa-solid fa-user-ninja"></i> 2. GL.iNet Travel Router "Stealth Mode" Technical Setup
+        </h3>
+
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #e2e8f0;">
+          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <strong style="color: #38bdf8;"><i class="fa-solid fa-clone"></i> Step 1: MAC Address Cloning (Essential)</strong><br>
+            Log your phone into NCL Wi-Fi portal. Go to GL.iNet Admin (<code>192.168.8.1</code>) ➔ <em>Network</em> ➔ <em>MAC Clone</em> ➔ Clone your phone's MAC. Disconnect phone Wi-Fi, then connect GL.iNet to NCL in <strong>Repeater Mode</strong>.
+          </li>
+          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <strong style="color: #38bdf8;"><i class="fa-solid fa-shield-halved"></i> Step 2: Fix IP TTL = 64 (Bypass DPI Router Detection)</strong><br>
+            By default, routers decrease packet TTL by 1, exposing downstream devices. In GL.iNet admin (v4+ firmware), go to <em>Firewall</em> ➔ <em>Custom Rules / TTL Override</em> and set outgoing TTL to fixed <strong>64</strong> (or run <code>iptables -t mangle -A POSTROUTING -j TTL --ttl-set 64</code>).
+          </li>
+          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <strong style="color: #38bdf8;"><i class="fa-solid fa-eye-slash"></i> Step 3: Hostname Masking & Cabin Discretion</strong><br>
+            Rename router hostname from <code>GL-AXT1800</code> to <code>iPhone</code> or <code>Android-Device</code>. Set Wi-Fi TX Power to <em>Medium/Low</em> so the signal stays inside Cabin #64139255.
+          </li>
+          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <strong style="color: #38bdf8;"><i class="fa-solid fa-gauge-high"></i> Step 4: Rate Limiting & Performance Realities</strong><br>
+            NCL Starlink rate-limits per MAC address (~5–10 Mbps). All connected family devices will share this bandwidth pipe, which is ample for messaging, browsing, emails, and social media.
+          </li>
+        </ul>
+      </div>
+
+      <div style="text-align: right; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+        <button onclick="closeWifiTechModal()" class="btn btn-primary" style="padding: 10px 24px; font-weight: 700;">
+          Close Technical Guide <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+    </div>
+  `;
+
+  modalEl.style.display = 'flex';
+}
+
+function closeWifiTechModal() {
+  const modalEl = document.getElementById('wifi-tech-modal');
+  if (modalEl) modalEl.style.display = 'none';
+}
+
+window.openWifiTechModal = openWifiTechModal;
+window.closeWifiTechModal = closeWifiTechModal;
+
 

@@ -23,10 +23,10 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=34">
+  <link rel="stylesheet" href="styles.css?v=36">
 
   <!-- Core App Logic (must load before Google Maps callback fires) -->
-  <script src="app.js?v=34"></script>
+  <script src="app.js?v=36"></script>
 
   <!-- Google Maps API (key restricted to GitHub Pages domain via Cloud Console) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap&loading=async" async defer></script>
@@ -159,6 +159,35 @@
           </div>
         </div>
 
+        <!-- 5. Confirmed Specialty Dining Reservations -->
+        <div class="travel-box" style="border-color: rgba(255, 183, 3, 0.4); background: rgba(255, 183, 3, 0.05);">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-utensils"></i> Confirmed Specialty Dining
+          </div>
+          <div class="travel-box-content">
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #ffffff; display: flex; flex-direction: column; gap: 5px;">
+              <li><i class="fa-solid fa-pepper-hot" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Tue 11 Aug (19:00):</strong> Los Lobos</li>
+              <li><i class="fa-solid fa-utensils" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Sat 15 Aug (17:00):</strong> Hasuki (Ship Day)</li>
+              <li><i class="fa-solid fa-wine-glass" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Sun 16 Aug (18:30):</strong> Onda by Scarpetta</li>
+              <li><i class="fa-solid fa-fish" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Tue 18 Aug (18:00):</strong> Palomar</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. Free at Sea Plus & Wi-Fi Router Strategy -->
+        <div class="travel-box" style="border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.05);">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-wifi"></i> FAS+ & Wi-Fi Router Tech Guide
+          </div>
+          <div class="travel-box-content">
+            <strong>GL.iNet Stealth Mode & Package Math</strong>
+            <p>MAC Clone + TTL=64 bypasses router block. FAS+ (£719) saves money vs Wi-Fi (£424) + Gratuities (~£310 offset).</p>
+            <button onclick="openWifiTechModal()" class="btn btn-sm btn-primary" style="margin-top: 8px; width: 100%;">
+              <i class="fa-solid fa-book-open"></i> Open Full Technical Guide
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -232,8 +261,12 @@
           <li>Disable Private MAC on phone.</li>
           <li>Log phone into NCL Wi-Fi portal.</li>
           <li>Clone phone MAC into GL.iNet router WAN.</li>
+          <li>Set TTL to 64 in Firewall settings.</li>
           <li>Set to Repeater mode — all family devices connected for £0!</li>
         </ol>
+        <button onclick="openWifiTechModal()" class="btn btn-sm btn-outline" style="width: 100%; margin-top: 8px; border-color: var(--sunset-gold); color: var(--sunset-gold); font-weight: 600;">
+          <i class="fa-solid fa-sliders"></i> Full Router & FAS+ Setup
+        </button>
       </div>
     </aside>
 
