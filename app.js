@@ -1957,7 +1957,7 @@ function openDeckPlanModal(defaultDeck = 'Deck 8') {
 
   modalEl.innerHTML = `
     <div class="modal-card tech-card" style="max-width: 840px; max-height: 88vh; overflow-y: auto; padding: 24px; position: relative;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
         <div>
           <span class="badge badge-warning" style="font-size: 11px; margin-bottom: 4px;">143,000 GT Prima Class Flagship</span>
           <h2 style="font-size: 22px; color: var(--sunset-gold); margin: 4px 0 0 0;">
@@ -1967,8 +1967,17 @@ function openDeckPlanModal(defaultDeck = 'Deck 8') {
         <button onclick="closeDeckPlanModal()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
       </div>
 
+      <!-- Sticky Cross-Deck Venue Search Bar -->
+      <div style="margin-bottom: 16px; position: relative;">
+        <div style="display: flex; align-items: center; background: rgba(15, 23, 42, 0.95); border: 1.5px solid var(--sunset-gold); border-radius: 10px; padding: 4px 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--sunset-gold); font-size: 15px; margin-right: 10px;"></i>
+          <input type="text" id="deck-venue-search" oninput="filterDeckVenues(this.value)" placeholder="Search any ship venue (e.g. 'Los Lobos', 'Tapas', 'Go-Kart', 'Starbucks', 'Spa', '13925')..." style="background: none; border: none; color: #ffffff; width: 100%; padding: 10px 0; font-size: 13.5px; outline: none;" />
+          <button onclick="clearVenueSearch()" id="clear-venue-search-btn" style="display: none; background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 18px; padding: 0 6px;">&times;</button>
+        </div>
+      </div>
+
       <!-- Deck Selector Tabs Bar -->
-      <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--sunset-gold); border-radius: 12px; padding: 14px; margin-bottom: 20px; text-align: center;">
+      <div id="deck-tabs-bar" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--sunset-gold); border-radius: 12px; padding: 14px; margin-bottom: 20px; text-align: center;">
         <div style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
           Select Ship Deck to Inspect Layout & Reserved Dining Locations:
         </div>
@@ -1983,7 +1992,7 @@ function openDeckPlanModal(defaultDeck = 'Deck 8') {
 
       <!-- Dynamic Deck Content Container -->
       <div id="deck-content-container">
-        <!-- Rendered by switchDeck() -->
+        <!-- Rendered by switchDeck() or filterDeckVenues() -->
       </div>
 
       <div style="text-align: right; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 20px;">
@@ -2002,6 +2011,120 @@ function closeDeckPlanModal() {
   const modalEl = document.getElementById('deck-plan-modal');
   if (modalEl) modalEl.style.display = 'none';
 }
+
+function filterDeckVenues(query) {
+  const q = query.trim().toLowerCase();
+  const clearBtn = document.getElementById('clear-venue-search-btn');
+  const tabsBar = document.getElementById('deck-tabs-bar');
+  const container = document.getElementById('deck-content-container');
+
+  if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+
+  if (!q) {
+    if (tabsBar) tabsBar.style.display = 'block';
+    switchDeck(currentSelectedDeck);
+    return;
+  }
+
+  // Hide tab buttons during active search
+  if (tabsBar) tabsBar.style.display = 'none';
+
+  const matches = [];
+
+  // Check stateroom cabin match
+  if ('13925'.includes(q) || '64139255'.includes(q) || 'cabin'.includes(q) || 'room'.includes(q) || 'stateroom'.includes(q) || 'balcony'.includes(q)) {
+    matches.push({
+      deck: 'Decks 9–15',
+      name: 'Stateroom Cabin #13925',
+      location: 'Deck 13 Mid-Aft (Port Side)',
+      type: 'Your Family Accommodation',
+      status: 'Booked',
+      reserved: 'NCL Res #64139255',
+      icon: 'fa-door-closed',
+      desc: 'Your family home base at sea! Private balcony stateroom on Deck 13 Mid-Aft (Port Side) with fast elevators to Deck 17 Buffet & Deck 8 Food Hall.'
+    });
+  }
+
+  // Search all decks and venues
+  vivaDeckData.forEach(deckObj => {
+    deckObj.venues.forEach(v => {
+      const matchName = v.name.toLowerCase().includes(q);
+      const matchLoc = v.location.toLowerCase().includes(q);
+      const matchType = v.type.toLowerCase().includes(q);
+      const matchDesc = v.desc.toLowerCase().includes(q);
+      const matchStatus = v.status.toLowerCase().includes(q);
+      const matchReserved = v.reserved && v.reserved.toLowerCase().includes(q);
+
+      if (matchName || matchLoc || matchType || matchDesc || matchStatus || matchReserved) {
+        matches.push({ ...v, deck: deckObj.deck });
+      }
+    });
+  });
+
+  if (!container) return;
+
+  if (matches.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px; background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px;">
+        <i class="fa-solid fa-compass" style="font-size: 36px; color: var(--sunset-gold); margin-bottom: 12px;"></i>
+        <h4 style="color: #ffffff; margin: 0 0 6px 0;">No Venues Found Matching "${query}"</h4>
+        <p style="color: #94a3b8; font-size: 13px; margin: 0 0 14px 0;">Try searching for terms like "Mexican", "Go-Kart", "Spa", "Starbucks", "Pool", or "Deck 8".</p>
+        <button onclick="clearVenueSearch()" class="btn btn-sm btn-outline">Clear Search Filter</button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <div style="background: rgba(255, 183, 3, 0.1); border: 1px solid var(--sunset-gold); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+      <span style="color: var(--sunset-gold); font-weight: 700; font-size: 14px;">
+        <i class="fa-solid fa-magnifying-glass"></i> Found ${matches.length} matching venue${matches.length > 1 ? 's' : ''} across Norwegian Viva
+      </span>
+      <button onclick="clearVenueSearch()" class="btn btn-sm btn-outline" style="font-size: 11px;">Clear Search</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+      ${matches.map(v => `
+        <div style="background: ${v.reserved ? 'rgba(255, 183, 3, 0.1)' : 'rgba(15, 23, 42, 0.85)'}; border: 1.5px solid ${v.reserved ? 'var(--sunset-gold)' : 'rgba(255,255,255,0.12)'}; border-radius: 12px; padding: 14px; position: relative;">
+          ${v.reserved ? `
+            <div style="background: var(--sunset-gold); color: #000; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px 0 8px 0; position: absolute; top: 0; left: 0; text-transform: uppercase;">
+              <i class="fa-solid fa-star"></i> ${v.reserved}
+            </div>
+            <div style="height: 12px;"></div>
+          ` : ''}
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 8px;">
+            <div>
+              <strong style="color: #ffffff; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid ${v.icon}" style="color: ${v.reserved ? 'var(--sunset-gold)' : 'var(--primary)'};"></i> ${v.name}
+              </strong>
+              <small style="color: var(--sunset-gold); font-size: 11.5px; font-weight: 700;">
+                <i class="fa-solid fa-layer-group"></i> ${v.deck} • <i class="fa-solid fa-location-dot"></i> ${v.location}
+              </small>
+            </div>
+            <span class="badge ${v.status.includes('Specialty') || v.status.includes('Booked') ? 'badge-warning' : v.status.includes('Complimentary') ? 'badge-success' : 'badge-primary'}" style="font-size: 10px;">
+              ${v.status}
+            </span>
+          </div>
+          <p style="margin: 6px 0 10px 0; font-size: 12.5px; color: #e2e8f0; line-height: 1.45;">
+            ${v.desc}
+          </p>
+          <button onclick="clearVenueSearch(); switchDeck('${v.deck}');" class="btn btn-sm btn-outline" style="width: 100%; font-size: 11px;">
+            <i class="fa-solid fa-map-location-dot"></i> View Full ${v.deck} Plan Schematic
+          </button>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function clearVenueSearch() {
+  const searchInput = document.getElementById('deck-venue-search');
+  if (searchInput) searchInput.value = '';
+  filterDeckVenues('');
+}
+
+window.filterDeckVenues = filterDeckVenues;
+window.clearVenueSearch = clearVenueSearch;
 
 function switchDeck(deckName) {
   currentSelectedDeck = deckName;
