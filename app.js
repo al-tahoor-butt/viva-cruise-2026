@@ -239,23 +239,24 @@ let routePolyline = null;
 let animationFrameId = null;
 let currentLanguage = 'it';
 
-// Private Family Travel Portal Gatekeeper (SHA-256 Cryptographic Hashes - Zero Plaintext Passcodes in Code)
+// Private Family Travel Portal Gatekeeper (Salted SHA-256 Cryptographic Hashes - Zero Plaintext Passcodes in Code)
+const PORTAL_SALT = 'viva-mediterranean-fly-cruise-2026-family-portal-salt#';
 const VALID_HASHES = [
-  '607e635aa1d4c6efa2d41cd65ab15806d5205df5783b17dd678b6d55042632ba',
-  '158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab',
-  '7b647ad3351583187ba385a63f9db305ab9fb8454d8fda032d67719026406a3f',
-  '543ab4cf9dc73fe57d2191af5de8c3e345ade5cb81baa903b21a0095dc602fb7',
-  'a50045f833b7cb6cb81df0f7c4fb6343610b06386d2a000ffefa4f4c848dd607',
-  'd233633d9524e84c71d6fe45eb3836f8919148e4a5fc2234cc9e6494ec0f11c2',
-  'f20809f0253e603cad3545e9e9ef3ca00335f5faedf0aafee84c795c023b1eae',
-  'c4ddeffba8c2336a2af52d753c6079645d69db148800e2a79048e28196181b6e',
-  'f579545f36d024bd2c03533eeab8b0bbad7e2d4f4ab4ee0b63164fcb7ed4b68e',
-  'd62af84f475645962e8c15305f83e98a3e84d1e5ab59daba39b27f389f7d035b'
+  'e2378cc178f0a8facb354f5cd0849cb1d7d16f8631ca24f724e01cc58d38a300',
+  '1c4a3513c6a7e37376382656524eff5e735a1db84e04bd41d459ee65bcf35418',
+  'a29fb4f453469283d0584439e44ddc876bcccdb7d1c07c8058fb43d283fdca2f',
+  '1bd29bc38f136a1b268e1dfd8388eecee67539e76e77824ff3143d61ef1a2372',
+  'f315211d39e0698d7bf779acc26e64dcc60fe44245917539d13c2d267c7160fa',
+  'f05861e0607d1627f8bc6a837623c0c50f6e6627fe6c237b079f7cf885da4734',
+  '3f8a531f646f4877b8c473842a62346009d638c28a6712fd6449479e866284c4',
+  '6f646303897d428844034e6115d9e4c8cdc76b736e204a1366de6c06a18d59cc',
+  '7a3dbcffbadfbab7f8bb564c5fa5d1b647a0bb255ea1245c06ccb3868f60a91b',
+  '71016fd469c3b3b2a6f0e5a99ee367f973821097e3d20b4f3061e5303792fdce'
 ];
 
 async function hashPasscode(str) {
   const encoder = new TextEncoder();
-  const data = encoder.encode(str);
+  const data = encoder.encode(PORTAL_SALT + str);
   const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
