@@ -339,6 +339,55 @@ body {
   box-shadow: 0 0 15px rgba(255, 183, 3, 0.2);
 }
 
+/* Past Expired Day Items */
+.day-btn.expired {
+  opacity: 0.55;
+  filter: grayscale(40%);
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.day-btn.expired:hover {
+  opacity: 0.88;
+  filter: grayscale(0%);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.day-btn.expired .day-title-text {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+/* Today Active Day Highlight */
+.day-btn.today-highlight {
+  border: 1.5px solid var(--sunset-gold) !important;
+  background: rgba(255, 183, 3, 0.14) !important;
+  box-shadow: 0 0 16px rgba(255, 183, 3, 0.3) !important;
+}
+
+.badge-past {
+  font-size: 10px;
+  background: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 6px;
+  text-decoration: none !important;
+  display: inline-block;
+}
+
+.badge-today {
+  font-size: 10px;
+  background: rgba(255, 183, 3, 0.3);
+  color: #ffe600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-left: 6px;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
+}
+
 .day-btn .day-title {
   font-weight: 700;
   font-size: 14px;

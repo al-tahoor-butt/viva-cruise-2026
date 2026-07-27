@@ -420,11 +420,52 @@ const cruiseData = [
       ],
       diningSpots: [
         { name: "Cervecería Catalana (Carrer de Mallorca, 236)", type: "Tapas", note: "Incredible Spanish tapas: honey-drizzled fried eggplant, garlic prawns & beef tenderloin skewers." },
-        { name: "Mercat de la Boqueria (La Rambla, 91)", type: "Market Snacks", note: "Fresh coconut chunks, Iberian ham cones, and warm empanadas before the airport." }
       ]
     }
   }
 ];
+
+// Helper Functions for Day Expiration & Auto-Selection of Current Vacation Day
+function getDayDate(dayObject) {
+  const monthMap = { 'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11 };
+  const parts = dayObject.date.split(' '); // e.g. ['Sun', '09', 'Aug', '2026']
+  const dayNum = parseInt(parts[1], 10);
+  const monthStr = parts[2];
+  const yearNum = parseInt(parts[3], 10);
+  return new Date(yearNum, monthMap[monthStr] !== undefined ? monthMap[monthStr] : 7, dayNum);
+}
+
+function getDayStatus(dayObject) {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const dayDate = getDayDate(dayObject);
+
+  if (dayDate.getTime() === today.getTime()) return 'today';
+  if (dayDate < today) return 'past';
+  return 'future';
+}
+
+function getInitialDayIndex() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  // Automatically default to TODAY during the holiday (09 Aug - 19 Aug 2026)!
+  for (let i = 0; i < cruiseData.length; i++) {
+    const dayDate = getDayDate(cruiseData[i]);
+    if (dayDate.getTime() === today.getTime()) {
+      return i;
+    }
+  }
+
+  // If today is after the cruise ends, select the last day
+  const lastDayDate = getDayDate(cruiseData[cruiseData.length - 1]);
+  if (today > lastDayDate) {
+    return cruiseData.length - 1;
+  }
+
+  // Pre-cruise planning phase: default to Day 0 (Sun 09 Aug)
+  return 0;
+}
 
 // Port Phrasebook Dictionary
 const phrasesData = {
@@ -489,7 +530,7 @@ const defaultChecklist = [
 ];
 
 let previousDayIndex = 0;
-let selectedDayIndex = 0;
+let selectedDayIndex = getInitialDayIndex();
 let gmap = null;
 let animatedShipMarker = null;
 let routePolyline = null;
@@ -712,28 +753,63 @@ function initCountdown() {
 // Render Left Sidebar Day List
 function renderDayList() {
   const container = document.getElementById('day-list');
+  if (!container) return;
   container.innerHTML = '';
 
+  let todayBtn = null;
+
   cruiseData.forEach((day, index) => {
+    const status = getDayStatus(day); // 'past', 'today', 'future'
+    const isSelected = index === selectedDayIndex;
+
     const btn = document.createElement('div');
-    btn.className = `day-btn ${index === selectedDayIndex ? 'active' : ''}`;
+    let statusClass = '';
+    if (status === 'past') statusClass = 'expired';
+    if (status === 'today') statusClass = 'today-highlight';
+
+    btn.className = `day-btn ${statusClass} ${isSelected ? 'active' : ''}`;
     btn.onclick = () => selectDay(index);
 
+    let statusBadge = '';
+    if (status === 'past') {
+      statusBadge = `<span class="badge-past"><i class="fa-solid fa-check"></i> Past</span>`;
+    } else if (status === 'today') {
+      statusBadge = `<span class="badge-today"><i class="fa-solid fa-location-dot"></i> TODAY</span>`;
+    }
+
     const diningBadge = day.specialtyDining ? `
-      <span title="Specialty Dining Booked: ${day.specialtyDining.restaurant} @ ${day.specialtyDining.time}" style="font-size: 10px; background: rgba(255, 183, 3, 0.2); color: var(--sunset-gold); padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 6px;">
+      <span title="Specialty Dining Booked: ${day.specialtyDining.restaurant} @ ${day.specialtyDining.time}" style="font-size: 10px; background: rgba(255, 183, 3, 0.2); color: var(--sunset-gold); padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 4px; display: inline-block;">
         <i class="fa-solid ${day.specialtyDining.icon}"></i> ${day.specialtyDining.restaurant}
       </span>
     ` : '';
 
     btn.innerHTML = `
       <div>
-        <div class="day-title">${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port.split(',')[0]} ${diningBadge}</div>
+        <div class="day-title">
+          <span class="${status === 'past' ? 'day-title-text' : ''}">
+            ${day.day === 0 ? 'Fly-In' : 'Day ' + day.day}: ${day.port.split(',')[0]}
+          </span>
+          ${statusBadge}
+          ${diningBadge}
+        </div>
         <div class="day-date">${day.date}</div>
       </div>
       <i class="fa-solid fa-chevron-right" style="font-size: 11px; opacity: 0.5;"></i>
     `;
+
+    if (status === 'today') {
+      todayBtn = btn;
+    }
+
     container.appendChild(btn);
   });
+
+  // Auto-scroll sidebar to TODAY if active during holiday
+  if (todayBtn && container) {
+    setTimeout(() => {
+      container.scrollTop = todayBtn.offsetTop - container.offsetTop - 20;
+    }, 100);
+  }
 }
 
 // Select Day & Update Views + Dynamic Master Travel Command Box
