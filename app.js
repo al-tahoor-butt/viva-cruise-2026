@@ -2011,18 +2011,86 @@ function switchDeck(deckName) {
   vivaDeckData.forEach(d => {
     const tabEl = document.getElementById(`deck-tab-${d.deck.replace(/[^a-zA-Z0-9]/g, '')}`);
     if (tabEl) {
-      if (d.deck === deckName) {
-        tabEl.className = 'btn btn-sm btn-primary';
-      } else {
-        tabEl.className = 'btn btn-sm btn-outline';
-      }
+      tabEl.className = d.deck === deckName ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
     }
   });
 
   const container = document.getElementById('deck-content-container');
   if (!container) return;
 
+  // Filter venues by Forward, Midship, and Aft sectors for the schematic map
+  const forwardVenues = deckObj.venues.filter(v => v.location.toLowerCase().includes('forward') || v.location.toLowerCase().includes('bow'));
+  const midVenues = deckObj.venues.filter(v => v.location.toLowerCase().includes('mid'));
+  const aftVenues = deckObj.venues.filter(v => v.location.toLowerCase().includes('aft') || v.location.toLowerCase().includes('stern'));
+
+  const unclassified = deckObj.venues.filter(v => !forwardVenues.includes(v) && !midVenues.includes(v) && !aftVenues.includes(v));
+  if (unclassified.length > 0) {
+    unclassified.forEach(v => midVenues.push(v));
+  }
+
+  const isCabinDeck = deckName === 'Decks 9–15';
+
   container.innerHTML = `
+    <!-- Visual Diagrammatic Ship Deck Schematic -->
+    <div class="deck-schematic-wrapper">
+      <div class="deck-schematic-header">
+        <span><i class="fa-solid fa-anchor"></i> Bow (Forward / Front)</span>
+        <span>Norwegian Viva — ${deckObj.deck} Profile Schematic Diagram</span>
+        <span>Stern (Aft / Rear) <i class="fa-solid fa-flag"></i></span>
+      </div>
+
+      <div class="deck-schematic-ship">
+        <!-- FORWARD SECTOR -->
+        <div class="deck-sector">
+          <div class="sector-label"><i class="fa-solid fa-compass"></i> Forward (Bow)</div>
+          ${forwardVenues.length > 0 ? forwardVenues.map(v => `
+            <div class="schematic-venue-chip ${v.reserved ? 'reserved-chip' : ''}">
+              <span><i class="fa-solid ${v.icon}"></i> ${v.name}</span>
+              ${v.reserved ? '<i class="fa-solid fa-star" style="color:var(--sunset-gold);" title="Reserved"></i>' : ''}
+            </div>
+          `).join('') : '<div style="font-size:11px; color:#64748b; font-style:italic;">Stateroom Accommodation Area</div>'}
+        </div>
+
+        <!-- MIDSHIP SECTOR -->
+        <div class="deck-sector">
+          <div class="sector-label"><i class="fa-solid fa-arrows-left-right"></i> Midship</div>
+          ${midVenues.length > 0 ? midVenues.map(v => `
+            <div class="schematic-venue-chip ${v.reserved ? 'reserved-chip' : ''}">
+              <span><i class="fa-solid ${v.icon}"></i> ${v.name}</span>
+              ${v.reserved ? '<i class="fa-solid fa-star" style="color:var(--sunset-gold);" title="Reserved"></i>' : ''}
+            </div>
+          `).join('') : '<div style="font-size:11px; color:#64748b; font-style:italic;">Midship Elevators & Atrium</div>'}
+        </div>
+
+        <!-- AFT SECTOR & CABIN HIGHLIGHT -->
+        <div class="deck-sector">
+          <div class="sector-label"><i class="fa-solid fa-water"></i> Aft (Stern)</div>
+          ${isCabinDeck ? `
+            <div class="schematic-cabin-chip">
+              <div style="font-weight: 800; font-size: 13px; color: #ffffff; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-star" style="color: var(--sunset-gold);"></i> YOUR CABIN #13925</span>
+                <span class="badge badge-warning" style="font-size: 9px; padding: 2px 6px;">BOOKED</span>
+              </div>
+              <div style="font-size: 11px; color: #f1f5f9; margin-top: 4px;">
+                <strong>Deck 13 Mid-Aft (Port Side)</strong> • Balcony Stateroom
+              </div>
+              <div style="font-size: 10px; color: var(--sunset-gold); margin-top: 2px;">
+                NCL Reservation #64139255
+              </div>
+            </div>
+          ` : ''}
+
+          ${aftVenues.length > 0 ? aftVenues.map(v => `
+            <div class="schematic-venue-chip ${v.reserved ? 'reserved-chip' : ''}">
+              <span><i class="fa-solid ${v.icon}"></i> ${v.name}</span>
+              ${v.reserved ? '<i class="fa-solid fa-star" style="color:var(--sunset-gold);" title="Reserved"></i>' : ''}
+            </div>
+          `).join('') : (isCabinDeck ? '' : '<div style="font-size:11px; color:#64748b; font-style:italic;">Aft Staterooms & Ocean Views</div>')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Deck Title Header Card -->
     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
         <h3 style="color: var(--sunset-gold); margin: 0; font-size: 17px;"><i class="fa-solid fa-layer-group"></i> ${deckObj.deck}: ${deckObj.title}</h3>
@@ -2031,8 +2099,26 @@ function switchDeck(deckName) {
       <p style="margin: 0; font-size: 13px; color: #cbd5e1; line-height: 1.5;">${deckObj.highlight}</p>
     </div>
 
-    <!-- Venue Grid -->
+    <!-- Detailed Venue Cards Grid -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+      ${isCabinDeck ? `
+        <div style="background: linear-gradient(135deg, rgba(255, 183, 3, 0.15), rgba(255, 107, 107, 0.15)); border: 2px solid var(--sunset-gold); border-radius: 12px; padding: 16px; position: relative;">
+          <div style="background: var(--sunset-gold); color: #000; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 4px 0 8px 0; position: absolute; top: 0; left: 0; text-transform: uppercase;">
+            <i class="fa-solid fa-star"></i> YOUR CONFIRMED ACCOMMODATION
+          </div>
+          <div style="height: 14px;"></div>
+          <strong style="color: #ffffff; font-size: 17px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-door-closed" style="color: var(--sunset-gold);"></i> Stateroom Cabin #13925 (Deck 13)
+          </strong>
+          <div style="font-size: 12px; color: var(--sunset-gold); margin: 4px 0 8px 0; font-weight: 600;">
+            <i class="fa-solid fa-location-dot"></i> Deck 13 Mid-Aft (Port Side) • Balcony Stateroom (NCL Res #64139255)
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #f8fafc; line-height: 1.5;">
+            Your family home base at sea! Features a private glass balcony with panoramic ocean views, USB-C fast charging stations, interactive HDTV, and quick elevator access to Deck 17 Surfside Buffet and Deck 8 Indulge Food Hall.
+          </p>
+        </div>
+      ` : ''}
+
       ${deckObj.venues.map(v => `
         <div style="background: ${v.reserved ? 'rgba(255, 183, 3, 0.08)' : 'rgba(15, 23, 42, 0.65)'}; border: 1.5px solid ${v.reserved ? 'var(--sunset-gold)' : 'rgba(255,255,255,0.08)'}; border-radius: 12px; padding: 14px; position: relative;">
           ${v.reserved ? `

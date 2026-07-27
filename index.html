@@ -23,10 +23,10 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=42">
+  <link rel="stylesheet" href="styles.css?v=43">
 
   <!-- Core App Logic (must load before Google Maps callback fires) -->
-  <script src="app.js?v=42"></script>
+  <script src="app.js?v=43"></script>
 
   <!-- Google Maps API (key restricted to GitHub Pages domain via Cloud Console) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap&loading=async" async defer></script>
@@ -392,7 +392,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=42').then((reg) => {
+        navigator.serviceWorker.register('./sw.js?v=43').then((reg) => {
           reg.update();
           console.log('PWA Service Worker registered & updated:', reg.scope);
         }).catch((err) => {
