@@ -817,7 +817,7 @@ async function selectDay(index) {
           <p style="color: var(--text-muted); font-size: 13px;">${data.kidsActivities}</p>
           <div style="margin-top: 12px;">
             <button onclick="openPortDeepDive(${index})" class="btn btn-sm btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary); font-weight: 600; padding: 10px;">
-              <i class="fa-solid fa-book-open"></i> Open Port Deep-Dive (DIY Logistics & Dining)
+              <i class="fa-solid fa-book-open"></i> Open Master Logistics Guide & Timed Itinerary
             </button>
           </div>
         </div>
@@ -1547,26 +1547,21 @@ function openPortDeepDive(index) {
     <div class="modal-card tech-card" style="max-width: 680px; max-height: 85vh; overflow-y: auto; padding: 24px; position: relative;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
         <div>
-          <span class="badge ${dd.verdictBadgeClass}" style="font-size: 12px; margin-bottom: 6px;">${dd.verdict}</span>
+          <span class="badge ${dd.badgeClass || 'badge-success'}" style="font-size: 12px; margin-bottom: 6px;">${dd.logisticsMode || 'DIY Strategy'}</span>
           <h2 style="font-size: 20px; color: var(--sunset-gold); margin: 4px 0 0 0;">
-            <i class="fa-solid fa-compass"></i> Day ${data.day}: ${data.port.split(',')[0]} Deep-Dive
+            <i class="fa-solid fa-compass"></i> Day ${data.day}: ${data.port.split(',')[0]} Master Logistics
           </h2>
         </div>
         <button onclick="closePortDeepDive()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
       </div>
 
-      <!-- Cost & Strategy Comparison Card -->
-      <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-        <h4 style="color: #38bdf8; margin-bottom: 10px; font-size: 15px;"><i class="fa-solid fa-scale-balanced"></i> NCL Shore Excursion vs. DIY Independent</h4>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; font-size: 13px;">
-          <div style="background: rgba(46, 213, 115, 0.15); padding: 10px 12px; border-radius: 8px; border-left: 4px solid #2ed573;">
-            <strong style="color: #fff;">DIY Est. Cost (4 Pax):</strong><br><span style="color: #2ed573; font-weight: 700;">${dd.costDiy}</span>
-          </div>
-          <div style="background: rgba(255, 71, 87, 0.15); padding: 10px 12px; border-radius: 8px; border-left: 4px solid #ff4757;">
-            <strong style="color: #fff;">NCL Excursion Cost:</strong><br><span style="color: #ff4757; font-weight: 700;">${dd.costNcl}</span>
-          </div>
+      <!-- Master DIY Transport & Route Guide Card -->
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid var(--sunset-gold); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+          <h4 style="color: var(--sunset-gold); margin: 0; font-size: 15.5px;"><i class="fa-solid fa-route"></i> Master Transport & Navigation Guide</h4>
+          <span class="badge ${dd.badgeClass || 'badge-success'}">${dd.logisticsMode || 'DIY Mode'}</span>
         </div>
-        <p style="font-size: 13.5px; color: #e2e8f0; line-height: 1.6; margin: 0;">${dd.nclVsDiySummary}</p>
+        <p style="font-size: 13.5px; color: #e2e8f0; line-height: 1.6; margin: 0;">${dd.logisticsSummary}</p>
       </div>
 
       <!-- Timed Family Itinerary -->
