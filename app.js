@@ -598,6 +598,48 @@ function getWeatherDesc(code) {
   return 'Sunny & Warm';
 }
 
+// Realistic Overland Train Route (Bologna Centrale -> Imola -> Faenza -> Lugo -> Ravenna Port)
+const trainRouteCoordinates = [
+  { lat: 44.4949, lng: 11.3426, day: 0 }, // Bologna
+  { lat: 44.3585, lng: 11.7161 }, // Imola
+  { lat: 44.2922, lng: 11.8845 }, // Faenza
+  { lat: 44.4239, lng: 11.9161 }, // Lugo
+  { lat: 44.4187, lng: 12.2093 }, // Ravenna Station
+  { lat: 44.4949, lng: 12.2818, day: 1 }  // Porto Corsini (Ravenna Cruise Port)
+];
+
+// Realistic AIS Maritime Sea Lanes (Navigating around Italian Peninsula, Straits, and Islands)
+const seaRouteCoordinates = [
+  { lat: 44.4949, lng: 12.2818, day: 1 }, // Ravenna Port
+  { lat: 44.1000, lng: 13.5000 },
+  { lat: 43.3000, lng: 15.5000 },
+  { lat: 42.6507, lng: 18.0944, day: 2 }, // Dubrovnik
+  { lat: 42.3500, lng: 18.6000 },
+  { lat: 42.0931, lng: 19.0989, day: 3 }, // Bar, Montenegro
+  { lat: 40.5000, lng: 19.1000 }, // Strait of Otranto
+  { lat: 39.7500, lng: 18.5000 }, // Rounding Heel of Italy (Santa Maria di Leuca)
+  { lat: 39.2000, lng: 17.2000 }, // Gulf of Taranto
+  { lat: 37.8500, lng: 16.1500 }, // Calabria Coast
+  { lat: 38.3000, lng: 15.5000 }, // Strait of Messina
+  { lat: 39.3000, lng: 14.8000 }, // Tyrrhenian Sea
+  { lat: 40.3000, lng: 14.6000 },
+  { lat: 40.6782, lng: 14.7657, day: 5 }, // Salerno (Day 4 is At Sea)
+  { lat: 40.5500, lng: 14.2500 }, // West of Capri
+  { lat: 41.2000, lng: 12.8000 },
+  { lat: 42.0924, lng: 11.7954, day: 6 }, // Rome / Civitavecchia
+  { lat: 42.4500, lng: 11.0000 },
+  { lat: 43.0000, lng: 9.8000 },  // West of Elba
+  { lat: 43.5485, lng: 10.3106, day: 7 }, // Florence / Livorno
+  { lat: 43.6500, lng: 9.3000 },
+  { lat: 43.5528, lng: 7.0174, day: 8 },  // Cannes
+  { lat: 42.2000, lng: 5.5000 },
+  { lat: 40.5000, lng: 3.8000 },
+  { lat: 39.5000, lng: 2.3500 },
+  { lat: 39.5696, lng: 2.6502, day: 9 },  // Palma de Mallorca
+  { lat: 40.5000, lng: 2.4000 },
+  { lat: 41.3851, lng: 2.1734, day: 10 }  // Barcelona
+];
+
 // Initialize Interactive Google Map with Modern Ultra-Sleek Mediterranean Theme
 let portMarkers = [];
 let activeInfoWindow = null;
@@ -607,7 +649,6 @@ window.initMap = function() {
   if (ph) ph.style.display = 'none';
   
   const initialData = cruiseData[selectedDayIndex];
-  const portCoords = cruiseData.filter(d => d.day > 0).map(d => ({ lat: d.lat, lng: d.lng }));
   
   // Custom Midnight Mediterranean Map Styling
   gmap = new google.maps.Map(document.getElementById('map-container'), {
@@ -634,9 +675,28 @@ window.initMap = function() {
     ]
   });
 
-  // Glowing Neon Cruise Polyline
+  // Dashed Golden Overland Railway (Bologna -> Imola -> Faenza -> Lugo -> Ravenna)
+  const trainPolyline = new google.maps.Polyline({
+    path: trainRouteCoordinates,
+    geodesic: true,
+    strokeColor: '#ffb703',
+    strokeOpacity: 0,
+    strokeWeight: 3.5,
+    icons: [{
+      icon: {
+        path: 'M 0,-1 0,1',
+        strokeOpacity: 1,
+        scale: 3
+      },
+      offset: '0',
+      repeat: '14px'
+    }],
+    map: gmap
+  });
+
+  // Glowing Neon Cruise Sea Lanes (Curving around Italian Peninsula & Croatian Islands)
   routePolyline = new google.maps.Polyline({
-    path: portCoords,
+    path: seaRouteCoordinates,
     geodesic: true,
     strokeColor: '#00f2fe',
     strokeOpacity: 0.85,
@@ -778,24 +838,86 @@ function calculateBearing(startLat, startLng, destLat, destLng) {
   return (brng + 360) % 360;
 }
 
-// Smooth Sailing Transition Animation between Ports with Heading Rotation
+// Helper: Get realistic curved waypoints between two day indices
+function getPathBetweenDays(fromDay, toDay) {
+  if (fromDay === 0 && toDay === 1) return trainRouteCoordinates;
+  if (fromDay === 1 && toDay === 0) return [...trainRouteCoordinates].reverse();
+
+  const idxA = seaRouteCoordinates.findIndex(p => p.day === fromDay);
+  const idxB = seaRouteCoordinates.findIndex(p => p.day === toDay);
+
+  if (idxA !== -1 && idxB !== -1) {
+    if (idxA < idxB) {
+      return seaRouteCoordinates.slice(idxA, idxB + 1);
+    } else {
+      return [...seaRouteCoordinates.slice(idxB, idxA + 1)].reverse();
+    }
+  }
+
+  // Fallback direct line
+  return [
+    { lat: cruiseData[fromDay]?.lat || 44.4949, lng: cruiseData[fromDay]?.lng || 12.2818 },
+    { lat: cruiseData[toDay]?.lat || 44.4949, lng: cruiseData[toDay]?.lng || 12.2818 }
+  ];
+}
+
+// Helper: Interpolate coordinate and bearing along a multi-waypoint path
+function interpolatePath(path, progress) {
+  if (path.length <= 1) return { ...path[0], heading: 0 };
+  if (progress <= 0) {
+    const heading = calculateBearing(path[0].lat, path[0].lng, path[1].lat, path[1].lng);
+    return { ...path[0], heading };
+  }
+  if (progress >= 1) {
+    const len = path.length;
+    const heading = calculateBearing(path[len - 2].lat, path[len - 2].lng, path[len - 1].lat, path[len - 1].lng);
+    return { ...path[len - 1], heading };
+  }
+
+  let totalLen = 0;
+  const segLens = [];
+  for (let i = 0; i < path.length - 1; i++) {
+    const dLat = path[i + 1].lat - path[i].lat;
+    const dLng = path[i + 1].lng - path[i].lng;
+    const len = Math.sqrt(dLat * dLat + dLng * dLng);
+    segLens.push(len);
+    totalLen += len;
+  }
+
+  const targetLen = totalLen * progress;
+  let accum = 0;
+  for (let i = 0; i < segLens.length; i++) {
+    if (accum + segLens[i] >= targetLen || i === segLens.length - 1) {
+      const segProgress = segLens[i] === 0 ? 0 : (targetLen - accum) / segLens[i];
+      const p1 = path[i];
+      const p2 = path[i + 1];
+      return {
+        lat: p1.lat + (p2.lat - p1.lat) * segProgress,
+        lng: p1.lng + (p2.lng - p1.lng) * segProgress,
+        heading: calculateBearing(p1.lat, p1.lng, p2.lat, p2.lng)
+      };
+    }
+    accum += segLens[i];
+  }
+  return { ...path[path.length - 1], heading: 0 };
+}
+
+// Smooth Sailing Transition Animation between Ports with Curved Waypoint Navigation
 function animateShipTransition(fromIdx, toIdx) {
   if (!animatedShipMarker || !gmap) return;
 
   updateMarkerStyles();
 
-  const startLat = cruiseData[fromIdx].lat;
-  const startLng = cruiseData[fromIdx].lng;
-  const endLat = cruiseData[toIdx].lat;
-  const endLng = cruiseData[toIdx].lng;
+  const fromDay = cruiseData[fromIdx].day;
+  const toDay = cruiseData[toIdx].day;
 
-  if (startLat === endLat && startLng === endLng) return;
+  if (fromDay === toDay) return;
 
-  const heading = calculateBearing(startLat, startLng, endLat, endLng);
+  const path = getPathBetweenDays(fromDay, toDay);
 
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
 
-  const duration = 1400;
+  const duration = 1600;
   const startTime = performance.now();
 
   function step(currentTime) {
@@ -806,10 +928,8 @@ function animateShipTransition(fromIdx, toIdx) {
       ? 4 * progress * progress * progress 
       : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
-    const currentLat = startLat + (endLat - startLat) * easeProgress;
-    const currentLng = startLng + (endLng - startLng) * easeProgress;
-
-    const currentPos = new google.maps.LatLng(currentLat, currentLng);
+    const currentPosData = interpolatePath(path, easeProgress);
+    const currentPos = new google.maps.LatLng(currentPosData.lat, currentPosData.lng);
     
     animatedShipMarker.setPosition(currentPos);
     animatedShipMarker.setIcon({
@@ -820,7 +940,7 @@ function animateShipTransition(fromIdx, toIdx) {
       strokeWeight: 2.5,
       scale: 1.2,
       anchor: new google.maps.Point(0, 0),
-      rotation: heading
+      rotation: currentPosData.heading
     });
 
     gmap.panTo(currentPos);
