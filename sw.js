@@ -1,4 +1,4 @@
-const CACHE_NAME = 'viva-cruise-pwa-v7';
+const CACHE_NAME = 'viva-cruise-pwa-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

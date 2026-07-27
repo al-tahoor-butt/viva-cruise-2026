@@ -239,8 +239,27 @@ let routePolyline = null;
 let animationFrameId = null;
 let currentLanguage = 'it';
 
-// Private Family Travel Portal Gatekeeper (Passcode Splash Screen)
-const VALID_PASSCODES = ['viva2026', '2026', 'viva', 'norwegian', 'altahoor', 'sarah', 'iorek', 'lyra', 'squeak', 'sherman'];
+// Private Family Travel Portal Gatekeeper (SHA-256 Cryptographic Hashes - Zero Plaintext Passcodes in Code)
+const VALID_HASHES = [
+  '607e635aa1d4c6efa2d41cd65ab15806d5205df5783b17dd678b6d55042632ba',
+  '158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab',
+  '7b647ad3351583187ba385a63f9db305ab9fb8454d8fda032d67719026406a3f',
+  '543ab4cf9dc73fe57d2191af5de8c3e345ade5cb81baa903b21a0095dc602fb7',
+  'a50045f833b7cb6cb81df0f7c4fb6343610b06386d2a000ffefa4f4c848dd607',
+  'd233633d9524e84c71d6fe45eb3836f8919148e4a5fc2234cc9e6494ec0f11c2',
+  'f20809f0253e603cad3545e9e9ef3ca00335f5faedf0aafee84c795c023b1eae',
+  'c4ddeffba8c2336a2af52d753c6079645d69db148800e2a79048e28196181b6e',
+  'f579545f36d024bd2c03533eeab8b0bbad7e2d4f4ab4ee0b63164fcb7ed4b68e',
+  'd62af84f475645962e8c15305f83e98a3e84d1e5ab59daba39b27f389f7d035b'
+];
+
+async function hashPasscode(str) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 function initAuth() {
   const isUnlocked = localStorage.getItem('viva_cruise_unlocked') === 'true';
@@ -261,7 +280,7 @@ function initAuth() {
   }
 }
 
-function unlockPortal() {
+async function unlockPortal() {
   const inputEl = document.getElementById('passcode-input');
   const errorEl = document.getElementById('splash-error');
   const splash = document.getElementById('splash-screen');
@@ -269,7 +288,9 @@ function unlockPortal() {
   if (!inputEl) return;
 
   const val = inputEl.value.trim().toLowerCase();
-  if (VALID_PASSCODES.includes(val)) {
+  const hash = await hashPasscode(val);
+
+  if (VALID_HASHES.includes(hash)) {
     if (errorEl) errorEl.style.display = 'none';
     localStorage.setItem('viva_cruise_unlocked', 'true');
     splash.classList.add('hidden');
