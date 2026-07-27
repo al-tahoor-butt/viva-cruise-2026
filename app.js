@@ -14,7 +14,25 @@ const cruiseData = [
     adultsActivities: 'Land in Bologna Airport (BLQ) at 21:05, 8-min taxi to Hotel Del Borgo (Booking #5007213355), late-night aperitivo.',
     kidsActivities: 'Exciting evening flight & cozy stay at Hotel Del Borgo (2 single + 1 double bed configured).',
     transferInfo: 'Flight FR2242 (PNR: WTUR5S) MAN 17:45 ➔ BLQ 21:05. Hotel Del Borgo: Via Marco Emilio Lepido 195 (Booking #5007213355). 8-min taxi from BLQ airport.',
-    tags: ['Hotel Del Borgo', 'Flight FR2242', 'Pre-Cruise', 'Bologna']
+    tags: ['Hotel Del Borgo', 'Flight FR2242', 'Pre-Cruise', 'Bologna'],
+    deepDive: {
+      verdict: "100% DIY (Pre-Cruise)",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€11/pax (Marconi Express)",
+      costNcl: "— (Pre-Cruise Stay)",
+      nclVsDiySummary: "This is your independent pre-cruise arrival day in Bologna. The Marconi Express monorail gets you from BLQ Airport to Bologna Centrale in 7 minutes.",
+      timedItinerary: [
+        "2:00 PM — Check into Hotel Del Borgo & freshen up.",
+        "3:15 PM — Walk to Piazza Maggiore & Fountain of Neptune.",
+        "4:15 PM — Climb Torre degli Asinelli (498 wooden steps for teens).",
+        "5:30 PM — Explore Archiginnasio & Anatomical Theatre.",
+        "7:00 PM — Authentic Bolognese dinner in Quadrilatero market district."
+      ],
+      diningSpots: [
+        { name: "Osteria dell'Orsa (Via Mentana, 1)", type: "Dinner", note: "Legendary local tavern famous for authentic Tagliatelle al Ragù (true Bolognese) & Tortellini in Brodo." },
+        { name: "Cremeria Santo Stefano", type: "Gelato", note: "Artisanal gelato under the porticoes; try Crema di Sette Chiese." }
+      ]
+    }
   },
   {
     day: 1,
@@ -30,7 +48,27 @@ const cruiseData = [
     kidsActivities: 'First glimpse of 143,000-ton Norwegian Viva, explore Speedway racetrack & pool deck!',
     transferInfo: 'Option A (Train): 10:15 Taxi to Bologna Centrale ➔ 11:06 Trenitalia Regional train (53m, arr 11:59 Ravenna) ➔ 12:05 Taxi/Shuttle to Porto Corsini ➔ 12:30 Embarkation. Option B (Direct Transfer): 11:00 Taxi from Hotel Del Borgo directly to Ravenna Terminal (A14 Highway, 1h10m).',
     liveTrainLink: 'https://www.viaggiatreno.it/',
-    tags: ['Hotel Del Borgo', '11:06 Train', '12:30 Embarkation', 'Ravenna Port']
+    tags: ['Hotel Del Borgo', '11:06 Train', '12:30 Embarkation', 'Ravenna Port'],
+    deepDive: {
+      verdict: "DIY Train + Taxi",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€35 total (4 pax)",
+      costNcl: "$300+ (NCL Bus Transfer)",
+      nclVsDiySummary: "Do not pay $75+/person for an NCL shuttle from Bologna. Trenitalia regional trains take 53 minutes and cost €8/person. Take a short taxi from Ravenna station to Porto Corsini.",
+      timedItinerary: [
+        "09:30 AM — Check out of Bologna hotel; take regional train to Ravenna Station (53 mins).",
+        "10:45 AM — Store luggage at Ravenna Station depot (€5/bag).",
+        "11:00 AM — Visit early Christian mosaics at Basilica di San Vitale & Galla Placidia.",
+        "01:30 PM — Romagna Piadina lunch in Ravenna historic center.",
+        "02:45 PM — Taxi (~€25 total) from Ravenna to Porto Corsini cruise terminal.",
+        "03:30 PM — Check-in, security & board Norwegian Viva!",
+        "08:00 PM — Ship sails for the Adriatic Sea."
+      ],
+      diningSpots: [
+        { name: "Ca' de Ven (Via Corrado Ricci, 24)", type: "Lunch", note: "15th-century wine cellar famous for warm Romagna Piadina flatbreads with prosciutto di Parma." },
+        { name: "Gelateria Papilla", type: "Gelato", note: "Outstanding artisan fruit sorbets in Ravenna center." }
+      ]
+    }
   },
   {
     day: 2,
@@ -45,7 +83,28 @@ const cruiseData = [
     adultsActivities: 'Walk the historic ramparts, drink wine overlooking the Adriatic coast.',
     kidsActivities: 'Guided sea kayaking around Lokrum Island and Betina Cave, plus Dubrovnik Cable Car ride for sunset.',
     transferInfo: 'Tender/Port shuttle into Old Town Pile Gate.',
-    tags: ['City Walls', 'Sea Kayaking', 'Cable Car', 'Game of Thrones']
+    tags: ['City Walls', 'Sea Kayaking', 'Cable Car', 'Game of Thrones'],
+    deepDive: {
+      verdict: "DIY (Highly Recommended)",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€80–120 total (4 pax)",
+      costNcl: "$500–650 (Walking Tour)",
+      nclVsDiySummary: "Dubrovnik's Old Town is 10 mins by taxi (€15) from Gruž Port. NCL walking tours move slowly in 40-person crowds. DIY lets you start early, walk the City Walls at your own pace, and book the sea kayaking tour for the kids without stress.",
+      timedItinerary: [
+        "11:30 AM — Ship docks at Gruž Port.",
+        "11:50 AM — Take local bus #1a/1b or taxi (€15) directly to Old Town Pile Gate.",
+        "12:15 PM — Walk the Medieval City Walls before afternoon heat (~1.5–2 hours).",
+        "02:15 PM — Authentic seafood lunch in Old Town alleyways.",
+        "03:30 PM — Guided Family Sea Kayaking tour to Betina Cave OR Dubrovnik Cable Car to Mount Srđ.",
+        "05:45 PM — Stroll Stradun promenade & grab craft gelato.",
+        "06:30 PM — Take taxi back to Gruž Port.",
+        "07:00 PM — All-Aboard onboard Viva (Ship sails 8:00 PM)."
+      ],
+      diningSpots: [
+        { name: "Barba (Boškovićeva ul. 5)", type: "Lunch", note: "Hip seafood street food: famous octopus burgers, fried calamari cones, and shrimp tempura." },
+        { name: "Peppino's Gelato Artigianale", type: "Gelato", note: "Premium craft gelato in waffle rolls; must-try Dalmatian Fig & Mozart flavors." }
+      ]
+    }
   },
   {
     day: 3,
@@ -60,7 +119,27 @@ const cruiseData = [
     adultsActivities: 'Explore Stari Bar ancient cliffside fortress and 2,000-year-old olive trees.',
     kidsActivities: 'Lake Skadar boat ride through lily pads with freshwater swim stops, or King’s Beach swim.',
     transferInfo: 'Local taxi or pre-booked tour to Stari Bar / Lake Skadar.',
-    tags: ['Fortress', 'Lake Skadar', 'Nature', 'Montenegro']
+    tags: ['Fortress', 'Lake Skadar', 'Nature', 'Montenegro'],
+    deepDive: {
+      verdict: "DIY Port Taxi / Boat",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€40–110 total (4 pax)",
+      costNcl: "$440–550 (Coach Tour)",
+      nclVsDiySummary: "Official port taxis at Bar harbor offer private half-day tours to Stari Bar fortress ruins and Lake Skadar for a fraction of NCL's coach bus prices.",
+      timedItinerary: [
+        "08:30 AM — Disembark ship; hire an official port taxi driver for half-day tour.",
+        "09:00 AM — Explore Stari Bar cliffside fortress ruins & Ottoman cobblestone bazaar.",
+        "10:30 AM — Visit Stara Maslina (2,400-year-old Roman olive tree).",
+        "11:30 AM — Authentic Balkan lunch in Stari Bar courtyard overlooking ruins.",
+        "01:30 PM — Option A: 2-hour wooden boat cruise on Lake Skadar • Option B: Swim at King's Beach.",
+        "04:30 PM — Return to Port of Bar terminal.",
+        "05:00 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
+      ],
+      diningSpots: [
+        { name: "Konoba Bedem (Stari Bar Bazaar)", type: "Lunch", note: "Traditional Balkan grilled meats (Ćevapi), stuffed vine leaves, and Montenegrin cheese pies." },
+        { name: "Stari Bar Juice Stands", type: "Refreshment", note: "Freshly squeezed pomegranate juice along the cobblestone bazaar." }
+      ]
+    }
   },
   {
     day: 4,
@@ -75,7 +154,26 @@ const cruiseData = [
     adultsActivities: 'Indulge Food Hall, Mandara Spa, infinity pool relaxation on Ocean Boulevard.',
     kidsActivities: 'Race on the 3-level Viva Speedway, Galaxy Pavilion VR flight simulators, and The Drop 10-story free-fall dry slide!',
     transferInfo: 'Enjoy full ship amenities onboard Norwegian Viva.',
-    tags: ['Viva Speedway', 'Galaxy Pavilion', 'Sea Day', 'Starlink Wi-Fi']
+    tags: ['Viva Speedway', 'Galaxy Pavilion', 'Sea Day', 'Starlink Wi-Fi'],
+    deepDive: {
+      verdict: "Included Onboard",
+      verdictBadgeClass: "badge-info",
+      costDiy: "Included",
+      costNcl: "Included",
+      nclVsDiySummary: "Full day at sea navigating the Ionian Sea and the Strait of Messina between Sicily and Calabria. Make sure to book Viva Speedway go-karts on the NCL app early!",
+      timedItinerary: [
+        "09:00 AM — Family breakfast on Ocean Boulevard open-air deck.",
+        "10:30 AM — Race the 3-level electric Viva Speedway go-kart track!",
+        "12:30 PM — Global lunch at Indulge Food Hall (11 mini-restaurants).",
+        "02:30 PM — Galaxy Pavilion VR flight simulators & 10-story free-fall dry slide (The Drop).",
+        "04:30 PM — Watch ship pass through the Strait of Messina narrows.",
+        "07:30 PM — Family dinner & evening theater show."
+      ],
+      diningSpots: [
+        { name: "Indulge Food Hall (Deck 8 Aft)", type: "Lunch", note: "Complimentary 11-station food hall: tandoori, tacos, noodles, Q-Texas BBQ brisket, and Italian." },
+        { name: "Coco's / Poolside Soft-Serve", type: "Dessert", note: "Artisanal chocolate sundaes or complimentary poolside vanilla/chocolate swirl cones." }
+      ]
+    }
   },
   {
     day: 5,
@@ -90,7 +188,28 @@ const cruiseData = [
     adultsActivities: 'Limoncello tasting, cliffside views, scenic lemon groves of Positano.',
     kidsActivities: 'Speedboat ride along the coastline with cave swim stops & authentic Positano gelato.',
     transferInfo: 'Ferry/Speedboat from Salerno harbor directly to Positano.',
-    tags: ['Positano', 'Amalfi Coast', 'Speedboat', 'Cliff Swim']
+    tags: ['Positano', 'Amalfi Coast', 'Speedboat', 'Cliff Swim'],
+    deepDive: {
+      verdict: "DIY TravelMar Ferry",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€120–140 total (4 pax)",
+      costNcl: "$750–950 (Coach Bus)",
+      nclVsDiySummary: "Never take a bus or car on the Amalfi Coast road in August—coaches get trapped in 3-hour traffic jams! TravelMar high-speed ferries glide from Salerno harbor to Positano in 70 mins with zero traffic.",
+      timedItinerary: [
+        "07:45 AM — Disembark ship in Salerno; walk 10 mins to Piazza della Concordia ferry dock.",
+        "08:40 AM — Board TravelMar high-speed ferry directly to Positano (arrive 9:50 AM).",
+        "10:00 AM — Swim at Spiaggia Grande beach in Positano & explore cliffside stairways.",
+        "12:30 PM — Beachfront lunch in Positano.",
+        "01:30 PM — Board 25-min ferry from Positano to Amalfi Town.",
+        "02:00 PM — Visit Amalfi Cathedral (Duomo di Sant'Andrea) & try lemon granita.",
+        "03:40 PM — Board ferry from Amalfi back to Salerno (arrive 4:15 PM).",
+        "04:45 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
+      ],
+      diningSpots: [
+        { name: "Chez Black (Positano Beachfront)", type: "Lunch", note: "Legendary restaurant with wood-fired pizzas, heart-shaped kids pizza & Spaghetti alle Vongole." },
+        { name: "Pasticceria Pansa (Piazza Duomo, Amalfi)", type: "Dessert", note: "Try the iconic Delizia al Limone (Amalfi lemon sponge dome) and lemon granita." }
+      ]
+    }
   },
   {
     day: 6,
@@ -105,7 +224,28 @@ const cruiseData = [
     adultsActivities: 'Roman Forum, Pantheon exploration, authentic Roman carbonara.',
     kidsActivities: 'Skip-the-line Colosseum Gladiator tour & coin toss into Trevi Fountain.',
     transferInfo: 'Civitavecchia Express train (50 mins) into Rome San Pietro/Termini.',
-    tags: ['Rome', 'Colosseum', 'Express Train', 'Trevi Fountain']
+    tags: ['Rome', 'Colosseum', 'Express Train', 'Trevi Fountain'],
+    deepDive: {
+      verdict: "DIY Express Train",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€48–70 total (4 pax)",
+      costNcl: "$400–1,000+ (Coach / Tour)",
+      nclVsDiySummary: "Civitavecchia is 80 km from Rome. NCL coach transfers take nearly 2 hours in highway traffic. The Civitavecchia Express train takes 50–60 mins directly into Roma San Pietro or Termini.",
+      timedItinerary: [
+        "07:15 AM — Take port shuttle bus from ship to Civitavecchia train station (€6).",
+        "08:00 AM — Board Civitavecchia Express or regional train to Rome (50–60 mins).",
+        "09:15 AM — Skip-the-line tour of Colosseum & Roman Forum (pre-book 30 days prior!).",
+        "12:00 PM — Walk to Trevi Fountain, Pantheon & Piazza Navona.",
+        "01:30 PM — Crispy Roman slab pizza lunch near Pantheon.",
+        "03:00 PM — Walk to Roma San Pietro / Termini station.",
+        "03:15 PM — Board return train to Civitavecchia (CRITICAL: leave by 3:15 PM!).",
+        "04:50 PM — All-Aboard onboard Viva (Ship sails 6:00 PM)."
+      ],
+      diningSpots: [
+        { name: "Antico Forno Roscioli (Via dei Chiavari, 34)", type: "Lunch", note: "World-class Roman Pizza al Taglio (crispy slab pizza sold by weight: margherita & mortadella)." },
+        { name: "Frigidarium (Via del Governo Vecchio, 112)", type: "Gelato", note: "Artisanal gelato dipped in a free molten white or dark chocolate shell near Piazza Navona!" }
+      ]
+    }
   },
   {
     day: 7,
@@ -120,7 +260,28 @@ const cruiseData = [
     adultsActivities: 'Uffizi Gallery, Ponte Vecchio stroll, Tuscan wine tasting.',
     kidsActivities: 'Climb Giotto’s Campanile tower, forced-perspective photo holding up Pisa tower, Boboli Gardens.',
     transferInfo: 'Regional train from Livorno Centrale to Pisa (15 mins) and Florence (1 hr).',
-    tags: ['Leaning Tower', 'Florence', 'Duomo', 'Tuscany']
+    tags: ['Leaning Tower', 'Florence', 'Duomo', 'Tuscany'],
+    deepDive: {
+      verdict: "DIY Train (Pisa/Lucca)",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€60–80 total (4 pax)",
+      costNcl: "$800–1,100 (Coach Tour)",
+      nclVsDiySummary: "Livorno train station connects to Pisa Centrale in just 15 minutes (€3), and Florence in 1 hr 15 mins. Alternatively, visit Pisa Tower and rent bicycles to ride along the medieval walls of Lucca!",
+      timedItinerary: [
+        "07:30 AM — Take Livorno port shuttle to Livorno Centrale station (€5).",
+        "08:10 AM — Train to Pisa Centrale (15 mins); walk to Leaning Tower.",
+        "08:30 AM — Leaning Tower of Pisa photo-op & Cathedral square.",
+        "10:30 AM — Train from Pisa to Florence S.M. Novella (50 mins).",
+        "11:30 AM — Explore Duomo square, Piazza della Signoria, Ponte Vecchio & Mercato Nuovo.",
+        "01:30 PM — Tuscan Schiacciata sandwich lunch.",
+        "04:30 PM — Board direct return train from Florence to Livorno Centrale.",
+        "05:55 PM — All-Aboard onboard Viva (Ship sails 7:00 PM)."
+      ],
+      diningSpots: [
+        { name: "All'Antico Vinaio (Via dei Neri, 65, Florence)", type: "Lunch", note: "World-famous warm Tuscan Schiacciata flatbread sandwiches stuffed with prosciutto & truffle cream." },
+        { name: "Gelateria Edoardo (Piazza del Duomo, Florence)", type: "Gelato", note: "Certified organic artisanal gelato served in handmade cinnamon waffle cones." }
+      ]
+    }
   },
   {
     day: 8,
@@ -135,7 +296,27 @@ const cruiseData = [
     adultsActivities: 'Stroll Old Town Nice (Vieux Nice), sample Socca chickpea crepes.',
     kidsActivities: 'Rent paddleboards/snorkels in Villefranche turquoise bay, or ride e-scooters along Promenade des Anglais.',
     transferInfo: 'Tender into Villefranche-sur-Mer harbor. 10-min train into central Nice.',
-    tags: ['French Riviera', 'Villefranche', 'Paddleboarding', 'Nice']
+    tags: ['French Riviera', 'Villefranche', 'Paddleboarding', 'Nice'],
+    deepDive: {
+      verdict: "100% DIY (Tender Port)",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€64 total (4 pax)",
+      costNcl: "$550–750 (Monaco Coach)",
+      nclVsDiySummary: "Tender boats drop you right in the center of Villefranche / Cannes harbor. Take the 15-minute public ferry to Île Sainte-Marguerite island to swim in turquoise coves and see Fort Royal.",
+      timedItinerary: [
+        "08:15 AM — Board early tender boat from Viva to harbor (15 mins).",
+        "09:00 AM — Board public ferry to Île Sainte-Marguerite (€16 roundtrip).",
+        "09:45 AM — Explore Fort Royal (Man in the Iron Mask prison cell) & scented eucalyptus trails.",
+        "11:30 AM — Swim & snorkel in crystal-clear turquoise island coves.",
+        "01:30 PM — Ferry back to harbor; walk La Croisette / Promenade.",
+        "03:00 PM — Old Town walk & French macarons / gelato.",
+        "04:30 PM — All-Aboard onboard Viva."
+      ],
+      diningSpots: [
+        { name: "Marché Forville (Cannes Old Town Market)", type: "Lunch", note: "Covered market: sample Socca chickpea crepes, artisan cheeses & fresh baguettes for a beach picnic." },
+        { name: "Amorino Gelato", type: "Dessert", note: "Flower-shaped gelato cones topped with a signature French macaron." }
+      ]
+    }
   },
   {
     day: 9,
@@ -150,7 +331,27 @@ const cruiseData = [
     adultsActivities: 'Palma Cathedral (La Seu) visit, tapas & sangria at Mercat de l’Olivar.',
     kidsActivities: 'Upside-down splash park at Katmandu Park or Palma Aquarium deep ocean tunnel.',
     transferInfo: 'Port bus #1 or taxi from Estació Marítima into Old Town.',
-    tags: ['Palma', 'Majorca', 'Katmandu Park', 'Cathedral']
+    tags: ['Palma', 'Majorca', 'Katmandu Park', 'Cathedral'],
+    deepDive: {
+      verdict: "DIY Bus / Walk",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€40–90 total (4 pax)",
+      costNcl: "$500–650 (Coach Tour)",
+      nclVsDiySummary: "Palma is an extremely walkable Spanish capital. Bus #1 or a 10-minute taxi (€12) takes you from the cruise pier directly to Palma Cathedral and the historic Old Town.",
+      timedItinerary: [
+        "11:30 AM — Ship docks in Palma. Take taxi (€12) or bus #1 to Old Town.",
+        "12:00 PM — Explore Palma Cathedral (La Seu) & Royal Palace of La Almudaina.",
+        "01:30 PM — Tapas lunch at Mercat de l'Olivar indoor market.",
+        "03:00 PM — Visit Bellver Castle (circular 14th-century castle on pine hill with bay views).",
+        "05:00 PM — Sample traditional Mallorcan Ensaimada pastry & hot chocolate.",
+        "06:30 PM — Taxi back to cruise terminal.",
+        "07:00 PM — All-Aboard onboard Viva (Ship sails 8:00 PM)."
+      ],
+      diningSpots: [
+        { name: "Mercat de l'Olivar (Plaça de l'Olivar)", type: "Lunch", note: "Vibrant indoor market with fresh grilled prawns, Iberian ham (Jamón Ibérico), and Patatas Bravas." },
+        { name: "Ca'n Joan de s'Aigo (Carrer de Can Sanç, 10)", type: "Sweet Specialty", note: "300-year-old cafe: must order warm Ensaimada pastry with almond ice cream or thick hot chocolate!" }
+      ]
+    }
   },
   {
     day: 10,
@@ -165,7 +366,27 @@ const cruiseData = [
     adultsActivities: 'Disembark Norwegian Viva at 08:30 AM, transfer to Barcelona Airport (BCN).',
     kidsActivities: 'Souvenir shopping at BCN airport before flight home.',
     transferInfo: '08:30 Disembark ➔ 09:30 Taxi/Aerobús to BCN Terminal 2 ➔ 10:35 Check-in ➔ 12:35 Flight FR6597 (PNR: F8YGQR) ➔ 14:10 Arrive Manchester (MAN).',
-    tags: ['Disembarkation', 'Barcelona', 'Inbound Flight', 'Ryanair FR6597']
+    tags: ['Disembarkation', 'Barcelona', 'Inbound Flight', 'Ryanair FR6597'],
+    deepDive: {
+      verdict: "100% DIY (Disembarkation)",
+      verdictBadgeClass: "badge-success",
+      costDiy: "€40 total (Taxis)",
+      costNcl: "— (Inbound Flight)",
+      nclVsDiySummary: "Disembark Norwegian Viva at 8:30 AM. Taxis outside the Barcelona cruise terminal take you directly to Barcelona Airport (BCN) Terminal 2 for flight FR6597.",
+      timedItinerary: [
+        "06:30 AM — Ship docks at Port of Barcelona.",
+        "07:30 AM — Family breakfast onboard Norwegian Viva.",
+        "08:30 AM — Disembark ship & collect checked luggage in terminal.",
+        "09:15 AM — Take official taxi (~€35–40) or Aerobús to BCN Airport Terminal 2.",
+        "10:35 AM — Check-in & security for Ryanair flight FR6597.",
+        "12:35 PM — Flight FR6597 departs Barcelona for Manchester (MAN).",
+        "02:10 PM — Land in Manchester, UK!"
+      ],
+      diningSpots: [
+        { name: "Cervecería Catalana (Carrer de Mallorca, 236)", type: "Tapas", note: "Incredible Spanish tapas: honey-drizzled fried eggplant, garlic prawns & beef tenderloin skewers." },
+        { name: "Mercat de la Boqueria (La Rambla, 91)", type: "Market Snacks", note: "Fresh coconut chunks, Iberian ham cones, and warm empanadas before the airport." }
+      ]
+    }
   }
 ];
 
@@ -539,6 +760,11 @@ async function selectDay(index) {
             ${data.transferInfo}
           </p>
           ${liveTrainBtn}
+          <div style="margin-top: 12px;">
+            <button onclick="openPortDeepDive(${index})" class="btn btn-sm btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary); font-weight: 600; padding: 10px;">
+              <i class="fa-solid fa-book-open"></i> Open Port Deep-Dive (DIY vs. NCL & Dining)
+            </button>
+          </div>
         </div>
 
         <div class="activity-tags">
@@ -1247,3 +1473,92 @@ function compressImage(dataUrl, maxWidth, quality, callback) {
   };
   img.src = dataUrl;
 }
+
+// Port Excursion Deep-Dive Modal Logic
+function openPortDeepDive(index) {
+  const data = cruiseData[index];
+  if (!data || !data.deepDive) return;
+  const dd = data.deepDive;
+
+  let modalEl = document.getElementById('deep-dive-modal');
+  if (!modalEl) {
+    modalEl = document.createElement('div');
+    modalEl.id = 'deep-dive-modal';
+    modalEl.className = 'modal-overlay';
+    document.body.appendChild(modalEl);
+  }
+
+  modalEl.innerHTML = `
+    <div class="modal-card tech-card" style="max-width: 680px; max-height: 85vh; overflow-y: auto; padding: 24px; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+        <div>
+          <span class="badge ${dd.verdictBadgeClass}" style="font-size: 12px; margin-bottom: 6px;">${dd.verdict}</span>
+          <h2 style="font-size: 20px; color: var(--sunset-gold); margin: 4px 0 0 0;">
+            <i class="fa-solid fa-compass"></i> Day ${data.day}: ${data.port.split(',')[0]} Deep-Dive
+          </h2>
+        </div>
+        <button onclick="closePortDeepDive()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
+      </div>
+
+      <!-- Cost & Strategy Comparison Card -->
+      <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+        <h4 style="color: #38bdf8; margin-bottom: 10px; font-size: 15px;"><i class="fa-solid fa-scale-balanced"></i> NCL Shore Excursion vs. DIY Independent</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; font-size: 13px;">
+          <div style="background: rgba(46, 213, 115, 0.15); padding: 10px 12px; border-radius: 8px; border-left: 4px solid #2ed573;">
+            <strong style="color: #fff;">DIY Est. Cost (4 Pax):</strong><br><span style="color: #2ed573; font-weight: 700;">${dd.costDiy}</span>
+          </div>
+          <div style="background: rgba(255, 71, 87, 0.15); padding: 10px 12px; border-radius: 8px; border-left: 4px solid #ff4757;">
+            <strong style="color: #fff;">NCL Excursion Cost:</strong><br><span style="color: #ff4757; font-weight: 700;">${dd.costNcl}</span>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: #e2e8f0; line-height: 1.6; margin: 0;">${dd.nclVsDiySummary}</p>
+      </div>
+
+      <!-- Timed Family Itinerary -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #ffb703; margin-bottom: 12px; font-size: 15px;"><i class="fa-solid fa-clock"></i> Timed Family Itinerary (14M & 11F + Adults)</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          ${dd.timedItinerary.map(item => `
+            <li style="position: relative; padding: 8px 12px 8px 30px; margin-bottom: 8px; font-size: 13.5px; color: #e2e8f0; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <i class="fa-solid fa-circle-check" style="color: var(--primary); position: absolute; left: 10px; top: 12px; font-size: 13px;"></i>
+              ${item}
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <!-- Curated Dining & Gelato -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #38bdf8; margin-bottom: 12px; font-size: 15px;"><i class="fa-solid fa-utensils"></i> Curated Family Lunch, Snacks & Gelato</h4>
+        <div style="display: grid; gap: 10px;">
+          ${dd.diningSpots.map(spot => `
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong style="color: #fff; font-size: 14px;">${spot.name}</strong>
+                <span class="badge badge-info" style="font-size: 11px;">${spot.type}</span>
+              </div>
+              <p style="margin: 0; font-size: 13px; color: var(--text-muted);">${spot.note}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div style="text-align: right; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+        <button onclick="closePortDeepDive()" class="btn btn-primary" style="padding: 10px 24px; font-weight: 700;">
+          Close Guide <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+    </div>
+  `;
+
+  modalEl.style.display = 'flex';
+}
+
+function closePortDeepDive() {
+  const modalEl = document.getElementById('deep-dive-modal');
+  if (modalEl) modalEl.style.display = 'none';
+}
+
+window.openPortDeepDive = openPortDeepDive;
+window.closePortDeepDive = closePortDeepDive;
+
