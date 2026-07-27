@@ -782,52 +782,111 @@ async function selectDay(index) {
     </div>
   ` : '';
 
-  // Update Day Details Card with Hero Image Banner
+  // Update Day Details Card with Hero Image Banner & Prominent Travel Logistics Front & Center!
   const detailsContainer = document.getElementById('day-details-card');
+  const dd = data.deepDive;
+
   detailsContainer.innerHTML = `
     <div class="day-hero-container">
       <img src="${data.heroImage}" alt="${data.port}" class="day-hero-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'; this.style.opacity='0.8';" />
     </div>
 
-    <div class="card-header">
-      <h2><i class="fa-solid ${data.day === 0 ? 'fa-hotel' : 'fa-anchor'}"></i> ${data.day === 0 ? 'Pre-Cruise Stay' : 'Day ' + data.day}: ${data.port}</h2>
-      <span class="badge badge-warning">${data.date}</span>
-    </div>
-    
-    <div class="day-content-grid">
+    <div class="card-header" style="margin-bottom: 16px;">
       <div>
-        <p style="font-size: 15px; color: #ffffff; margin-bottom: 12px; font-weight: 500;">
-          <i class="fa-solid fa-star" style="color: var(--accent);"></i> ${data.highlight}
+        <span class="badge ${dd ? (dd.badgeClass || 'badge-success') : 'badge-success'}" style="font-size: 11px; margin-bottom: 6px;">${dd ? (dd.logisticsMode || 'DIY Strategy') : 'DIY Travel Plan'}</span>
+        <h2 style="font-size: 22px; margin: 4px 0 0 0;"><i class="fa-solid ${data.day === 0 ? 'fa-hotel' : 'fa-anchor'}"></i> ${data.day === 0 ? 'Pre-Cruise Stay' : 'Day ' + data.day}: ${data.port}</h2>
+      </div>
+      <span class="badge badge-warning" style="font-size: 13px;">${data.date}</span>
+    </div>
+
+    <!-- Highlights & Specialty Dining Banners -->
+    <div style="margin-bottom: 20px;">
+      <p style="font-size: 14.5px; color: #ffffff; margin-bottom: 12px; font-weight: 500;">
+        <i class="fa-solid fa-star" style="color: var(--accent);"></i> <strong>Focus:</strong> ${data.highlight}
+      </p>
+
+      ${data.specialtyDining ? `
+        <div style="background: rgba(255, 183, 3, 0.12); border-left: 4px solid var(--sunset-gold); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <strong style="color: var(--sunset-gold); font-size: 14px;"><i class="fa-solid ${data.specialtyDining.icon}"></i> Confirmed Specialty Dining: ${data.specialtyDining.restaurant}</strong>
+            <p style="color: #ffffff; font-size: 12.5px; margin: 3px 0 0 0;">Reserved for <strong>${data.specialtyDining.time}</strong> • ${data.specialtyDining.cuisine}</p>
+          </div>
+          <span class="badge badge-warning" style="font-size: 11px;">RESERVED</span>
+        </div>
+      ` : ''}
+    </div>
+
+    <!-- PRIMARY PROMINENT SECTION: Master DIY Transport & Route Execution Guide -->
+    ${dd ? `
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid var(--sunset-gold); border-radius: 12px; padding: 18px; margin-bottom: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <h3 style="color: var(--sunset-gold); margin: 0; font-size: 16px; font-weight: 700;">
+            <i class="fa-solid fa-route"></i> Primary Travel Logistics & Route Execution Guide
+          </h3>
+          ${data.liveTrainLink ? `
+            <a href="${data.liveTrainLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="text-decoration: none; font-size: 11.5px; padding: 6px 12px;">
+              <i class="fa-solid fa-train"></i> Track Live Train
+            </a>
+          ` : ''}
+        </div>
+        <p style="font-size: 14px; color: #e2e8f0; line-height: 1.65; margin: 0; font-weight: 400;">
+          ${dd.logisticsSummary}
         </p>
+      </div>
 
-        ${data.specialtyDining ? `
-          <div style="background: rgba(255, 183, 3, 0.1); border-left: 4px solid var(--sunset-gold); border-radius: 6px; padding: 12px; margin-bottom: 14px;">
-            <strong style="color: var(--sunset-gold); font-size: 13.5px;"><i class="fa-solid ${data.specialtyDining.icon}"></i> Confirmed Specialty Dining: ${data.specialtyDining.restaurant}</strong>
-            <p style="color: #ffffff; font-size: 12.5px; margin: 4px 0 0 0;">Reserved for <strong>${data.specialtyDining.time}</strong> • ${data.specialtyDining.cuisine}</p>
-          </div>
-        ` : ''}
+      <!-- PROMINENT STEP-BY-STEP TIMED ITINERARY -->
+      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 24px;">
+        <h3 style="color: #ffb703; margin: 0 0 14px 0; font-size: 16px; font-weight: 700;">
+          <i class="fa-solid fa-clock"></i> Timed Master Schedule & Family Itinerary
+        </h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
+          ${dd.timedItinerary.map(item => `
+            <li style="position: relative; padding: 10px 14px 10px 34px; font-size: 13.5px; color: #f1f5f9; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); line-height: 1.5;">
+              <i class="fa-solid fa-circle-check" style="color: var(--primary); position: absolute; left: 12px; top: 13px; font-size: 14px;"></i>
+              ${item}
+            </li>
+          `).join('')}
+        </ul>
+      </div>
 
-        <div class="activity-section">
-          <h4><i class="fa-solid fa-user-tie"></i> Adults Activity Highlights</h4>
-          <p style="color: var(--text-muted); font-size: 13px;">${data.adultsActivities}</p>
+      <!-- CURATED LOCAL DINING & GELATO -->
+      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 24px;">
+        <h3 style="color: #38bdf8; margin: 0 0 14px 0; font-size: 16px; font-weight: 700;">
+          <i class="fa-solid fa-utensils"></i> Curated Local Family Dining & Gelato Spots
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+          ${dd.diningSpots.map(spot => `
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #ffffff; font-size: 14px;">${spot.name}</strong>
+                <span class="badge badge-info" style="font-size: 10.5px;">${spot.type}</span>
+              </div>
+              <p style="margin: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.4;">${spot.note}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Secondary Activities & Weather Grid -->
+    <div class="day-content-grid" style="grid-template-columns: 1fr 220px; gap: 20px;">
+      <div>
+        <div class="activity-section" style="margin-bottom: 14px;">
+          <h4 style="font-size: 14px; color: var(--sunset-gold);"><i class="fa-solid fa-user-tie"></i> Adults Activity Highlights</h4>
+          <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 4px;">${data.adultsActivities}</p>
         </div>
 
-        <div class="activity-section">
-          <h4><i class="fa-solid fa-child-reaching"></i> Teen & Kids Activities (14M & 11F)</h4>
-          <p style="color: var(--text-muted); font-size: 13px;">${data.kidsActivities}</p>
-          <div style="margin-top: 12px;">
-            <button onclick="openPortDeepDive(${index})" class="btn btn-sm btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary); font-weight: 600; padding: 10px;">
-              <i class="fa-solid fa-book-open"></i> Open Master Logistics Guide & Timed Itinerary
-            </button>
-          </div>
+        <div class="activity-section" style="margin-bottom: 14px;">
+          <h4 style="font-size: 14px; color: var(--sunset-gold);"><i class="fa-solid fa-child-reaching"></i> Teen & Kids Activities (14M & 11F)</h4>
+          <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 4px;">${data.kidsActivities}</p>
         </div>
 
-        <div class="activity-tags">
+        <div class="activity-tags" style="margin-top: 14px;">
           ${data.tags.map(t => `<span class="tag">#${t}</span>`).join('')}
         </div>
       </div>
 
-      <!-- Live Open-Meteo Weather Widget Box -->
+      <!-- Live Weather Box -->
       <div class="weather-badge-box">
         <i class="fa-solid fa-cloud-sun" style="font-size: 28px; color: var(--primary);"></i>
         <div class="weather-temp" id="live-temp">--°C</div>
