@@ -91,6 +91,7 @@
     </div>
   </header>
 
+  <div class="content-wrapper">
   <!-- Front & Center Prominent Travel & Logistics Section -->
   <section class="travel-master-section">
     <div class="travel-master-card">
@@ -208,11 +209,84 @@
   <!-- Main Grid Layout -->
   <main class="main-container">
     
-    <!-- Left Column: Day Selector, Currency Converter & Home Squad -->
-    <aside class="sidebar">
+    <!-- Left Column: Port Schedule, Map, Itinerary -->
+    <div class="left-column">
       <h2><i class="fa-solid fa-compass"></i> Port & Cruise Schedule</h2>
       <div class="day-list" id="day-list">
         <!-- Rendered via JS -->
+      </div>
+
+      <!-- Map Card -->
+      <div class="card map-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-map-location-dot"></i> Mediterranean Cruise Route</h2>
+          <span class="badge badge-primary" id="current-port-badge">Focus: Venice (Ravenna)</span>
+        </div>
+        <div id="map-container" class="map-view">
+          <div class="map-placeholder" id="map-placeholder">
+            <i class="fa-solid fa-ship fa-spin" style="font-size: 32px; color: var(--primary);"></i>
+            <p id="map-status-text">Loading Mediterranean Cruise Map...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Day Full Details with Photo Hero -->
+      <div class="card day-details-card" id="day-details-card">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+
+    <!-- Right Column: Photos, Packing, Kids, Phrasebook, Currency, Pets, Ship Map -->
+    <div class="right-column">
+      
+      <!-- Family Photo Memory Upload Card with Shared Cloud Sync -->
+      <div class="card gallery-card" style="text-align: center; padding: 30px 20px;">
+        <i class="fa-brands fa-google" style="font-size: 40px; color: #4285F4; margin-bottom: 15px; display: block;"></i>
+        <h2 style="margin-bottom: 10px; font-size: 1.5rem;">Family Cruise Album</h2>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+          We are using a shared Google Photos album so everyone can easily upload and view pictures right from their phones.
+        </p>
+        <a href="https://photos.app.goo.gl/GWyFAfEutLT38cy38" target="_blank" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-weight: bold; border-radius: 20px; background-color: #4285F4; border-color: #4285F4; text-decoration: none;">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Google Photos
+        </a>
+      </div>
+
+      <!-- Daily Port Excursion Packing Checklist Card -->
+      <div class="card packing-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-suitcase" style="color: var(--sunset-gold);"></i> Daily Port Excursion Packing List</h2>
+          <span class="badge badge-warning" id="packing-progress">0 of 0 Ready</span>
+        </div>
+        <div class="checklist-items" id="packing-items">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Family Activity Checklist Card -->
+      <div class="card checklist-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-list-check"></i> Kids & Teen Activity Checklist (14M & 11F)</h2>
+          <span class="badge badge-success" id="checklist-progress">0 of 0 Completed</span>
+        </div>
+        <div class="checklist-items" id="checklist-items">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Local Port Phrasebook Card -->
+      <div class="card phrasebook-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-language" style="color: var(--sunset-gold);"></i> Port Explorer Phrasebook</h2>
+          <div class="phrase-tabs">
+            <button class="phrase-tab active" onclick="switchLanguage('it')">🇮🇹 Italian</button>
+            <button class="phrase-tab" onclick="switchLanguage('hr')">🇭🇷 Croatian</button>
+            <button class="phrase-tab" onclick="switchLanguage('fr')">🇫🇷 French</button>
+            <button class="phrase-tab" onclick="switchLanguage('es')">🇪🇸 Spanish</button>
+          </div>
+        </div>
+        <div class="phrase-grid" id="phrase-grid">
+          <!-- Rendered via JS -->
+        </div>
       </div>
 
       <!-- Currency Converter Card -->
@@ -278,93 +352,10 @@
         </button>
       </div>
 
-    </aside>
-
-    <!-- Right Column: Interactive Map, Day Details, Phrasebook & Photo Showcase -->
-    <section class="content-area">
-
-      <!-- Map Card -->
-      <div class="card map-card">
-        <div class="card-header">
-          <h2><i class="fa-solid fa-map-location-dot"></i> Mediterranean Cruise Route</h2>
-          <span class="badge badge-primary" id="current-port-badge">Focus: Venice (Ravenna)</span>
-        </div>
-        <div id="map-container" class="map-view">
-          <div class="map-placeholder" id="map-placeholder">
-            <i class="fa-solid fa-ship fa-spin" style="font-size: 32px; color: var(--primary);"></i>
-            <p id="map-status-text">Loading Mediterranean Cruise Map...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Selected Day Full Details with Photo Hero -->
-      <div class="card day-details-card" id="day-details-card">
-        <!-- Rendered dynamically by app.js -->
-      </div>
-
-      <!-- Family Photo Memory Upload Card with Shared Cloud Sync -->
-      <div class="card gallery-card">
-        <div class="card-header">
-          <h2><i class="fa-solid fa-camera-retro"></i> Family Cruise Album</h2>
-          <div style="display: flex; gap: 8px;">
-            <label class="btn btn-sm btn-primary" id="upload-btn-label" style="cursor: pointer;">
-              <i class="fa-solid fa-upload"></i> Upload
-              <input type="file" id="photo-upload-input" accept="image/*" multiple style="display: none;" onchange="handlePhotoUpload(event)" />
-            </label>
-            <button class="btn btn-sm btn-outline" onclick="clearPhotoAlbum()" title="Clear imported photos">
-              <i class="fa-solid fa-trash"></i> Clear
-            </button>
-          </div>
-        </div>
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
-          Photos uploaded here are automatically synced across all family phones, iPads, and laptops!
-        </p>
-        <div class="photo-grid" id="photo-grid">
-          <!-- Rendered dynamically -->
-        </div>
-      </div>
-
-      <!-- Local Port Phrasebook Card -->
-      <div class="card phrasebook-card">
-        <div class="card-header">
-          <h2><i class="fa-solid fa-language" style="color: var(--sunset-gold);"></i> Port Explorer Phrasebook</h2>
-          <div class="phrase-tabs">
-            <button class="phrase-tab active" onclick="switchLanguage('it')">🇮🇹 Italian</button>
-            <button class="phrase-tab" onclick="switchLanguage('hr')">🇭🇷 Croatian</button>
-            <button class="phrase-tab" onclick="switchLanguage('fr')">🇫🇷 French</button>
-            <button class="phrase-tab" onclick="switchLanguage('es')">🇪🇸 Spanish</button>
-          </div>
-        </div>
-        <div class="phrase-grid" id="phrase-grid">
-          <!-- Rendered via JS -->
-        </div>
-      </div>
-
-      <!-- Daily Port Excursion Packing Checklist Card -->
-      <div class="card packing-card">
-        <div class="card-header">
-          <h2><i class="fa-solid fa-suitcase" style="color: var(--sunset-gold);"></i> Daily Port Excursion Packing List</h2>
-          <span class="badge badge-warning" id="packing-progress">0 of 0 Ready</span>
-        </div>
-        <div class="checklist-items" id="packing-items">
-          <!-- Rendered via JS -->
-        </div>
-      </div>
-
-      <!-- Family Activity Checklist Card -->
-      <div class="card checklist-card">
-        <div class="card-header">
-          <h2><i class="fa-solid fa-list-check"></i> Kids & Teen Activity Checklist (14M & 11F)</h2>
-          <span class="badge badge-success" id="checklist-progress">0 of 0 Completed</span>
-        </div>
-        <div class="checklist-items" id="checklist-items">
-          <!-- Rendered via JS -->
-        </div>
-      </div>
-
-    </section>
+    </div>
 
   </main>
+  </div>
 
   <footer>
     Norwegian Viva Mediterranean Fly-Cruise 2026 • Dedicated for Al-Tahoor, Sarah & Family ☀️
@@ -375,7 +366,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=44').then((reg) => {
+        navigator.serviceWorker.register('./sw.js?v=52').then((reg) => {
           reg.update();
           console.log('PWA Service Worker registered & updated:', reg.scope);
         }).catch((err) => {

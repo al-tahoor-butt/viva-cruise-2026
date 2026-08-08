@@ -629,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
   selectDay(0);
   renderChecklist();
   renderPackingList();
-  renderPhotoAlbum();
+
   renderPhrasebook('it');
   convertCurrency();
   fetchLiveCurrencyRates();
@@ -1475,87 +1475,6 @@ function animateShipTransition(fromIdx, toIdx) {
 
 
 
-function clearPhotoAlbum() {
-  localStorage.removeItem('viva_family_photos');
-  renderPhotoAlbum();
-}
-
-// User Photo Album Upload & LocalStorage Persistence
-function renderPhotoAlbum() {
-  const defaultPhotos = [
-    { src: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=400&q=80', title: 'Ravenna' },
-    { src: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=400&q=80', title: 'Dubrovnik' },
-    { src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=400&q=80', title: 'Rome' }
-  ];
-
-  const saved = localStorage.getItem('viva_family_photos');
-  const photos = saved ? JSON.parse(saved) : defaultPhotos;
-
-  const grid = document.getElementById('photo-grid');
-  grid.innerHTML = '';
-
-  photos.forEach((photo, idx) => {
-    const card = document.createElement('div');
-    card.className = 'photo-card';
-    card.innerHTML = `
-      <img src="${photo.src}" alt="${photo.title || 'Memory'}" title="${photo.title || 'Memory'}" />
-      <button style="position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.6); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: 10px;" onclick="removePhoto(${idx})">✕</button>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-function removePhoto(index) {
-  const saved = localStorage.getItem('viva_family_photos');
-  let photos = saved ? JSON.parse(saved) : [];
-  photos.splice(index, 1);
-  localStorage.setItem('viva_family_photos', JSON.stringify(photos));
-  renderPhotoAlbum();
-}
-
-function handlePhotoUpload(event) {
-  const files = event.target.files;
-  if (!files || files.length === 0) return;
-
-  const saved = localStorage.getItem('viva_family_photos');
-  let photos = saved ? JSON.parse(saved) : [];
-
-  const uploadBtn = document.getElementById('upload-btn-label');
-  if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
-
-  let readCount = 0;
-
-  Array.from(files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      // Compress image via canvas to prevent localStorage overflow
-      compressImage(e.target.result, 800, 0.7, (compressedSrc) => {
-        photos.unshift({ src: compressedSrc, title: file.name });
-        readCount++;
-
-        if (readCount === files.length) {
-          const finalPhotos = photos.slice(0, 20);
-          try {
-            localStorage.setItem('viva_family_photos', JSON.stringify(finalPhotos));
-          } catch (storageErr) {
-            // localStorage quota exceeded — trim older photos until it fits
-            while (finalPhotos.length > 1) {
-              finalPhotos.pop();
-              try { localStorage.setItem('viva_family_photos', JSON.stringify(finalPhotos)); break; }
-              catch (e2) { /* keep trimming */ }
-            }
-          }
-          renderPhotoAlbum();
-          if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
-          setTimeout(() => {
-            if (uploadBtn) uploadBtn.innerHTML = '<i class="fa-solid fa-upload"></i> Upload';
-          }, 2000);
-        }
-      });
-    };
-    reader.readAsDataURL(file);
-  });
-}
 
 // Daily Port Excursion Packing List Persistence
 function renderPackingList() {
@@ -1643,30 +1562,7 @@ function toggleCheckitem(id) {
   renderChecklist();
 }
 
-// Image compression utility — prevents localStorage overflow from raw phone camera base64
-function compressImage(dataUrl, maxWidth, quality, callback) {
-  const img = new Image();
-  img.onload = function() {
-    const canvas = document.createElement('canvas');
-    let width = img.width;
-    let height = img.height;
 
-    if (width > maxWidth) {
-      height = Math.round(height * (maxWidth / width));
-      width = maxWidth;
-    }
-
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0, width, height);
-    callback(canvas.toDataURL('image/jpeg', quality));
-  };
-  img.onerror = function() {
-    callback(dataUrl); // fallback to original if compression fails
-  };
-  img.src = dataUrl;
-}
 
 // Port Excursion Deep-Dive Modal Logic
 function openPortDeepDive(index) {
@@ -1949,7 +1845,7 @@ function openDeckPlanModal(defaultDeck = 'Deck 8') {
       <div style="margin-bottom: 16px; position: relative;">
         <div style="display: flex; align-items: center; background: rgba(15, 23, 42, 0.95); border: 1.5px solid var(--sunset-gold); border-radius: 10px; padding: 4px 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
           <i class="fa-solid fa-magnifying-glass" style="color: var(--sunset-gold); font-size: 15px; margin-right: 10px;"></i>
-          <input type="text" id="deck-venue-search" oninput="filterDeckVenues(this.value)" placeholder="Search any ship venue (e.g. 'Los Lobos', 'Tapas', 'Go-Kart', 'Starbucks', 'Spa', '13925')..." style="background: none; border: none; color: #ffffff; width: 100%; padding: 10px 0; font-size: 13.5px; outline: none;" />
+          <input type="text" id="deck-venue-search" oninput="filterDeckVenues(this.value)" placeholder="Search any ship venue (e.g. 'Los Lobos', 'Tapas', 'Go-Kart', 'Starbucks', 'Spa', '5700')..." style="background: none; border: none; color: #ffffff; width: 100%; padding: 10px 0; font-size: 13.5px; outline: none;" />
           <button onclick="clearVenueSearch()" id="clear-venue-search-btn" style="display: none; background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 18px; padding: 0 6px;">&times;</button>
         </div>
       </div>
@@ -2010,16 +1906,16 @@ function filterDeckVenues(query) {
   const matches = [];
 
   // Check stateroom cabin match
-  if ('13925'.includes(q) || '64139255'.includes(q) || 'cabin'.includes(q) || 'room'.includes(q) || 'stateroom'.includes(q) || 'balcony'.includes(q)) {
+  if ('5700'.includes(q) || '64139255'.includes(q) || 'cabin'.includes(q) || 'room'.includes(q) || 'stateroom'.includes(q)) {
     matches.push({
-      deck: 'Decks 9–15',
-      name: 'Stateroom Cabin #13925',
-      location: 'Deck 13 Mid-Aft (Port Side)',
+      deck: 'Deck 4 & 5',
+      name: 'Stateroom Cabin #5700',
+      location: 'Deck 5',
       type: 'Your Family Accommodation',
       status: 'Booked',
       reserved: 'NCL Res #64139255',
       icon: 'fa-door-closed',
-      desc: 'Your family home base at sea! Private balcony stateroom on Deck 13 Mid-Aft (Port Side) with fast elevators to Deck 17 Buffet & Deck 8 Food Hall.'
+      desc: 'Your family home base at sea! Comfortable stateroom on Deck 5 with convenient access to the gangway and lower deck venues.'
     });
   }
 
@@ -2129,7 +2025,7 @@ function switchDeck(deckName) {
     unclassified.forEach(v => midVenues.push(v));
   }
 
-  const isCabinDeck = deckName === 'Decks 9–15';
+  const isCabinDeck = deckName === 'Deck 4 & 5';
 
   container.innerHTML = `
     <!-- Visual Diagrammatic Ship Deck Schematic -->
@@ -2169,11 +2065,11 @@ function switchDeck(deckName) {
           ${isCabinDeck ? `
             <div class="schematic-cabin-chip">
               <div style="font-weight: 800; font-size: 13px; color: #ffffff; display: flex; align-items: center; justify-content: space-between;">
-                <span><i class="fa-solid fa-star" style="color: var(--sunset-gold);"></i> YOUR CABIN #13925</span>
+                <span><i class="fa-solid fa-star" style="color: var(--sunset-gold);"></i> YOUR CABIN #5700</span>
                 <span class="badge badge-warning" style="font-size: 9px; padding: 2px 6px;">BOOKED</span>
               </div>
               <div style="font-size: 11px; color: #f1f5f9; margin-top: 4px;">
-                <strong>Deck 13 Mid-Aft (Port Side)</strong> • Balcony Stateroom
+                <strong>Deck 5</strong> • Stateroom
               </div>
               <div style="font-size: 10px; color: var(--sunset-gold); margin-top: 2px;">
                 NCL Reservation #64139255
@@ -2209,13 +2105,13 @@ function switchDeck(deckName) {
           </div>
           <div style="height: 14px;"></div>
           <strong style="color: #ffffff; font-size: 17px; display: flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-door-closed" style="color: var(--sunset-gold);"></i> Stateroom Cabin #13925 (Deck 13)
+            <i class="fa-solid fa-door-closed" style="color: var(--sunset-gold);"></i> Stateroom Cabin #5700 (Deck 5)
           </strong>
           <div style="font-size: 12px; color: var(--sunset-gold); margin: 4px 0 8px 0; font-weight: 600;">
-            <i class="fa-solid fa-location-dot"></i> Deck 13 Mid-Aft (Port Side) • Balcony Stateroom (NCL Res #64139255)
+            <i class="fa-solid fa-location-dot"></i> Deck 5 • Stateroom (NCL Res #64139255)
           </div>
           <p style="margin: 0; font-size: 13px; color: #f8fafc; line-height: 1.5;">
-            Your family home base at sea! Features a private glass balcony with panoramic ocean views, USB-C fast charging stations, interactive HDTV, and quick elevator access to Deck 17 Surfside Buffet and Deck 8 Indulge Food Hall.
+            Your family home base at sea! Features a comfortable stateroom with convenient access to the gangway and lower deck venues.
           </p>
         </div>
       ` : ''}

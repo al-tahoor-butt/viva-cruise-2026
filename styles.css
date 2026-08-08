@@ -249,22 +249,22 @@ body {
     display: flex;
     flex-direction: column;
   }
-  .sidebar, .content-area {
+  .left-column, .right-column {
     display: contents;
   }
-  .sidebar > h2, .sidebar > .day-list {
+  .left-column > h2, .left-column > .day-list {
     order: 1;
   }
-  .map-container {
+  .map-card {
     order: 2;
   }
   .day-details-card {
     order: 3;
   }
-  .phrasebook-card, .photo-gallery {
+  .phrasebook-card, .gallery-card {
     order: 4;
   }
-  .sidebar > .tech-card {
+  .right-column > .card {
     order: 5;
   }
 }
@@ -326,7 +326,7 @@ body {
 }
 
 /* Sidebar & Day Selector */
-.sidebar h2 {
+.left-column h2 {
   font-family: var(--font-heading);
   font-size: 18px;
   margin-bottom: 16px;
@@ -1197,7 +1197,7 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .sidebar, .map-card, .gallery-card, .phrasebook-card,
+  .left-column, .map-card, .gallery-card, .phrasebook-card,
   .header-actions, #upload-btn-label, .photo-card button {
     display: none !important;
   }
