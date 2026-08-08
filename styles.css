@@ -705,7 +705,8 @@ body {
 }
 
 @media (max-width: 768px) {
-  .day-content-grid {
+  .day-content-grid,
+  .travel-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -969,6 +970,9 @@ footer {
   }
   .travel-master-card {
     padding: 16px;
+  }
+  .travel-master-section {
+    padding: 0 12px;
   }
   .travel-box {
     padding: 12px;
