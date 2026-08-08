@@ -14,7 +14,7 @@ const cruiseData = [
     highlight: 'Flight FR2242 & Stay at Hotel Del Borgo, Bologna',
     adultsActivities: 'Land in Bologna Airport (BLQ) at 21:05, 8-min taxi to Hotel Del Borgo (Booking #5007213355), late-night aperitivo under porticoes.',
     kidsActivities: 'Exciting evening flight & cozy stay at Hotel Del Borgo (2 single + 1 double bed configured).',
-    transferInfo: 'Flight FR2242 (PNR: WTUR5S) MAN 17:45 ➔ BLQ 21:05. Hotel Del Borgo: Via Marco Emilio Lepido 195 (Booking #5007213355). 8-min taxi (~€20) from BLQ airport rank.',
+    transferInfo: '14:00 Train Greenfield ➔ MAN. Flight FR2242 (PNR: WTUR5S) MAN 17:45 ➔ BLQ 21:05. Hotel Del Borgo: Via Marco Emilio Lepido 195 (Booking #5007213355). 8-min taxi (~€20) from BLQ airport rank.',
     tags: ['Hotel Del Borgo', 'Flight FR2242', 'Pre-Cruise', 'Bologna'],
     deepDive: {
       logisticsTitle: "DIY Master Execution Strategy",
@@ -23,6 +23,7 @@ const cruiseData = [
       estCost: "€11/pax (Monorail) or ~€20 Taxi",
       logisticsSummary: "Ryanair Flight FR2242 lands at BLQ Airport at 21:05. Exit terminal directly to the official taxi rank for an 8-min cab (~€20) to Hotel Del Borgo (Via Marco Emilio Lepido 195). Alternatively, Marconi Express monorail runs every 7 mins directly to Bologna Centrale (€11/pax).",
       timedItinerary: [
+        "02:00 PM — Train from Greenfield to Manchester Airport (MAN).",
         "05:45 PM — Ryanair Flight FR2242 departs Manchester Airport (MAN) Terminal 3 (PNR: WTUR5S).",
         "09:05 PM — Land at Bologna Guglielmo Marconi Airport (BLQ). Collect checked bags.",
         "09:30 PM — Take 8-min official taxi from BLQ rank directly to Hotel Del Borgo.",
@@ -696,8 +697,8 @@ function renderPhrasebook(lang) {
 
 // Multi-Stage Dynamic Vacation Ticker
 function initCountdown() {
-  // 9th August 2026 at 17:45 BST = 16:45 UTC
-  const flightOutboundDate = Date.UTC(2026, 7, 9, 16, 45, 0);
+  // 9th August 2026 at 14:00 BST = 13:00 UTC
+  const flightOutboundDate = Date.UTC(2026, 7, 9, 13, 0, 0);
   // 10th August 2026 at 12:30 CEST = 10:30 UTC
   const embarkationDate = Date.UTC(2026, 7, 10, 10, 30, 0);
   // 19th August 2026 at 14:10 BST = 13:10 UTC
@@ -709,9 +710,9 @@ function initCountdown() {
     const timerEl = document.getElementById('countdown-timer');
     if (!labelEl || !timerEl) return;
 
-    // Phase 1: Pre-Trip Countdown to Outbound Flight
+    // Phase 1: Pre-Trip Countdown to Outbound Travel
     if (now < flightOutboundDate) {
-      labelEl.innerHTML = `<i class="fa-solid fa-plane-departure"></i> Outbound Flight Countdown`;
+      labelEl.innerHTML = `<i class="fa-solid fa-train-subway"></i> Outbound Travel Countdown`;
       formatTimer(flightOutboundDate - now, timerEl);
     }
     // Phase 2: Pre-Cruise Stay in Bologna -> Countdown to Cruise Embarkation
@@ -963,8 +964,11 @@ async function selectDay(index) {
       </div>
 
       <!-- Live Weather Box -->
-      <div class="weather-badge-box">
-        <i class="fa-solid fa-cloud-sun" style="font-size: 28px; color: var(--primary);"></i>
+      <div class="weather-badge-box" style="position: relative;">
+        <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--sunset-gold); margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 4px; width: 100%; justify-content: center;">
+          <i class="fa-solid fa-tower-broadcast" style="animation: pulse 2s infinite;"></i> LIVE WEATHER: ${data.port.split(',')[0]}
+        </div>
+        <i class="fa-solid fa-cloud-sun" style="font-size: 28px; color: var(--primary); margin-top: 4px;"></i>
         <div class="weather-temp" id="live-temp">--°C</div>
         <small id="weather-desc" style="color: var(--text-muted);">Fetching Open-Meteo...</small>
         <div style="margin-top: 10px; font-size: 11px; color: var(--text-muted);" id="weather-extra">
@@ -1083,7 +1087,7 @@ window.initMap = function() {
   // Custom Midnight Mediterranean Map Styling
   gmap = new google.maps.Map(document.getElementById('map-container'), {
     center: { lat: initialData.lat, lng: initialData.lng },
-    zoom: 7,
+    zoom: 6,
     disableDefaultUI: false,
     zoomControl: true,
     mapTypeControl: false,
@@ -1747,12 +1751,12 @@ function closePortDeepDive() {
 window.openPortDeepDive = openPortDeepDive;
 window.closePortDeepDive = closePortDeepDive;
 
-// Onboard Wi-Fi Router & Free at Sea Plus Strategy Modal
-function openWifiTechModal() {
-  let modalEl = document.getElementById('wifi-tech-modal');
+// Free at Sea Plus Strategy Modal
+function showFASModal() {
+  let modalEl = document.getElementById('fas-modal');
   if (!modalEl) {
     modalEl = document.createElement('div');
-    modalEl.id = 'wifi-tech-modal';
+    modalEl.id = 'fas-modal';
     modalEl.className = 'modal-overlay';
     document.body.appendChild(modalEl);
   }
@@ -1761,12 +1765,12 @@ function openWifiTechModal() {
     <div class="modal-card tech-card" style="max-width: 720px; max-height: 85vh; overflow-y: auto; padding: 24px; position: relative;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
         <div>
-          <span class="badge badge-warning" style="font-size: 11px; margin-bottom: 4px;">NCL Technical Strategy</span>
+          <span class="badge badge-warning" style="font-size: 11px; margin-bottom: 4px;">NCL Upgrade Strategy</span>
           <h2 style="font-size: 20px; color: var(--sunset-gold); margin: 4px 0 0 0;">
-            <i class="fa-solid fa-wifi"></i> Free at Sea Plus & GL.iNet Router Guide
+            <i class="fa-solid fa-wine-glass"></i> Free at Sea Plus Package Details
           </h2>
         </div>
-        <button onclick="closeWifiTechModal()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
+        <button onclick="closeFASModal()" class="btn-close" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0 8px;">&times;</button>
       </div>
 
       <!-- Section 1: Free at Sea Plus Package Evaluation -->
@@ -1795,35 +1799,9 @@ function openWifiTechModal() {
         </div>
       </div>
 
-      <!-- Section 2: GL.iNet Router Stealth Mode Guide -->
-      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #38bdf8; border-radius: 12px; padding: 18px; margin-bottom: 20px;">
-        <h3 style="color: #38bdf8; font-size: 16px; margin: 0 0 10px 0;">
-          <i class="fa-solid fa-user-ninja"></i> 2. GL.iNet Travel Router "Stealth Mode" Technical Setup
-        </h3>
-
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #e2e8f0;">
-          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-            <strong style="color: #38bdf8;"><i class="fa-solid fa-clone"></i> Step 1: MAC Address Cloning (Essential)</strong><br>
-            Log your phone into NCL Wi-Fi portal. Go to GL.iNet Admin (<code>192.168.8.1</code>) ➔ <em>Network</em> ➔ <em>MAC Clone</em> ➔ Clone your phone's MAC. Disconnect phone Wi-Fi, then connect GL.iNet to NCL in <strong>Repeater Mode</strong>.
-          </li>
-          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-            <strong style="color: #38bdf8;"><i class="fa-solid fa-shield-halved"></i> Step 2: Fix IP TTL = 64 (Bypass DPI Router Detection)</strong><br>
-            By default, routers decrease packet TTL by 1, exposing downstream devices. In GL.iNet admin (v4+ firmware), go to <em>Firewall</em> ➔ <em>Custom Rules / TTL Override</em> and set outgoing TTL to fixed <strong>64</strong> (or run <code>iptables -t mangle -A POSTROUTING -j TTL --ttl-set 64</code>).
-          </li>
-          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-            <strong style="color: #38bdf8;"><i class="fa-solid fa-eye-slash"></i> Step 3: Hostname Masking & Cabin Discretion</strong><br>
-            Rename router hostname from <code>GL-AXT1800</code> to <code>iPhone</code> or <code>Android-Device</code>. Set Wi-Fi TX Power to <em>Medium/Low</em> so the signal stays inside Cabin #64139255.
-          </li>
-          <li style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-            <strong style="color: #38bdf8;"><i class="fa-solid fa-gauge-high"></i> Step 4: Rate Limiting & Performance Realities</strong><br>
-            NCL Starlink rate-limits per MAC address (~5–10 Mbps). All connected family devices will share this bandwidth pipe, which is ample for messaging, browsing, emails, and social media.
-          </li>
-        </ul>
-      </div>
-
       <div style="text-align: right; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
-        <button onclick="closeWifiTechModal()" class="btn btn-primary" style="padding: 10px 24px; font-weight: 700;">
-          Close Technical Guide <i class="fa-solid fa-check"></i>
+        <button onclick="closeFASModal()" class="btn btn-primary" style="padding: 10px 24px; font-weight: 700;">
+          Close <i class="fa-solid fa-check"></i>
         </button>
       </div>
     </div>
@@ -1832,13 +1810,13 @@ function openWifiTechModal() {
   modalEl.style.display = 'flex';
 }
 
-function closeWifiTechModal() {
-  const modalEl = document.getElementById('wifi-tech-modal');
+function closeFASModal() {
+  const modalEl = document.getElementById('fas-modal');
   if (modalEl) modalEl.style.display = 'none';
 }
 
-window.openWifiTechModal = openWifiTechModal;
-window.closeWifiTechModal = closeWifiTechModal;
+window.showFASModal = showFASModal;
+window.closeFASModal = closeFASModal;
 
 // Norwegian Viva Prima-Class Deck Plan Data & Interactive Navigator (Complete 20-Deck Coverage)
 const vivaDeckData = [

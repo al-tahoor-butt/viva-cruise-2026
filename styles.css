@@ -246,7 +246,26 @@ body {
 
 @media (max-width: 960px) {
   .main-container {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar, .content-area {
+    display: contents;
+  }
+  .sidebar > h2, .sidebar > .day-list {
+    order: 1;
+  }
+  .map-container {
+    order: 2;
+  }
+  .day-details-card {
+    order: 3;
+  }
+  .phrasebook-card, .photo-gallery {
+    order: 4;
+  }
+  .sidebar > .tech-card {
+    order: 5;
   }
 }
 
@@ -311,6 +330,16 @@ body {
   font-family: var(--font-heading);
   font-size: 18px;
   margin-bottom: 16px;
+}
+
+.deck-tooltip {
+  display: none;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
 }
 
 .day-list {

@@ -23,10 +23,10 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <link rel="stylesheet" href="styles.css?v=47">
+  <link rel="stylesheet" href="styles.css?v=48">
 
   <!-- Core App Logic (must load before Google Maps callback fires) -->
-  <script src="app.js?v=47"></script>
+  <script src="app.js?v=48"></script>
 
   <!-- Google Maps API (key restricted to GitHub Pages domain via Cloud Console) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDcXjetWWNWFKdG_OrxxnOtgiTie_FeSs&callback=initMap&loading=async" async defer></script>
@@ -103,12 +103,13 @@
 
       <div class="travel-grid">
         
-        <!-- 1. Outbound Flight -->
+        <!-- 1. Outbound Travel -->
         <div class="travel-box">
           <div class="travel-box-title">
-            <i class="fa-solid fa-plane-departure"></i> Outbound Flight (Sun 09 Aug)
+            <i class="fa-solid fa-plane-departure"></i> Outbound Travel (Sun 09 Aug)
           </div>
           <div class="travel-box-content">
+            <p style="margin-bottom: 4px;"><strong>~14:00</strong> Train Greenfield ➔ Manchester Airport</p>
             <strong>Manchester (MAN) 17:45 ➔ Bologna (BLQ) 21:05</strong>
             <p>Ryanair Flight <strong>FR2242</strong> • PNR: <span class="badge badge-warning">WTUR5S</span></p>
             <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
@@ -174,17 +175,13 @@
           </div>
         </div>
 
-        <!-- 6. Free at Sea Plus & Wi-Fi Router Strategy -->
-        <div class="travel-box" style="border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.05);">
+        <!-- 6. Free at Sea Plus -->
+        <div class="travel-box" onclick="showFASModal()" style="cursor: pointer; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.05);">
           <div class="travel-box-title">
-            <i class="fa-solid fa-wifi"></i> FAS+ & Wi-Fi Router Tech Guide
+            <i class="fa-solid fa-wine-glass"></i> FAS+ Upgrade Details
           </div>
           <div class="travel-box-content">
-            <strong>GL.iNet Stealth Mode & Package Math</strong>
-            <p>MAC Clone + TTL=64 bypasses router block. FAS+ (£719) saves money vs Wi-Fi (£424) + Gratuities (~£310 offset).</p>
-            <button onclick="openWifiTechModal()" class="btn btn-sm btn-primary" style="margin-top: 8px; width: 100%;">
-              <i class="fa-solid fa-book-open"></i> Open Full Technical Guide
-            </button>
+            <p>FAS+ (£719) saves money vs Premium Wi-Fi (£424) + Gratuities (~£310 offset) + Premium Beverages.</p>
           </div>
         </div>
 
@@ -281,20 +278,6 @@
         </button>
       </div>
 
-      <!-- GL.iNet Wi-Fi Guide Card -->
-      <div class="tech-card">
-        <h3><i class="fa-solid fa-wifi"></i> Onboard Wi-Fi Hotspot</h3>
-        <ol>
-          <li>Disable Private MAC on phone.</li>
-          <li>Log phone into NCL Wi-Fi portal.</li>
-          <li>Clone phone MAC into GL.iNet router WAN.</li>
-          <li>Set TTL to 64 in Firewall settings.</li>
-          <li>Set to Repeater mode — all family devices connected for £0!</li>
-        </ol>
-        <button onclick="openWifiTechModal()" class="btn btn-sm btn-outline" style="width: 100%; margin-top: 8px; border-color: var(--sunset-gold); color: var(--sunset-gold); font-weight: 600;">
-          <i class="fa-solid fa-sliders"></i> Full Router & FAS+ Setup
-        </button>
-      </div>
     </aside>
 
     <!-- Right Column: Interactive Map, Day Details, Phrasebook & Photo Showcase -->
