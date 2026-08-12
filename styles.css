@@ -252,10 +252,10 @@ body {
   .left-column, .right-column {
     display: contents;
   }
-  .left-column > h2, .left-column > .day-list {
+  .map-card {
     order: 1;
   }
-  .map-card {
+  .left-column > h2, .left-column > .day-list {
     order: 2;
   }
   .day-details-card {
@@ -266,6 +266,17 @@ body {
   }
   .right-column > .card {
     order: 5;
+  }
+  .day-list {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .day-btn {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
   }
 }
 

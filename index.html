@@ -92,119 +92,6 @@
   </header>
 
   <div class="content-wrapper">
-  <!-- Front & Center Prominent Travel & Logistics Section -->
-  <section class="travel-master-section">
-    <div class="travel-master-card">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        <h2 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; color: #ffffff;">
-          <i class="fa-solid fa-plane-circle-check" style="color: var(--sunset-gold);"></i> Travel & Transfer Logistics Command
-        </h2>
-        <span class="badge badge-warning">NCL Reservation #64139255</span>
-      </div>
-
-      <div class="travel-grid">
-        
-        <!-- 1. Outbound Travel -->
-        <div class="travel-box">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-plane-departure"></i> Outbound Travel (Sun 09 Aug)
-          </div>
-          <div class="travel-box-content">
-            <p style="margin-bottom: 4px;"><strong>~14:00</strong> Train Greenfield ➔ Manchester Airport</p>
-            <strong>Manchester (MAN) 17:45 ➔ Bologna (BLQ) 21:05</strong>
-            <p>Ryanair Flight <strong>FR2242</strong> • PNR: <span class="badge badge-warning">WTUR5S</span></p>
-            <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
-              <i class="fa-solid fa-circle-check"></i> Confirmed (Seats 20A, 20B)
-            </p>
-          </div>
-        </div>
-
-        <!-- 2. Dynamic Selected Day Focus Card -->
-        <div class="travel-box" id="dynamic-day-travel-box" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.08);">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-location-crosshairs"></i> Dynamic Day Travel Focus
-          </div>
-          <div class="travel-box-content">
-            <strong>12:30 PM – 1:30 PM Priority Embarkation Window</strong>
-            <p><strong>10:15 AM:</strong> Taxi to Bologna Centrale station</p>
-            <p><strong>11:06 AM:</strong> Trenitalia Train ➔ Ravenna (Arr 11:59 AM)</p>
-            <p><strong>12:05 PM:</strong> Taxi/Shuttle ➔ Porto Corsini Terminal</p>
-            <a href="https://www.viaggiatreno.it/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;">
-              <i class="fa-solid fa-train"></i> Track 11:06 Train Live
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. Pre-Cruise Hotel Stay -->
-        <div class="travel-box">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-hotel"></i> Pre-Cruise Hotel (09-10 Aug)
-          </div>
-          <div class="travel-box-content">
-            <strong>Hotel Del Borgo, Bologna</strong>
-            <p>Via Marco Emilio Lepido 195 (8 mins from BLQ Airport)</p>
-            <p>Booking #<strong>5007213355</strong> • 2 single + 1 double bed setup</p>
-          </div>
-        </div>
-
-        <!-- 4. Inbound Flight -->
-        <div class="travel-box">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-plane-arrival"></i> Inbound Flight (Wed 19 Aug)
-          </div>
-          <div class="travel-box-content">
-            <strong>Barcelona (BCN) 12:35 ➔ Manchester (MAN) 14:10</strong>
-            <p>Ryanair Flight <strong>FR6597</strong> • PNR: <span class="badge badge-warning">F8YGQR</span></p>
-            <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
-              <i class="fa-solid fa-circle-check"></i> Confirmed (Seats 20A, 20B)
-            </p>
-          </div>
-        </div>
-
-        <!-- 5. Confirmed Specialty Dining Reservations -->
-        <div class="travel-box" style="border-color: rgba(255, 183, 3, 0.4); background: rgba(255, 183, 3, 0.05);">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-utensils"></i> Confirmed Specialty Dining
-          </div>
-          <div class="travel-box-content">
-            <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #ffffff; display: flex; flex-direction: column; gap: 5px;">
-              <li><i class="fa-solid fa-pepper-hot" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Tue 11 Aug (19:00):</strong> Los Lobos</li>
-              <li><i class="fa-solid fa-utensils" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Sat 15 Aug (17:00):</strong> Hasuki (Ship Day)</li>
-              <li><i class="fa-solid fa-wine-glass" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Sun 16 Aug (18:30):</strong> Onda by Scarpetta</li>
-              <li><i class="fa-solid fa-fish" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Tue 18 Aug (18:00):</strong> Palomar</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 6. Free at Sea Plus -->
-        <div class="travel-box" onclick="showFASModal()" style="cursor: pointer; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.05);">
-          <div class="travel-box-title">
-            <i class="fa-solid fa-wine-glass"></i> FAS+ Upgrade Details
-          </div>
-          <div class="travel-box-content">
-            <p>FAS+ (£719) saves money vs Premium Wi-Fi (£424) + Gratuities (~£310 offset) + Premium Beverages.</p>
-          </div>
-        </div>
-
-        <!-- 7. Interactive Norwegian Viva Deck Plan Navigator -->
-        <div class="travel-box" style="border-color: rgba(255, 183, 3, 0.5); background: rgba(15, 23, 42, 0.85); grid-column: span 2;">
-          <div class="travel-box-title" style="color: var(--sunset-gold); font-size: 13.5px;">
-            <i class="fa-solid fa-ship"></i> Norwegian Viva Interactive Deck Plan & Venue Navigator
-          </div>
-          <div class="travel-box-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <div>
-              <strong style="color: #ffffff; font-size: 13.5px;">143,000 GT Prima-Class Ship Layout & Specialty Dining Map</strong>
-              <p style="margin: 3px 0 0 0; color: #94a3b8; font-size: 12px;">Inspect Deck 8 Ocean Boulevard, Deck 7 Hasuki Teppanyaki, Deck 17 Palomar, and Decks 18–20 Viva Speedway & VR Pavilion.</p>
-            </div>
-            <button onclick="openDeckPlanModal()" class="btn btn-primary" style="padding: 10px 18px; font-weight: 700; font-size: 13px;">
-              <i class="fa-solid fa-map-location-dot"></i> Open Viva Deck Navigator
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- Main Grid Layout -->
   <main class="main-container">
@@ -250,6 +137,31 @@
           <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Google Photos
         </a>
       </div>
+
+      <!-- 5. Confirmed Specialty Dining Reservations -->
+        <div class="card" style="border-color: rgba(255, 183, 3, 0.4); background: rgba(255, 183, 3, 0.05);">
+          <div class="card-header"><h2>
+            <i class="fa-solid fa-utensils"></i> Confirmed Specialty Dining
+          </h2></div>
+          <div class="card-body">
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #ffffff; display: flex; flex-direction: column; gap: 5px;">
+              <li style="opacity: 0.6"><del><i class="fa-solid fa-pepper-hot" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Tue 11 Aug (19:00):</strong> Los Lobos</del></li>
+              <li><i class="fa-solid fa-utensils" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Sat 15 Aug (17:00):</strong> Hasuki (Ship Day)</li>
+              <li><i class="fa-solid fa-wine-glass" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Sun 16 Aug (18:30):</strong> Onda by Scarpetta</li>
+              <li><i class="fa-solid fa-fish" style="color: var(--sunset-gold); width: 16px;"></i> <strong style="display:inline; color: var(--sunset-gold);">Tue 18 Aug (18:00):</strong> Palomar</li>
+            </ul>
+          </div>
+        </div>
+
+      <!-- 6. Free at Sea Plus -->
+        <div class="card" onclick="showFASModal()" style="cursor: pointer; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.05);">
+          <div class="card-header"><h2>
+            <i class="fa-solid fa-wine-glass"></i> FAS+ Upgrade Details
+          </h2></div>
+          <div class="card-body">
+            <p>FAS+ (£719) saves money vs Premium Wi-Fi (£424) + Gratuities (~£310 offset) + Premium Beverages.</p>
+          </div>
+        </div>
 
       <!-- Daily Port Excursion Packing Checklist Card -->
       <div class="card packing-card">
@@ -355,6 +267,99 @@
     </div>
 
   </main>
+
+  <!-- Front & Center Prominent Travel & Logistics Section -->
+  <section class="travel-master-section">
+    <div class="travel-master-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <h2 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; color: #ffffff;">
+          <i class="fa-solid fa-plane-circle-check" style="color: var(--sunset-gold);"></i> Travel & Transfer Logistics Command
+        </h2>
+        <span class="badge badge-warning">NCL Reservation #64139255</span>
+      </div>
+
+      <div class="travel-grid">
+        
+        <!-- 1. Outbound Travel -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-plane-departure"></i> Outbound Travel (Sun 09 Aug)
+          </div>
+          <div class="travel-box-content">
+            <p style="margin-bottom: 4px;"><strong>~14:00</strong> Train Greenfield ➔ Manchester Airport</p>
+            <strong>Manchester (MAN) 17:45 ➔ Bologna (BLQ) 21:05</strong>
+            <p>Ryanair Flight <strong>FR2242</strong> • PNR: <span class="badge badge-warning">WTUR5S</span></p>
+            <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
+              <i class="fa-solid fa-circle-check"></i> Confirmed (Seats 20A, 20B)
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Dynamic Selected Day Focus Card -->
+        <div class="travel-box" id="dynamic-day-travel-box" style="border-color: var(--sunset-gold); background: rgba(255, 183, 3, 0.08);">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-location-crosshairs"></i> Dynamic Day Travel Focus
+          </div>
+          <div class="travel-box-content">
+            <strong>12:30 PM – 1:30 PM Priority Embarkation Window</strong>
+            <p><strong>10:15 AM:</strong> Taxi to Bologna Centrale station</p>
+            <p><strong>11:06 AM:</strong> Trenitalia Train ➔ Ravenna (Arr 11:59 AM)</p>
+            <p><strong>12:05 PM:</strong> Taxi/Shuttle ➔ Porto Corsini Terminal</p>
+            <a href="https://www.viaggiatreno.it/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="margin-top: 8px; text-decoration: none;">
+              <i class="fa-solid fa-train"></i> Track 11:06 Train Live
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Pre-Cruise Hotel Stay -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-hotel"></i> Pre-Cruise Hotel (09-10 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>Hotel Del Borgo, Bologna</strong>
+            <p>Via Marco Emilio Lepido 195 (8 mins from BLQ Airport)</p>
+            <p>Booking #<strong>5007213355</strong> • 2 single + 1 double bed setup</p>
+          </div>
+        </div>
+
+        <!-- 4. Inbound Flight -->
+        <div class="travel-box">
+          <div class="travel-box-title">
+            <i class="fa-solid fa-plane-arrival"></i> Inbound Flight (Wed 19 Aug)
+          </div>
+          <div class="travel-box-content">
+            <strong>Barcelona (BCN) 12:35 ➔ Manchester (MAN) 14:10</strong>
+            <p>Ryanair Flight <strong>FR6597</strong> • PNR: <span class="badge badge-warning">F8YGQR</span></p>
+            <p style="margin-top: 6px; font-size: 11px; color: var(--success);">
+              <i class="fa-solid fa-circle-check"></i> Confirmed (Seats 20A, 20B)
+            </p>
+          </div>
+        </div>
+
+        
+
+        
+
+        <!-- 7. Interactive Norwegian Viva Deck Plan Navigator -->
+        <div class="travel-box" style="border-color: rgba(255, 183, 3, 0.5); background: rgba(15, 23, 42, 0.85); grid-column: span 2;">
+          <div class="travel-box-title" style="color: var(--sunset-gold); font-size: 13.5px;">
+            <i class="fa-solid fa-ship"></i> Norwegian Viva Interactive Deck Plan & Venue Navigator
+          </div>
+          <div class="travel-box-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <strong style="color: #ffffff; font-size: 13.5px;">143,000 GT Prima-Class Ship Layout & Specialty Dining Map</strong>
+              <p style="margin: 3px 0 0 0; color: #94a3b8; font-size: 12px;">Inspect Deck 8 Ocean Boulevard, Deck 7 Hasuki Teppanyaki, Deck 17 Palomar, and Decks 18–20 Viva Speedway & VR Pavilion.</p>
+            </div>
+            <button onclick="openDeckPlanModal()" class="btn btn-primary" style="padding: 10px 18px; font-weight: 700; font-size: 13px;">
+              <i class="fa-solid fa-map-location-dot"></i> Open Viva Deck Navigator
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
   </div>
 
   <footer>
