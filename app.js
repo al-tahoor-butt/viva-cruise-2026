@@ -269,73 +269,71 @@ const cruiseData = [
   {
     day: 7,
     date: 'Sun 16 Aug 2026',
-    port: 'Livorno (Florence/Pisa), Italy',
+        port: 'Livorno (Florence/Pisa), Italy',
     arrive: '7:00 AM',
     depart: '10:00 PM',
     specialtyDining: {
       restaurant: 'Onda by Scarpetta',
       time: '6:30 PM (18:30)',
-      cuisine: 'Upscale Italian Seafood & Signature Pasta',
+      cuisine: 'Modern Italian Seafood',
       icon: 'fa-wine-glass'
     },
-    lat: 43.7228,
-    lng: 10.3966,
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg',
-    highlight: 'Pisa & Florence Day Excursion & Onda by Scarpetta (18:30)',
-    adultsActivities: 'Pisa photo-op, Florence Duomo stroll, returning for gourmet dinner at Onda by Scarpetta (18:30).',
-    kidsActivities: 'Climb Giotto’s Campanile tower, forced-perspective photo holding up Pisa tower, Boboli Gardens.',
-    transferInfo: 'Take Livorno Port Shuttle Bus (€5/pax) to Piazza Grande + Bus #1 to Livorno Centrale. Board Trenitalia train to Pisa Centrale (15 mins, €3/pax). Train from Pisa to Florence S.M. Novella (50 mins). Direct return train to Livorno Centrale (1h15m). Ship docked 07:00 – 22:00 (Late Departure).',
-    tags: ['Leaning Tower', 'Onda Scarpetta 18:30', 'Florence', 'Duomo', 'Tuscany'],
+    lat: 43.5485,
+    lng: 10.3229,
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Florence_View_from_Piazzale_Michelangelo.jpg',
+    highlight: 'Florence DIY Train Trip & Onda by Scarpetta (18:30)',
+    adultsActivities: 'Walk Florence Duomo square, Ponte Vecchio, return for 18:30 dinner at Onda.',
+    kidsActivities: 'Pisa Leaning Tower photo-op or authentic Tuscan gelato hunt in Florence.',
+    transferInfo: 'Take port shuttle/taxi to Livorno Centrale. Board Trenitalia Regional to Firenze S.M. Novella (Platforms 4/5, ~1hr 20m).',
+    tags: ['Florence', 'Pisa', 'Trenitalia', 'Onda 18:30'],
     deepDive: {
       logisticsTitle: "DIY Master Execution Strategy",
-      logisticsMode: "DIY Trenitalia Train",
+      logisticsMode: "Trenitalia Regional Train",
       badgeClass: "badge-success",
-      estCost: "€60 total (4 pax)",
-      logisticsSummary: "Take Livorno Port Shuttle Bus (€5/pax) to Piazza Grande + Bus #1 to Livorno Centrale. Board Trenitalia train to Pisa Centrale (15 mins, €3/pax). After Pisa Tower photo-op, board train to Florence S.M. Novella (50 mins). Direct return train to Livorno Centrale (1h15m). Late 10:00 PM departure gives plenty of cushion to return for Onda by Scarpetta (18:30).",
+      estCost: "€20 total (return train per pax)",
+      logisticsSummary: "Get off the ship early. Take the port shuttle to Piazza Municipio, then a quick bus/taxi to Livorno Centrale. Buy tickets on the Trenitalia App or at the green kiosks. Trains to Firenze S.M. Novella usually depart from Platform 4 or 5 and take 1h 20m.<br><br><b>Google Maps Route Navigator:</b><br><a href=\"https://www.google.com/maps/dir/?api=1&origin=Livorno+Centrale&destination=Firenze+S.M.+Novella&travelmode=transit\" target=\"_blank\" class=\"btn btn-sm btn-primary\" style=\"margin-top: 8px; text-decoration: none;\"><i class=\"fa-solid fa-map-location-dot\"></i> Open Google Maps Route</a><br><br><b>Train Return Options (Beat the Heat):</b><br>• 14:00 (Arr Livorno 15:20)<br>• 14:28 (Arr Livorno 15:52)<br>• 15:00 (Arr Livorno 16:20)<br>• 15:28 (Arr Livorno 16:52)",
       timedItinerary: [
-        "07:00 AM — Ship docks at Livorno Porto Mediceo.",
-        "07:30 AM — Take Livorno port shuttle bus (€5/pax) to Livorno Centrale station.",
-        "08:12 AM — Regional train to Pisa Centrale (15 mins); walk 15 mins to Leaning Tower.",
-        "08:30 AM — Leaning Tower of Pisa photo-op & Cathedral square.",
-        "10:30 AM — Regional train from Pisa to Florence S.M. Novella (50 mins).",
-        "11:30 AM — Explore Duomo square and Ponte Vecchio, sticking to the shaded sides of the streets.",
+        "07:00 AM — Ship docks in Livorno.",
+        "07:45 AM — Disembark, take port shuttle to Piazza Municipio & taxi/bus to Livorno Centrale.",
+        "08:30 AM — Board Trenitalia Regional train to Florence S.M. Novella (or stop at Pisa Centrale first).",
+        "10:00 AM — Arrive in Florence. Explore Duomo square and Ponte Vecchio in the shade.",
         "01:00 PM — Grab Tuscan Schiacciata sandwiches at All'Antico Vinaio and eat in a shaded piazza.",
         "02:30 PM — Board direct return train from Florence S.M.N. to Livorno Centrale early to beat the heat exhaustion.",
-        "05:30 PM — Taxi/shuttle back to ship.",
+        "04:00 PM — Taxi/shuttle back to ship.",
         "06:30 PM — Specialty Dining: Dinner at Onda by Scarpetta (Booked 18:30).",
         "09:15 PM — All-Aboard onboard Viva (Late departure ship sails 10:00 PM)."
       ],
       diningSpots: [
-        { name: "Onda by Scarpetta (Deck 8 Mid)", type: "Specialty Dining (Booked 18:30)", note: "High-end Italian seafood specialty restaurant: iconic Scarpetta spaghetti, yellowtail crudo & braised short rib." },
-        { name: "All'Antico Vinaio (Florence)", type: "Lunch", note: "World-famous warm Tuscan Schiacciata flatbread sandwiches." }
+        { name: "All'Antico Vinaio (Florence)", type: "Lunch", note: "Legendary massive Tuscan Schiacciata sandwiches. Worth the hype." },
+        { name: "Onda by Scarpetta (Deck 8 Aft)", type: "Specialty Dining (Booked 18:30)", note: "Modern Italian with outdoor Ocean Boulevard seating. Yellowtail crudo & short rib ravioli." }
       ]
     }
   },
   {
     day: 8,
     date: 'Mon 17 Aug 2026',
-    port: 'Nice (Villefranche), France',
+        port: 'Nice (Villefranche), France',
     arrive: '7:00 AM',
     depart: '4:30 PM',
     specialtyDining: null,
     lat: 43.7042,
     lng: 7.3117,
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Cannes_harbour.jpg',
-    highlight: 'Villefranche Bay Watersports & Nice Promenade Ride',
-    adultsActivities: 'Stroll Old Town Nice (Vieux Nice), sample Socca chickpea crepes.',
-    kidsActivities: 'Rent paddleboards/snorkels in Villefranche turquoise bay, or ride e-scooters along Promenade des Anglais.',
-    transferInfo: 'Ship anchors in Villefranche-sur-Mer bay (Tender Port). Take early tender boat to Villefranche pier (15 mins). Walk 5 mins up to Gare de Villefranche-sur-Mer station and board TER regional train to Nice Ville (10 mins, €2.50/pax). Ship anchored 07:00 – 16:30.',
-    tags: ['French Riviera', 'Villefranche', 'Paddleboarding', 'Nice'],
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/2/23/Villefranche_sur_Mer_Bay.jpg',
+    highlight: 'French Riviera Coastal Train & Vieux Nice',
+    adultsActivities: 'Stroll the Promenade des Anglais, shop at Cours Saleya market.',
+    kidsActivities: 'Paddleboard in Villefranche bay, flower gelato at Amorino.',
+    transferInfo: 'Tender boat to Villefranche pier. Walk 5 mins up to Gare de Villefranche. Board SNCF TER train (Direction Nice/Cannes) to Nice Ville (6 mins).',
+    tags: ['Nice', 'Villefranche', 'SNCF Train', 'Beach'],
     deepDive: {
       logisticsTitle: "DIY Master Execution Strategy",
-      logisticsMode: "DIY TER Train & Tender",
+      logisticsMode: "SNCF TER Train (6 Mins)",
       badgeClass: "badge-success",
-      estCost: "€30 total (4 pax)",
-      logisticsSummary: "Ship anchors in Villefranche-sur-Mer bay (Tender Port). Take early tender boat to Villefranche pier (15 mins). Walk 5 mins up to Gare de Villefranche-sur-Mer station and board TER regional train to Nice Ville (10 mins, €2.50/pax). Return to Villefranche for afternoon bay swimming.",
+      estCost: "€2/pax Train",
+      logisticsSummary: "Take an early tender boat to the Villefranche pier. Walk 5 minutes up the hill to the Gare de Villefranche-sur-Mer. Buy tickets on the SNCF Connect app or at the red SNCF machines. Take any Westbound train (Platform usually labelled 'Direction Nice/Cannes'). It's only a 6-minute scenic ride to Nice Ville.<br><br><b>Google Maps Route Navigator:</b><br><a href=\"https://www.google.com/maps/dir/?api=1&origin=Gare+de+Villefranche-sur-Mer&destination=Vieux+Nice&travelmode=transit\" target=\"_blank\" class=\"btn btn-sm btn-primary\" style=\"margin-top: 8px; text-decoration: none;\"><i class=\"fa-solid fa-map-location-dot\"></i> Open Google Maps Route</a><br><br><b>Train Return Options (Direction Monaco/Menton):</b><br>• Trains run every 15 to 30 minutes all afternoon. Just jump on any Eastbound TER train from Nice Ville back to Villefranche-sur-Mer.",
       timedItinerary: [
         "07:00 AM — Ship anchors in Villefranche bay.",
         "08:15 AM — Board early tender boat from Viva to Villefranche harbor (15 mins).",
-        "08:45 AM — Walk 5 mins to Gare de Villefranche station; board 10-min TER train to Nice Ville.",
+        "08:45 AM — Walk 5 mins to Gare de Villefranche station; board 6-min TER train to Nice Ville.",
         "09:15 AM — Walk the shaded narrow streets of Vieux Nice (Old Town) & Cours Saleya market.",
         "10:45 AM — Take train back to Villefranche. Cool off swimming & paddleboarding in turquoise Villefranche bay.",
         "12:30 PM — Authentic Socca chickpea crepe lunch at Chez Pipo in the shade.",
@@ -343,15 +341,15 @@ const cruiseData = [
         "03:45 PM — Last Tender / All-Aboard onboard Viva (Ship sails 4:30 PM)."
       ],
       diningSpots: [
-        { name: "Chez Pipo (Nice Old Town)", type: "Lunch", note: "Authentic wood-fired Socca (crispy chickpea crepes) & Niçoise salad." },
-        { name: "Amorino Gelato", type: "Dessert", note: "Flower-shaped gelato cones topped with a signature French macaron." }
+        { name: "Chez Pipo (Nice Port)", type: "Lunch", note: "The absolute best place to try traditional Niçoise Socca (chickpea crepe) baked in a wood oven." },
+        { name: "Amorino (Vieux Nice)", type: "Dessert", note: "Iconic artisanal gelato shaped into beautiful roses." }
       ]
     }
   },
   {
     day: 9,
     date: 'Tue 18 Aug 2026',
-        port: 'Palma de Majorca, Spain',
+            port: 'Palma de Majorca, Spain',
     arrive: '1:00 PM',
     depart: '9:00 PM',
     specialtyDining: {
@@ -366,20 +364,20 @@ const cruiseData = [
     highlight: 'Palma Old Town Exploration, Palomar (17:30) & Escape Room Pearl (18:45)',
     adultsActivities: 'Palma Cathedral (La Seu) visit, Old Town strolling, returning for dinner at Palomar.',
     kidsActivities: 'Bellver Castle circular fortress or Palma Bay beach swim before dinner.',
-    transferInfo: 'Ship docks at Estació Marítima. Take official taxi rank cab (€12 flat rate) or EMT Bus #1 directly to Palma Cathedral (La Seu). Walk Old Town alleys, visit Mercat de l\'Olivar indoor market. Ship docked 13:00 – 21:00.',
+    transferInfo: 'Ship docks at Estació Marítima. EMT Bus #1 departs right outside terminal to Old Town. Alternatively, €12 fixed-rate taxi.',
     tags: ['Palma', 'Palomar 17:30', 'Escape Room 18:45', 'Cathedral'],
     deepDive: {
       logisticsTitle: "DIY Master Execution Strategy",
-      logisticsMode: "DIY Taxi / Bus #1",
+      logisticsMode: "EMT Bus #1 / Taxi",
       badgeClass: "badge-success",
-      estCost: "€30 total (4 pax)",
-      logisticsSummary: "Ship docks at Estació Marítima. Walk out to taxi rank for a 10-min ride (€12 flat rate) or EMT Bus #1 directly to Palma Cathedral (La Seu). Walk Old Town alleys, visit Mercat de l\'Olivar indoor market. Return early for dinner and Escape Room.",
+      estCost: "€2/pax Bus or €12 Taxi",
+      logisticsSummary: "The ship docks at Estació Marítima. Walk right outside the terminal and board EMT Bus #1. You can pay with exact cash or tap your contactless card directly on the bus. Take it to the Cathedral or Plaça d'Espanya. Alternatively, the official taxi rank is right there with a ~€12 flat rate to the center.<br><br><b>Google Maps Route Navigator:</b><br><a href=\"https://www.google.com/maps/dir/?api=1&origin=Estacio+Maritima+Palma&destination=Catedral+de+Mallorca&travelmode=transit\" target=\"_blank\" class=\"btn btn-sm btn-primary\" style=\"margin-top: 8px; text-decoration: none;\"><i class=\"fa-solid fa-map-location-dot\"></i> Open Google Maps Route</a><br><br><b>Return Options:</b><br>• The EMT Bus #1 runs continuous loops. For a quick return, grab a taxi from any major rank (like Passeig d'es Born) directly back to Estació Marítima.",
       timedItinerary: [
         "01:00 PM — Ship docks in Palma (Estació Marítima).",
         "01:20 PM — Disembark & take taxi (€12) or EMT Bus #1 to Old Town.",
-        "01:45 PM — Tapas & sangria at Mercat de l\'Olivar indoor market.",
+        "01:45 PM — Tapas & sangria at Mercat de l'Olivar indoor market.",
         "03:00 PM — Escape the heat inside the massive Palma Cathedral (La Seu) & Royal Palace.",
-        "04:00 PM — Relax in the air-conditioned Ca\'n Joan de s\'Aigo with a cold drink and Mallorcan Ensaimada pastry.",
+        "04:00 PM — Relax in the air-conditioned Ca'n Joan de s'Aigo with a cold drink and Mallorcan Ensaimada pastry.",
         "05:00 PM — Quick taxi back to cruise terminal to freshen up before dinner.",
         "05:30 PM — Specialty Dining: Dinner at Palomar (Booked 17:30).",
         "06:45 PM — Family Activity: Escape Room Pearl onboard (Booked 18:45).",
@@ -387,14 +385,14 @@ const cruiseData = [
       ],
       diningSpots: [
         { name: "Palomar (Deck 17 Mid)", type: "Specialty Dining (Booked 17:30)", note: "Exquisite Mediterranean seafood restaurant with panoramic ocean views: salt-crusted sea bass & grilled octopus." },
-        { name: "Mercat de l\'Olivar", type: "Tapas Lunch", note: "Vibrant indoor market with fresh grilled prawns & Jamón Ibérico." }
+        { name: "Mercat de l'Olivar", type: "Tapas Lunch", note: "Vibrant indoor market with fresh grilled prawns & Jamón Ibérico." }
       ]
     }
   },
   {
     day: 10,
     date: 'Wed 19 Aug 2026',
-    port: 'Barcelona, Spain ➔ Manchester, UK',
+        port: 'Barcelona, Spain ➔ Manchester, UK',
     arrive: '6:30 AM',
     depart: '12:35 PM Flight',
     specialtyDining: null,
@@ -402,27 +400,28 @@ const cruiseData = [
     lng: 2.1734,
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Sagrada_Familia_01.jpg',
     highlight: 'Cruise Disembarkation & Flight FR6597 to Manchester',
-    adultsActivities: 'Disembark Norwegian Viva at 08:30 AM, transfer to Barcelona Airport (BCN).',
-    kidsActivities: 'Souvenir shopping at BCN airport before flight home.',
-    transferInfo: '08:30 Disembark ➔ 09:15 Official Taxi rank (~€35-40, 25 mins) to BCN Airport Terminal 2 ➔ 10:35 Check-in ➔ 12:35 Flight FR6597 (PNR: F8YGQR) ➔ 14:10 Arrive Manchester (MAN).',
-    tags: ['Disembarkation', 'Barcelona', 'Inbound Flight', 'Ryanair FR6597'],
+    adultsActivities: 'Disembark Norwegian Viva early and execute airport transfer to BCN.',
+    kidsActivities: 'Navigate Barcelona El Prat airport and fly home.',
+    transferInfo: 'Ship docks at Moll Adossat. Grab an official taxi straight to BCN Airport (El Prat). Fixed rate/meter is ~€39. Takes 25 mins.',
+    tags: ['Barcelona', 'Disembarkation', 'Airport Transfer', 'Ryanair'],
     deepDive: {
       logisticsTitle: "DIY Master Execution Strategy",
-      logisticsMode: "DIY Airport Taxi / Aerobús",
+      logisticsMode: "Official Port Taxi",
       badgeClass: "badge-success",
-      estCost: "€40 total (Taxi)",
-      logisticsSummary: "Disembark Norwegian Viva at 08:30 AM at Port of Barcelona (Moll Adossat). Take official taxi rank cab directly to Barcelona Airport (BCN) Terminal 2 (~€35-40, 25 mins) for Ryanair Flight FR6597.",
+      estCost: "~€39 total per taxi",
+      logisticsSummary: "With a 12:35 PM flight out of BCN El Prat, do not risk the T3 Portbus to Columbus Monument followed by the Aerobus. With 4 people and luggage, the absolute most efficient method is to join the official taxi rank right outside your Moll Adossat terminal. The ride to BCN Airport takes about 25 minutes and usually costs a flat/metered rate of €39. Target arriving at the airport by 10:00 AM.<br><br><b>Google Maps Route Navigator:</b><br><a href=\"https://www.google.com/maps/dir/?api=1&origin=Moll+Adossat+Barcelona&destination=Barcelona+El+Prat+Airport&travelmode=driving\" target=\"_blank\" class=\"btn btn-sm btn-primary\" style=\"margin-top: 8px; text-decoration: none;\"><i class=\"fa-solid fa-map-location-dot\"></i> Open Google Maps Route</a>",
       timedItinerary: [
-        "06:30 AM — Ship docks at Port of Barcelona.",
-        "07:30 AM — Family breakfast onboard Norwegian Viva.",
-        "08:30 AM — Disembark ship & collect checked luggage in terminal.",
-        "09:15 AM — Take official taxi (~€35–40) or Aerobús to BCN Airport Terminal 2.",
-        "10:35 AM — Check-in & security for Ryanair flight FR6597.",
-        "12:35 PM — Flight FR6597 departs Barcelona for Manchester (MAN) (PNR: F8YGQR).",
-        "02:10 PM — Land at Manchester Airport (MAN) Terminal 3!"
+        "06:30 AM — Norwegian Viva docks at Barcelona (Moll Adossat).",
+        "08:00 AM — Enjoy final buffet breakfast onboard.",
+        "09:00 AM — Disembark ship with luggage.",
+        "09:15 AM — Join the official taxi rank at the cruise terminal.",
+        "09:40 AM — Arrive at Barcelona El Prat Airport (BCN).",
+        "10:00 AM — Drop bags at Ryanair check-in desk and clear security.",
+        "11:50 AM — Head to departure gate for FR6597.",
+        "12:35 PM — Flight departs for Manchester (MAN)!"
       ],
       diningSpots: [
-        { name: "Cervecería Catalana (Carrer de Mallorca, 236)", type: "Tapas", note: "Incredible Spanish tapas: honey-drizzled fried eggplant, garlic prawns & beef tenderloin skewers." },
+        { name: "Surfside Café (Deck 17)", type: "Breakfast", note: "Final ship breakfast before disembarking." }
       ]
     }
   }
@@ -948,8 +947,8 @@ async function selectDay(index) {
     ` : ''}
 
     <!-- Secondary Activities & Weather Grid -->
-    <div class="day-content-grid" style="grid-template-columns: 1fr 220px; gap: 20px;">
-      <div>
+    <div class="day-content-grid" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+      <div style="flex: 1 1 280px;">
         <div class="activity-section" style="margin-bottom: 14px;">
           <h4 style="font-size: 14px; color: var(--sunset-gold);"><i class="fa-solid fa-user-tie"></i> Adults Activity Highlights</h4>
           <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 4px;">${data.adultsActivities}</p>
@@ -966,7 +965,7 @@ async function selectDay(index) {
       </div>
 
       <!-- Live Weather Box -->
-      <div class="weather-badge-box" style="position: relative;">
+      <div class="weather-badge-box" style="flex: 0 0 220px; position: relative;">
         <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--sunset-gold); margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid rgba(255,183,3,0.3); padding-bottom: 4px; width: 100%; justify-content: center;">
           <i class="fa-solid fa-tower-broadcast" style="animation: pulse 2s infinite;"></i> LIVE WEATHER: ${data.port.split(',')[0]}
         </div>
