@@ -269,43 +269,43 @@ const cruiseData = [
   {
     day: 7,
     date: 'Sun 16 Aug 2026',
-        port: 'Livorno (Florence/Pisa), Italy',
+            port: 'Livorno ➔ Pisa',
     arrive: '7:00 AM',
     depart: '10:00 PM',
     specialtyDining: {
-      restaurant: 'Onda by Scarpetta',
+      restaurant: 'Split: Los Lobos & Nama Sushi',
       time: '6:30 PM (18:30)',
-      cuisine: 'Modern Italian Seafood',
-      icon: 'fa-wine-glass'
+      cuisine: 'Mexican & Japanese',
+      icon: 'fa-pepper-hot'
     },
-    lat: 43.5485,
-    lng: 10.3229,
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Florence_View_from_Piazzale_Michelangelo.jpg',
-    highlight: 'Florence DIY Train Trip & Onda by Scarpetta (18:30)',
-    adultsActivities: 'Walk Florence Duomo square, Ponte Vecchio, return for 18:30 dinner at Onda.',
-    kidsActivities: 'Pisa Leaning Tower photo-op or authentic Tuscan gelato hunt in Florence.',
-    transferInfo: 'Take port shuttle/taxi to Livorno Centrale. Board Trenitalia Regional to Firenze S.M. Novella (Platforms 4/5, ~1hr 20m).',
-    tags: ['Florence', 'Pisa', 'Trenitalia', 'Onda 18:30'],
+    lat: 43.7228,
+    lng: 10.3966,
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg',
+    highlight: 'Quick Hit to Pisa Leaning Tower & Early Retreat',
+    adultsActivities: 'Morning excursion to Pisa, followed by relaxing on the empty ship away from the extreme heat.',
+    kidsActivities: 'Iconic Leaning Tower photos, early return for afternoon waterslides on the ship.',
+    transferInfo: 'Port shuttle/taxi to Livorno Centrale. Board Trenitalia Regional to Pisa Centrale (approx 15-20 mins).',
+    tags: ['Pisa', 'Leaning Tower', 'Beat The Heat', 'Los Lobos / Nama'],
     deepDive: {
       logisticsTitle: "DIY Master Execution Strategy",
-      logisticsMode: "Trenitalia Regional Train",
+      logisticsMode: "Trenitalia Regional Train (15 mins)",
       badgeClass: "badge-success",
-      estCost: "€20 total (return train per pax)",
-      logisticsSummary: "Get off the ship early. Take the port shuttle to Piazza Municipio, then a quick bus/taxi to Livorno Centrale. Buy tickets on the Trenitalia App or at the green kiosks. Trains to Firenze S.M. Novella usually depart from Platform 4 or 5 and take 1h 20m.<br><br><b>Google Maps Route Navigator:</b><br><a href=\"https://www.google.com/maps/dir/?api=1&origin=Livorno+Centrale&destination=Firenze+S.M.+Novella&travelmode=transit\" target=\"_blank\" class=\"btn btn-sm btn-primary\" style=\"margin-top: 8px; text-decoration: none;\"><i class=\"fa-solid fa-map-location-dot\"></i> Open Google Maps Route</a><br><br><b>Train Return Options (Beat the Heat):</b><br>• 14:00 (Arr Livorno 15:20)<br>• 14:28 (Arr Livorno 15:52)<br>• 15:00 (Arr Livorno 16:20)<br>• 15:28 (Arr Livorno 16:52)",
+      estCost: "€6 total (return train per pax)",
+      logisticsSummary: "Dodging the intense heat of Florence, we are doing a quick strike on Pisa. Take the port shuttle and bus/taxi to Livorno Centrale. The Trenitalia Regional train to Pisa Centrale takes only 15-20 minutes. From there, it\'s a flat 20-minute walk (or quick bus) to the Leaning Tower. Get in, get the iconic photos, grab an early lunch, and escape back to the glorious air-conditioning of the ship by early afternoon.<br><br><b>Google Maps Route Navigator:</b><br><a href=\"https://www.google.com/maps/dir/?api=1&origin=Livorno+Centrale&destination=Leaning+Tower+of+Pisa&travelmode=transit\" target=\"_blank\" class=\"btn btn-sm btn-primary\" style=\"margin-top: 8px; text-decoration: none;\"><i class=\"fa-solid fa-map-location-dot\"></i> Open Google Maps Route</a>",
       timedItinerary: [
-        "07:00 AM — Ship docks in Livorno.",
-        "07:45 AM — Disembark, take port shuttle to Piazza Municipio & taxi/bus to Livorno Centrale.",
-        "08:30 AM — Board Trenitalia Regional train to Florence S.M. Novella (or stop at Pisa Centrale first).",
-        "10:00 AM — Arrive in Florence. Explore Duomo square and Ponte Vecchio in the shade.",
-        "01:00 PM — Grab Tuscan Schiacciata sandwiches at All'Antico Vinaio and eat in a shaded piazza.",
-        "02:30 PM — Board direct return train from Florence S.M.N. to Livorno Centrale early to beat the heat exhaustion.",
-        "04:00 PM — Taxi/shuttle back to ship.",
-        "06:30 PM — Specialty Dining: Dinner at Onda by Scarpetta (Booked 18:30).",
+        "09:30 AM — Relaxed disembarkation. Taxi/shuttle to Livorno Centrale.",
+        "10:15 AM — Board Trenitalia Regional train to Pisa Centrale.",
+        "10:35 AM — Arrive in Pisa. Walk or take the LAM Rossa bus to Piazza dei Miracoli.",
+        "11:00 AM — Explore the Leaning Tower and Cathedral complex before the midday sun hits its peak.",
+        "12:15 PM — Grab a quick, shaded lunch in Pisa.",
+        "01:30 PM — Train back to Livorno Centrale to escape the heat.",
+        "02:15 PM — Arrive back onboard the Norwegian Viva.",
+        "02:30 PM — Enjoy the empty pools, waterslides, and AC while everyone else is sweltering in Florence!",
+        "06:30 PM — Specialty Dining: Split Dinner! One pair to Los Lobos, the other to Nama Sushi.",
         "09:15 PM — All-Aboard onboard Viva (Late departure ship sails 10:00 PM)."
       ],
       diningSpots: [
-        { name: "All'Antico Vinaio (Florence)", type: "Lunch", note: "Legendary massive Tuscan Schiacciata sandwiches. Worth the hype." },
-        { name: "Onda by Scarpetta (Deck 8 Aft)", type: "Specialty Dining (Booked 18:30)", note: "Modern Italian with outdoor Ocean Boulevard seating. Yellowtail crudo & short rib ravioli." }
+        { name: "Los Lobos / Nama Sushi (Deck 8)", type: "Specialty Dining (18:30)", note: "Ditching Onda so the kids can eat! Split dinner strategy in place." }
       ]
     }
   },
